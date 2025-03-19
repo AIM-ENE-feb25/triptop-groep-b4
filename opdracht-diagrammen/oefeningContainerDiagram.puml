@@ -1,0 +1,22 @@
+@startuml
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+title Context diagram for the ANS application
+
+Person(Student, "Student", "A student who uses the system to make exams")
+Person(Teacher, "Teacher", "A teacher who uses the system to create and grade exams")
+
+Container(WebApplication, "WebApplication", $techn="The implementation technology", $descr="this is a list of the container’s key responsibilities", $tags="", $link="")
+Container(Backend, "Backend", $techn="API ans", $descr="Behandelt alle API-verzoeken", $tags="", $link="")
+Container(Osiris, "Osiris", $techn="Contains registered Students for exams", $descr="The student information system", $tags="", $link="")
+Container(Schoolyear, "Schoolyear", $techn="Secures ANS so it can only be used in a safe browser", $descr="The schoolyear information system", $tags="", $link="")
+ContainerDb(Database, "Database", $techn="The implementation technology", $descr="Stores answers, questions and grades", $tags="", $link="")
+
+Rel(Student, WebApplication, "Navigates to ANS", $techn="HTTP", $tags="", $link="")
+Rel(Teacher, WebApplication, "Navigates to ANS", $techn="HTTP", $tags="", $link="")
+Rel(WebApplication, Backend, "Makes API calls to", $techn="HTTP/JSON", $tags="", $link="")
+Rel(Backend, Database, "Reads from and writes to", $techn="IP4/TCP", $tags="", $link="")
+Rel(Backend, "Osiris", "?", $techn="HTTP/JSON", $tags="", $link="")
+Rel(Backend, "Schoolyear", "?", $techn="HTTP/JSON", $tags="", $link="")
+@enduml

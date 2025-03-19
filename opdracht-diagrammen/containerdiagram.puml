@@ -1,0 +1,27 @@
+@startuml
+!include <C4/C4>
+!include <C4/C4_Context>
+!include <C4/C4_Container>
+title Context diagram TripTop
+
+Person(Reiziger, "Reiziger", "Een persoon die een reis wil plannen")
+Person(Reisagent, "Reisagent", "Een persoon die om hulp kan worden gevraagd door reizigers")
+
+Container(WebApplication, "WebApplication", $techn="Javascript/React", $descr="Interface van TripTop", $tags="", $link="")
+Container(Backend, "Backend", $techn="Java", $descr="Behandelt alle API-verzoeken", $tags="", $link="")
+Container(BookingAPI, "Booking.com", $techn="Software system", $descr="API van Booking.com voor het boeken van verblijfplaatsen en vluchten", $tags="", $link="")
+Container(GetYourGuideAPI, "GetYourGuide",$techn="Software system", $descr="API van GetYourGuide voor het boeken van excursies", $tags="", $link="")
+Container(HertzAPI, "Hertz", $techn="Software system", $descr="API van Hertz voor het boeken van auto's", $tags="", $link="")
+Container(IdentityProvider, "IdentityProvider", $techn="Software system", $descr="Een externe service die authenticatie en autorisatie afhandelt", $tags="", $link="")
+
+ContainerDb(Database, "Database", $techn="SQL", $descr="Stores trips", $tags="", $link="")
+
+Rel(Reiziger, WebApplication, "Plant reis met", $techn="HTTP", $tags="", $link="")
+Rel(Reisagent, WebApplication, "Plant reis voor reiziger met", $techn="HTTP", $tags="", $link="")
+Rel(WebApplication, Backend, "Maakt API calls naar", $techn="HTTP/JSON", $tags="", $link="")
+Rel(Backend, Database, "Leest en schrijft naar", $techn="IP4/TCP", $tags="", $link="")
+Rel(Backend, BookingAPI, "Haalt gegevens op", $techn="HTTP/JSON", $tags="", $link="")
+Rel(Backend, GetYourGuideAPI, "Haalt gegevens op", $techn="HTTP/JSON", $tags="", $link="")
+Rel(Backend, HertzAPI, "Haalt gegevens op", $techn="HTTP/JSON", $tags="", $link="")
+Rel(Backend, IdentityProvider, "Haalt gegevens op", $techn="HTTP/JSON", $tags="", $link="")
+@enduml

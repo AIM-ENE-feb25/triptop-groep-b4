@@ -1,6 +1,6 @@
 @startuml
 !include <C4/C4_Container>
-title Context diagram TripTop
+title Context diagram TripTor
 Person(Reiziger, "Reiziger", "Een persoon die een reis wil plannen")
 Person(Reisagent, "Reisagent", "Een persoon die om hulp kan worden gevraagd door reizigers")
 
