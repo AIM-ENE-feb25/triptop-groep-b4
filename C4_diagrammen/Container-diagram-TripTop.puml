@@ -1,0 +1,30 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title C4 Container Diagram - TripTop
+
+Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om een vakantie te boeken")
+Person(Reisagent, "Reisagent", "Een reisagent die het systeem gebruikt om een reiziger te helpen")
+
+System_Boundary(TripTop, "TripTop") {
+    Container(Web_app, "Webapplicatie", "Verwerkt de weergave van informatie")
+    Container(Backend, "Backend", "Behandelt alle logica binnen TripTop")
+    ContainerDb(SQLServer, "SQL Server", "Bevat alle gegevens die door TripTop worden gebruikt")
+}
+
+System_Ext(Identiteitsprovider, "Identiteitsprovider", "Verzorgt het inloggen")
+System_Ext(AeroDataBox, "AeroDataBox", "Haalt alle vluchtgegevens op")
+System_Ext(BookingCom, "Booking.com", "Haalt alle hotelgegevens op")
+System_Ext(GoogleMapsAPI, "Google Maps API", "Haalt kaartgegevens op")
+
+Backend --> SQLServer : "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+Reiziger --> Web_app: "Verstuurt een verzoek om een vakantie te boeken (HTTP/JSON)"
+Reisagent --> Web_app: "Verstuurt een verzoek om een reiziger te helpen (HTTP/JSON)"
+Web_app --> Backend: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Backend --> Identiteitsprovider: "Verstuurt inlogverzoeken (JSON)"
+Backend --> AeroDataBox: "Verstuurt een verzoek om vluchtgegevens op te halen (?)"
+Backend --> BookingCom: "Verstuurt een verzoek om hotelinformatie op te halen (?)"
+Backend --> GoogleMapsAPI: "Verstuurt een verzoek om kaartinformatie op te halen (?)"
+
+@enduml
