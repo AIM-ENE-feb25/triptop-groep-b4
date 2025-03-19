@@ -1,0 +1,20 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title C4 Dynamic Container Diagram Inloggen
+
+Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om een vakantie te boeken")
+
+Container_Boundary(ContainerBoundary, "Container Boundary") {
+    Container(WebApp, "WebApplication", "React", "Frontend interface for TripTop")
+    Container(Backend, "Backend", "Java", "Handles application logic and API requests")
+}
+Container(IdentityProvider, "IdentityProvider", "External System", "Handles authentication and authorization")
+
+Rel(Reiziger, WebApp, "1: Vult inloggevens in", $techn="HTTP", $tags="", $link="")
+Rel(WebApp, Backend, "2: Verstuurt inloggevens", $techn="HTTP", $tags="", $link="")
+Rel(Backend, IdentityProvider, "3: Valideert inloggegevens", $techn="HTTP", $tags="", $link="")
+Rel(IdentityProvider, Backend, "4: Retourneert authenticatietoken", $techn="HTTP", $tags="", $link="")
+Rel(Backend, WebApp, "5: Retourneert gebruikersessiegegevens", $techn="HTTP", $tags="", $link="")
+Rel(WebApp, Reiziger, "6: Gebruiker is ingelogd en wordt doorgestuurd naar het dashboard", $techn="HTTP", $tags="", $link="")
+@enduml
