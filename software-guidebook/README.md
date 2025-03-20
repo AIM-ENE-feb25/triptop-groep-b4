@@ -8,31 +8,58 @@ Dit software guidebook geeft een overzicht van de Triptop-applicatie. Het bevat 
 1. De architectuur van de infrastructuur en hoe de software kan worden geinstalleerd. 
 
 ## 2. Context
+De TripTop applicatie is ontworpen als een platform voor het plannen van reizen. Gebruikers
+kunnen reizen organiseren en accomodaties en vluchten boeken via externe API's die zijn
+geïntegreerd in de applicatie. Reizigers en reisagenten g ebruiken de applicatie voor
+reisplanning, waarbij de reizigers hun reis plannen en de reisagenten ondersteuning bieden
+bij het plannen van reizen.
 
 ![Context-Diagram-TripTop](../C4_diagrammen/context-diagram-triptop.png)
 >TODO:
 >Toelichting op de context van de software:
 
 ### 2.1. Functionaliteit
-
+De functionaliteiten van de applicatie omvatten:
+* Reisplanning: Gebruikers kunnen accomodaties en vluchten boeken.
+* Kaartweergave: De applicatie kan kaarten tonen met locaties van accomodaties en vluchten via
+de integratie van de Google Maps API.
+* Authenticatie en authorisatie: Gebruikers worden geauthenticeerd en geauthoriseerd via een
+externe Identity Provider.
 
 ### 2.2. Gebruikers
-Het team heeft ervoor gekozen om twee gebruikers te integreren in de applicatie. Dit zijn: reizigers en reisagenten. Dit heeft het team gedaan, omdat dit de enige twee actoren zijn waarover werd gesproken in de casus.
+Het team heeft ervoor gekozen om twee typen gebruikers in de applicatie op te nemen:
+* Reiziger: Dit is de belangrijkste gebruiker van de applicatie. De reiziger gebruikt
+de applicatie om hun reizen te plannen, waaronder het boeken van accomodaties en het
+zoeken naar geschikte vluchten.
+* Reisagent: Deze gebruiker helpt de reiziger met het plannen van hun reis door advies
+te geven een aanbevelingen te doen over routes, accomodaties en vluchten. De reisagent
+dient als een ondersteunende rol voor de reiziger.
+
+Deze twee gebruikersrollen zijn gekozen, omdat ze de belangrijkste actoren zijn die in
+de casus worden genoemd.
 
 ### 2.3. Externe systemen
-Het team heeft ervoor gekozen om vier externe systemen te integreren in de applicatie. Dit zijn:
-1. Google Maps
+Er zijn vier externe systemen geïntegreerd in de TripTop applicatie:
+1. Google Maps API
 
-Dit externe systeem gaat ervoor zorgen dat kaarten en locaties kunnen worden weergegeven in de applicatie.
-2. Booking.com
+Deze API wordt gebruikt om kaarten en locaties op te vragen. Het zorgt ervoor dat gebruikers routes kunnen 
+visualiseren en bestemmingen kunnen vinden binnen de applicatie.
+2. Booking.com API
 
-Dit externe systeem gaat ervoor zorgen dat de gebruiker accomodaties kan vinden afgestemd op zijn wensen.
-2. AirScraper
+Via deze API kunnen gebruikers accommodaties vinden en boeken op basis van hun specifieke wensen. De 
+API zorgt voor toegang tot de database van accommodaties, inclusief prijzen en beschikbaarheid.
 
-Dit externe systeem gaat ervoor zorgen dat de gebruiker vluchten kan vinden afgestemd op zijn wensen. Deze API maakt mogelijk dat vluchten, vluchthavens en prijzen van de vluchten beschikbaar zijn.
-3. Identity Provider
+3. AirScraper API
 
-Dit externe systeem gaat ervoor zorgen dat de gebruiker kan inloggen in de applicatie. De applicatie maakt gebruik van een externe Identity Provider om de gebruiker te authenticeren en te authoriseren. Dit wordt gedaan door een extern systeem omdat het erg generiek is en niet specifiek is voor deze applicatie.
+Deze API biedt informatie over vluchten, luchthavens en prijzen van vluchten. Het stelt gebruikers
+in staat om vluchten te zoeken en te boeken die aan hun reisplannen voldoen.
+
+5. Identity Provider
+
+De applicatie maakt gebruik van een externe identity provider voor de authenticatie en autorisatie 
+van gebruikers. Dit externe systeem zorgt ervoor dat gebruikers zich veilig kunnen aanmelden in de 
+applicatie en hun identiteit wordt gecontroleerd, zonder dat de applicatie zelf verantwoordelijk is
+voor het beheer van wachtwoorden of inloggegevens.
 
 ## 3. Functional Overview
 

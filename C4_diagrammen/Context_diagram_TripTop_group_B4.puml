@@ -4,7 +4,7 @@
 title C4 Context Diagram - TripTop
 
 Person(Reiziger, "Reiziger", "Gebruikt de applicatie om reizen te plannen")
-Person(ReisAgent, "ReisAgent", "Biedt hulp bij het plannen van reizen")
+Person(ReisAgent, "Reisagent", "Biedt hulp bij het plannen van reizen")
 
 System(TripTop, "TripTop Applicatie", "Applicatie voor het plannen van reizen")
 
