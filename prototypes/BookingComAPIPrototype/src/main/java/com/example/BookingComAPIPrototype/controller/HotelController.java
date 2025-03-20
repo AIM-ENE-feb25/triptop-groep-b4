@@ -1,9 +1,12 @@
 package com.example.BookingComAPIPrototype.controller;
 
+import com.example.BookingComAPIPrototype.domain.Hotel;
 import com.example.BookingComAPIPrototype.service.HotelService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
@@ -15,10 +18,10 @@ public class HotelController {
     }
 
     @GetMapping("/hotels")
-    public CompletableFuture<String> getHotels(
+    public CompletableFuture<List<Hotel>> getHotels(
             @RequestParam String city,
             @RequestParam String checkInDate,
             @RequestParam String checkOutDate) {
-        return hotelService.getHotelData(city, checkInDate, checkOutDate);
+        return hotelService.GetHotelList(city, checkInDate, checkOutDate);
     }
 }
