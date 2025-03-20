@@ -15,8 +15,6 @@ reisplanning, waarbij de reizigers hun reis plannen en de reisagenten ondersteun
 bij het plannen van reizen.
 
 ![Context-Diagram-TripTop](../C4_diagrammen/context-diagram-triptop.png)
->TODO:
->Toelichting op de context van de software:
 
 ### 2.1. Functionaliteit
 De functionaliteiten van de applicatie omvatten:
