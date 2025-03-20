@@ -15,4 +15,6 @@ Rel(Reiziger, WebApp, "1: Selecteerd trip optie", $techn="HTTP", $tags="", $link
 Rel(WebApp, Backend, "2: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
 Rel(Backend, WebApp, "3: Retourneert boekingsbevestiging", $techn="?", $tags="", $link="")
 Rel(WebApp, Reiziger, "4: Toont boekingsbevestiging", $techn="?", $tags="", $link="")
+
+SHOW_LEGEND(true)
 @enduml

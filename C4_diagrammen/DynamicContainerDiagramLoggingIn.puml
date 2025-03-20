@@ -17,4 +17,6 @@ Rel(Backend, IdentityProvider, "3: Valideert inloggegevens", $techn="HTTP", $tag
 Rel(IdentityProvider, Backend, "4: Retourneert authenticatietoken", $techn="HTTP", $tags="", $link="")
 Rel(Backend, WebApp, "5: Retourneert gebruikersessiegegevens", $techn="HTTP", $tags="", $link="")
 Rel(WebApp, Reiziger, "6: Gebruiker is ingelogd en wordt doorgestuurd naar het dashboard", $techn="HTTP", $tags="", $link="")
+
+SHOW_LEGEND(true)
 @enduml
