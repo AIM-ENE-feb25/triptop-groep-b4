@@ -1,0 +1,18 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title C4 Dynamic Container Diagram Booking a Trip - TripTop
+left to right direction
+
+Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om een vakantie te boeken")
+
+Container_Boundary(ContainerBoundary, "Container Boundary") {
+    Container(WebApp, "WebApplication", "React/JavaScript", "Frontend interface for TripTop")
+    Container(Backend, "Backend", "Java/SpringBoot", "Handles application logic and API requests")
+}
+
+Rel(Reiziger, WebApp, "1: Selecteerd trip optie", $techn="HTTP", $tags="", $link="")
+Rel(WebApp, Backend, "2: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(Backend, WebApp, "3: Retourneert boekingsbevestiging", $techn="?", $tags="", $link="")
+Rel(WebApp, Reiziger, "4: Toont boekingsbevestiging", $techn="?", $tags="", $link="")
+@enduml
