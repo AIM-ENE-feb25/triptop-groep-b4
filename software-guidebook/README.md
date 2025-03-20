@@ -9,13 +9,30 @@ Dit software guidebook geeft een overzicht van de Triptop-applicatie. Het bevat 
 
 ## 2. Context
 
-> [!IMPORTANT]
-> Werk zelf dit hoofdstuk uit met context diagrammen en een beschrijving van de context van de software.
+![Context-Diagram-TripTop](../C4_diagrammen/context-diagram-triptop.png)
+>TODO:
+>Toelichting op de context van de software:
 
-Toelichting op de context van de software inclusief System Context Diagram:
-* Functionaliteit
-* Gebruikers
-* Externe systemen
+### 2.1. Functionaliteit
+
+
+### 2.2. Gebruikers
+Het team heeft ervoor gekozen om twee gebruikers te integreren in de applicatie. Dit zijn: reizigers en reisagenten. Dit heeft het team gedaan, omdat dit de enige twee actoren zijn waarover werd gesproken in de casus.
+
+### 2.3. Externe systemen
+Het team heeft ervoor gekozen om vier externe systemen te integreren in de applicatie. Dit zijn:
+1. Google Maps
+
+Dit externe systeem gaat ervoor zorgen dat kaarten en locaties kunnen worden weergegeven in de applicatie.
+2. Booking.com
+
+Dit externe systeem gaat ervoor zorgen dat de gebruiker accomodaties kan vinden afgestemd op zijn wensen.
+2. AirScraper
+
+Dit externe systeem gaat ervoor zorgen dat de gebruiker vluchten kan vinden afgestemd op zijn wensen. Deze API maakt mogelijk dat vluchten, vluchthavens en prijzen van de vluchten beschikbaar zijn.
+3. Identity Provider
+
+Dit externe systeem gaat ervoor zorgen dat de gebruiker kan inloggen in de applicatie. De applicatie maakt gebruik van een externe Identity Provider om de gebruiker te authenticeren en te authoriseren. Dit wordt gedaan door een extern systeem omdat het erg generiek is en niet specifiek is voor deze applicatie.
 
 ## 3. Functional Overview
 
@@ -110,9 +127,10 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 ## 7. Software Architecture
 
 ###     7.1. Containers
-
-> [!IMPORTANT]
-> Voeg toe: Container Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
+![Container-Diagram-TripTop](../C4_diagrammen/container-diagram-triptop.png)
+>TODO:
+> 
+> Voeg toe: Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
 
 ###     7.2. Components
 

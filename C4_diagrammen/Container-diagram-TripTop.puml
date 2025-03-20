@@ -2,15 +2,15 @@
 
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
-title C4 Container Diagram Inloggen - TripTop
+title C4 Container Diagram - TripTop
 
 Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om een vakantie te boeken")
 Person(Reisagent, "Reisagent", "Een reisagent die het systeem gebruikt om een reiziger te helpen")
 
 System_Boundary(TripTop, "TripTop") {
-    Container(Web_app, "Webapplicatie", "Verwerkt de weergave van informatie")
-    Container(Backend, "Backend", "Behandelt alle logica binnen TripTop")
-    ContainerDb(Database, "Database", "Bevat alle gegevens die door TripTop worden gebruikt")
+    Container(Web_app, "Webapplicatie", "React/JavaScript", "Verwerkt de weergave van informatie")
+    Container(Backend, "Backend", "Java/SpringBoot", "Behandelt alle logica binnen TripTop")
+    ContainerDb(Database, "Database", "SQL", "Bevat alle gegevens die door TripTop worden gebruikt")
 }
 
 System_Ext(Identiteitsprovider, "Identiteitsprovider", "Verzorgt het inloggen")
