@@ -156,6 +156,7 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 >TODO:
 > 
 > Voeg toe: Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
+> ![Dynamic-Container-Diagram-BookingCom](../C4_diagrammen/DynamicContainerDiagramBooking.png)
 
 ###     7.2. Components
 
