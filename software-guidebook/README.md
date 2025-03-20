@@ -10,7 +10,7 @@ Dit software guidebook geeft een overzicht van de Triptop-applicatie. Het bevat 
 ## 2. Context
 De TripTop applicatie is ontworpen als een platform voor het plannen van reizen. Gebruikers
 kunnen reizen organiseren en accomodaties en vluchten boeken via externe API's die zijn
-geïntegreerd in de applicatie. Reizigers en reisagenten g ebruiken de applicatie voor
+geïntegreerd in de applicatie. Reizigers en reisagenten gebruiken de applicatie voor
 reisplanning, waarbij de reizigers hun reis plannen en de reisagenten ondersteuning bieden
 bij het plannen van reizen.
 
