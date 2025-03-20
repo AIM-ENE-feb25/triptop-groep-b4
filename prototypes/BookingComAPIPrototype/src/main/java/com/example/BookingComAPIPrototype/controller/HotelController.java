@@ -1,17 +1,17 @@
 package com.example.BookingComAPIPrototype.controller;
 
-import com.example.BookingComAPIPrototype.service.BookingService;
+import com.example.BookingComAPIPrototype.service.HotelService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.concurrent.CompletableFuture;
 
 @RestController
-public class BookingController {
-    private final BookingService bookingService;
+public class HotelController {
+    private final HotelService hotelService;
 
-    public BookingController(BookingService bookingService) {
-        this.bookingService = bookingService;
+    public HotelController(HotelService hotelService) {
+        this.hotelService = hotelService;
     }
 
     @GetMapping("/hotels")
@@ -19,6 +19,6 @@ public class BookingController {
             @RequestParam String city,
             @RequestParam String checkInDate,
             @RequestParam String checkOutDate) {
-        return bookingService.getHotelData(city, checkInDate, checkOutDate);
+        return hotelService.getHotelData(city, checkInDate, checkOutDate);
     }
 }
