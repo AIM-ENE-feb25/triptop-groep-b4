@@ -22,10 +22,10 @@ Backend --> Database : "Vraagt gegevens op uit de database (IP/TCP/SQL)"
 Reiziger --> Web_app: "Verstuurt een verzoek om een vakantie te boeken (HTTP/JSON)"
 Reisagent --> Web_app: "Verstuurt een verzoek om een reiziger te helpen (HTTP/JSON)"
 Web_app --> Backend: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Web_app --> GoogleMapsAPI: "Verstuurt een verzoek om kaartinformatie op te halen (?)"
 Backend --> Identiteitsprovider: "Verstuurt inlogverzoeken (JSON)"
 Backend --> AirScraper: "Verstuurt een verzoek om vluchtgegevens op te halen (?)"
 Backend --> BookingCom: "Verstuurt een verzoek om hotelinformatie op te halen (?)"
-Backend --> GoogleMapsAPI: "Verstuurt een verzoek om kaartinformatie op te halen (?)"
 
 SHOW_LEGEND(true)
 @enduml
