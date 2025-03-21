@@ -104,8 +104,8 @@ Als gebruiker wil ik de bouwstenen van mijn reis flexibel kunnen uitbreiden met 
 | Trip::budget                     |                                       |                                  | x                                 |                                         |
 | Verblijf::startDatum             |                                       |                                  | x                                 | x                                       |
 | Verblijf::eindDatum              |                                       |                                  | x                                 | x                                       |
-| Verblijfplaats::locatie          | Booking/search? (POST)                | Booking.com / ?                  |                                   | x                                       |
-| Verblijfplaats::prijs            | Booking/search? (POST)                | Booking.com / ?                  |                                   | x                                       |
+| Verblijfplaats::locatie          | Booking/getHotelDetails (GET)         | Booking/getHotelDetails          |                                   | x                                       |
+| Verblijfplaats::prijs            | Booking/getHotelDetails (GET)         | Booking/getHotelDetails          |                                   | x                                       |
 | Reis::startDatum                 | AirScraper/searchFlightsComplete(GET) | AirScraper/searchFlightsComplete |                                   | x                                       |
 | Reis::eindDatum                  | AirScraper/searchFlightsComplete(GET) | AirScraper/searchFlightsComplete |                                   | x                                       |
 | Reis::prijs                      | AirScraper/searchFlightsComplete(GET) | AirScraper/searchFlightsComplete |                                   | x                                       |
@@ -152,10 +152,16 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 ## 7. Software Architecture
 
 ###     7.1. Containers
-![Container-Diagram-TripTop](../C4_diagrammen/container-diagram-triptop.png)
->TODO:
-> 
-> Voeg toe: Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
+#### Container diagram TripTop
+
+> ![Container-Diagram-TripTop](../C4_diagrammen/container-diagram-triptop.png)
+
+Het systeem van TripTop bestaad hier uit de volgende containers webapplicatie, backend en een database.
+Daarnaast zijn er ook erxterne programma's waar de containers gebruik van maken. 
+De webapplicatie maakt gebruik van de Google maps api voor het tonen van een kaart.
+De backend maakt gebruik van de Booking.com api voor het laten zien van hotels.
+Daarnaast maakt de backend ook gebruik van de Airscraper api voor het ophalen van vluchtdata.
+
 > ![Dynamic-Container-Diagram-BookingCom](../C4_diagrammen/DynamicContainerDiagramBooking.png)
 
 ###     7.2. Components
