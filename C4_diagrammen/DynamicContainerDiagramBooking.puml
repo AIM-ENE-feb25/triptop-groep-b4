@@ -15,7 +15,7 @@ System_Ext(BookingCom, "Booking.com", "Haalt alle hotelgegevens op")
 
 Rel(Reiziger, WebApp, "1: Selecteerd trip optie", $techn="HTTP", $tags="", $link="")
 Rel(WebApp, Backend, "2: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(Backend, BookingCom,"3: Vraagt hotels op", $techn="HTML", $tags="", $link="")
+Rel(Backend, BookingCom,"3: Vraagt hotels op", $techn="HTTP", $tags="", $link="")
 Rel(BookingCom, Backend, "4: Retourneert Hotels", $techn="JSON", $tags="", $link="")
 Rel(Backend, WebApp, "5: Retourneert Hotels", $techn="JSON", $tags="", $link="")
 Rel(WebApp, Reiziger, "6: Toont Hotels", $techn="HTML", $tags="", $link="")
