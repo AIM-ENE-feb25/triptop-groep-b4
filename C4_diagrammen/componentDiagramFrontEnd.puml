@@ -1,0 +1,47 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+' uncomment the following line and comment the first to use locally
+' !include C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+title Component diagram voor Webapplicatie van TripTop
+
+Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om een vakantie te boeken")
+Person(Reisagent, "Reisagent", "Een reisagent die het systeem gebruikt om een reiziger te helpen")
+
+Container_Boundary(api, "Webapplicatie van TravelExpensePro") {
+    Container(App, "App", "React Component", "Componenten worden ingeladen vannuit de App")
+    Container(InlogScherm, "Inlog Scherm", "React Component", "Scherm om in te loggen")
+    Container(InlogFormulier, "Inlog Formulier", "React Component", "Formulier om in te loggen")
+    Container(Kaart, "Kaart", "React Component", "-")
+    Container(AccomodatieOverzicht, "Accomodatie Overzicht", "React Component", "Overzicht van accomodaties")
+    Container(AccomodatieLijst, "Accomodatie Lijst", "React Component", "Lijst van accomodaties")
+    Container(Accomodatie, "Accomodatie", "React Component", "Component haalt accomodaties op")
+    Container(VluchtOverzicht, "Vlucht Overzicht", "React Component", "Overzicht van vluchten")
+    Container(VluchtLijst, "Vlucht Lijst", "React Component", "Lijst van vluchten")
+    Container(Vlucht, "Vlucht", "React Component", "Component haalt vluchten op")
+
+    Rel(Reiziger, App, "Gebruikt", "JSON/HTTPS")
+    Rel(Reisagent, App, "Gebruikt", "JSON/HTTPS")
+    Rel(App, InlogScherm, "navigeert naar")
+    Rel(App, Kaart, "navigeert naar")
+    Rel(App, AccomodatieOverzicht, "navigeert naar")
+    Rel(InlogScherm, InlogFormulier, "Laadt in")
+    Rel(AccomodatieOverzicht, AccomodatieLijst, "Laadt in")
+    Rel(AccomodatieLijst, Accomodatie, "Laadt in")
+    Rel(Kaart, Accomodatie, "Geeft weer")
+    Rel(App, VluchtOverzicht, "navigeert naar")
+    Rel(VluchtOverzicht, VluchtLijst, "Laadt in")
+    Rel(VluchtLijst, Vlucht, "Laadt in")
+}
+
+
+System_Ext(backend, "Backend", "Backend van de applicatie")
+System_Ext(GoogleMapsAPI, "Google Maps API", "Haalt kaartinformatie op", "HTTP/JSON")
+Rel(InlogScherm, backend, "Controleert of gegevens kloppen", "HTTP/JSON")
+Rel(Accomodatie, backend, "Haalt accomodaties op", "HTTP/JSON")
+Rel(Vlucht, backend, "Haalt vluchten op", "HTTP/JSON")
+Rel(Kaart, GoogleMapsAPI, "Haalt kaartgegevens op", "HTTP/JSON")
+SHOW_LEGEND()
+@enduml
