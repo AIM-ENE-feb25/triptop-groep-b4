@@ -18,8 +18,8 @@ Component(LoginRepository, "LoginRepository", "JAVA")
 Component(HotelController, "HotelController", "JAVA")
 Component(HotelService, "HotelService", "JAVA")
 
-Component(VliegtuigController, "VliegtuigController", "JAVA")
-Component(VliegtuigService, "VliegtuigService", "JAVA")
+Component(VluchtController, "VluchtController", "JAVA")
+Component(VluchtService, "VluchtService", "JAVA")
 
 }
 
@@ -36,17 +36,17 @@ ReisAgent --> Frontend: "Voert acties uit op"
 
 Frontend --> LoginController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 Frontend --> HotelController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
-Frontend --> VliegtuigController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Frontend --> VluchtController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 
 LoginController --> LoginService: "Delegeert verantwoordelijkheid van taak naar"
 LoginService --> LoginRepository: "Maakt gebruik van"
 LoginRepository --> Externe_Database: "Haalt en slaat gegevens op van de database (IP/TCP/SQL)"
 
 HotelController --> HotelService: "Delegeert verantwoordelijkheid van taak naar"
-VliegtuigController --> VliegtuigService: "Delegeert verantwoordelijkheid van taak naar"
+VluchtController --> VluchtService: "Delegeert verantwoordelijkheid van taak naar"
 
 LoginService --> IdentityProvider: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 HotelService --> Booking.com: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
-VliegtuigService --> Airscraper: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+VluchtService --> Airscraper: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 
 @enduml
