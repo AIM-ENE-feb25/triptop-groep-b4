@@ -1,4 +1,5 @@
 @startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
 
 
@@ -6,20 +7,21 @@ Person(Bezoeker, "Bezoeker", "Een bezoeker die het systeem gebruikt om zijn uitg
 Container(Frontend, "Frontend", "Een frotend die de inputs van de gebruiker verwerkt en door stuurt")
 
 Container_Boundary(ContainerBoundary, "Backend") {
-    Component "LoginController" as LoginController
-    Component "LoginService" as LoginService
-    Component "LoginRepository" as LoginRepository
 
-    Component "ExpenseEntryController" as ExpenseEntryController
-    Component "ExpenseEntryService" as ExpenseEntryService
-    Component "ExpenseEntryRepository" as ExpenseEntryRepository
+Component(LoginController, "LoginController", "test")
+Component(LoginService, "LoginService", "test")
+Component(LoginRepository, "LoginRepository", "test")
 
-    Component "ExpenseOverviewController" as ExpenseOverviewController
-    Component "ExpenseOverviewService" as ExpenseOverviewService
-    Component "ExpenseOverviewRepository" as ExpenseOverviewRepository
-}
+Component(ExpenseEntryController, "ExpenseEntryController", "test")
+Component(ExpenseEntryService, "ExpenseEntryService", "test")
+Component(ExpenseEntryRepository, "ExpenseEntryRepository", "test")
 
-Database "Externe Database" as ExterneDatabase
+Component(ExpenseOverviewController, "ExpenseOverviewController", "test")
+Component(ExpenseOverviewService, "ExpenseOverviewService", "test")
+Component(ExpenseOverviewRepository, "ExpenseOverviewRepository", "test")
+                                                  }
+
+ContainerDb(Externe_Database," ExterneDatabase","test")
 
 Bezoeker --> Frontend
 
@@ -29,14 +31,14 @@ Frontend --> ExpenseOverviewController
 
 LoginController --> LoginService
 LoginService --> LoginRepository
-LoginRepository --> ExterneDatabase
+LoginRepository --> Externe_Database
 
 ExpenseEntryController --> ExpenseEntryService
 ExpenseEntryService --> ExpenseEntryRepository
-ExpenseEntryRepository --> ExterneDatabase
+ExpenseEntryRepository --> Externe_Database
 
 ExpenseOverviewController --> ExpenseOverviewService
 ExpenseOverviewService --> ExpenseOverviewRepository
-ExpenseOverviewRepository --> ExterneDatabase
+ExpenseOverviewRepository --> Externe_Database
 
 @enduml
