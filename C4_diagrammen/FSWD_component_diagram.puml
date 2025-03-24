@@ -8,20 +8,20 @@ Container(Frontend, "Frontend", "Een frotend die de inputs van de gebruiker verw
 
 Container_Boundary(ContainerBoundary, "Backend") {
 
-Component(LoginController, "LoginController", "test")
-Component(LoginService, "LoginService", "test")
-Component(LoginRepository, "LoginRepository", "test")
+Component(LoginController, "LoginController", "JAVA")
+Component(LoginService, "LoginService", "JAVA")
+Component(LoginRepository, "LoginRepository", "JAVA")
 
-Component(ExpenseEntryController, "ExpenseEntryController", "test")
-Component(ExpenseEntryService, "ExpenseEntryService", "test")
-Component(ExpenseEntryRepository, "ExpenseEntryRepository", "test")
+Component(ExpenseEntryController, "ExpenseEntryController", "JAVA")
+Component(ExpenseEntryService, "ExpenseEntryService", "JAVA")
+Component(ExpenseEntryRepository, "ExpenseEntryRepository", "JAVA")
 
-Component(ExpenseOverviewController, "ExpenseOverviewController", "test")
-Component(ExpenseOverviewService, "ExpenseOverviewService", "test")
-Component(ExpenseOverviewRepository, "ExpenseOverviewRepository", "test")
+Component(ExpenseOverviewController, "ExpenseOverviewController", "JAVA")
+Component(ExpenseOverviewService, "ExpenseOverviewService", "JAVA")
+Component(ExpenseOverviewRepository, "ExpenseOverviewRepository", "JAVA")
                                                   }
 
-ContainerDb(Externe_Database," ExterneDatabase","test")
+ContainerDb(Externe_Database," ExterneDatabase","SQL Server")
 
 Bezoeker --> Frontend: "Voert acties uit op"
 
@@ -29,15 +29,15 @@ Frontend --> LoginController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 Frontend --> ExpenseEntryController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 Frontend --> ExpenseOverviewController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 
-LoginController --> LoginService: "Delegeert uitvoering naar"
+LoginController --> LoginService: "Delegeert verantwoordelijkheid van taak naar"
 LoginService --> LoginRepository: "Maakt gebruik van"
 LoginRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
 
-ExpenseEntryController --> ExpenseEntryService: "Delegeert uitvoering naar"
+ExpenseEntryController --> ExpenseEntryService: "Delegeert verantwoordelijkheid van taak naar"
 ExpenseEntryService --> ExpenseEntryRepository: "Maakt gebruik van"
 ExpenseEntryRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
 
-ExpenseOverviewController --> ExpenseOverviewService: "Delegeert uitvoering naar"
+ExpenseOverviewController --> ExpenseOverviewService: "Delegeert verantwoordelijkheid van taak naar"
 ExpenseOverviewService --> ExpenseOverviewRepository: "Maakt gebruik van"
 ExpenseOverviewRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
 
