@@ -5,12 +5,12 @@
 
 LAYOUT_WITH_LEGEND()
 
-title Component diagram voor Webapplicatie van TripTop
+title Component diagram voor Frontend van TripTop
 
 Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om een vakantie te boeken")
 Person(Reisagent, "Reisagent", "Een reisagent die het systeem gebruikt om een reiziger te helpen")
 
-Container_Boundary(api, "Webapplicatie van TravelExpensePro") {
+Container_Boundary(api, "Frontend van TravelExpensePro") {
     Component(App, "App", "React Component", "Componenten worden ingeladen vannuit de App")
     Component(InlogScherm, "Inlog Scherm", "React Component", "Scherm om in te loggen")
     Component(InlogFormulier, "Inlog Formulier", "React Component", "Formulier om in te loggen")
