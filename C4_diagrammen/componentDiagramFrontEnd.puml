@@ -11,7 +11,7 @@ Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om een vakan
 Person(Reisagent, "Reisagent", "Een reisagent die het systeem gebruikt om een reiziger te helpen")
 
 Container_Boundary(api, "Webapplicatie van TravelExpensePro") {
-    Container(App, "App", "React Component", "Componenten worden ingeladen vannuit de App")
+    Container(Frontend, "Frontend", "React Component", "Componenten worden ingeladen vannuit de App")
     Container(InlogScherm, "Inlog Scherm", "React Component", "Scherm om in te loggen")
     Container(InlogFormulier, "Inlog Formulier", "React Component", "Formulier om in te loggen")
     Container(Kaart, "Kaart", "React Component", "-")
@@ -22,16 +22,16 @@ Container_Boundary(api, "Webapplicatie van TravelExpensePro") {
     Container(VluchtLijst, "Vlucht Lijst", "React Component", "Lijst van vluchten")
     Container(Vlucht, "Vlucht", "React Component", "Component haalt vluchten op")
 
-    Rel(Reiziger, App, "Gebruikt", "JSON/HTTPS")
-    Rel(Reisagent, App, "Gebruikt", "JSON/HTTPS")
-    Rel(App, InlogScherm, "navigeert naar")
-    Rel(App, Kaart, "navigeert naar")
-    Rel(App, AccomodatieOverzicht, "navigeert naar")
+    Rel(Reiziger, Frontend, "Gebruikt", "JSON/HTTPS")
+    Rel(Reisagent, Frontend, "Gebruikt", "JSON/HTTPS")
+    Rel(Frontend, InlogScherm, "navigeert naar")
+    Rel(Frontend, Kaart, "navigeert naar")
+    Rel(Frontend, AccomodatieOverzicht, "navigeert naar")
     Rel(InlogScherm, InlogFormulier, "Laadt in")
     Rel(AccomodatieOverzicht, AccomodatieLijst, "Laadt in")
     Rel(AccomodatieLijst, Accomodatie, "Laadt in")
     Rel(Kaart, Accomodatie, "Geeft weer")
-    Rel(App, VluchtOverzicht, "navigeert naar")
+    Rel(Frontend, VluchtOverzicht, "navigeert naar")
     Rel(VluchtOverzicht, VluchtLijst, "Laadt in")
     Rel(VluchtLijst, Vlucht, "Laadt in")
 }
