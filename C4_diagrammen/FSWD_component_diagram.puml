@@ -23,22 +23,22 @@ Component(ExpenseOverviewRepository, "ExpenseOverviewRepository", "test")
 
 ContainerDb(Externe_Database," ExterneDatabase","test")
 
-Bezoeker --> Frontend
+Bezoeker --> Frontend: "Voert acties uit op"
 
-Frontend --> LoginController
-Frontend --> ExpenseEntryController
-Frontend --> ExpenseOverviewController
+Frontend --> LoginController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Frontend --> ExpenseEntryController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Frontend --> ExpenseOverviewController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 
-LoginController --> LoginService
-LoginService --> LoginRepository
-LoginRepository --> Externe_Database
+LoginController --> LoginService: "Delegeert uitvoering naar"
+LoginService --> LoginRepository: "Maakt gebruik van"
+LoginRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
 
-ExpenseEntryController --> ExpenseEntryService
-ExpenseEntryService --> ExpenseEntryRepository
-ExpenseEntryRepository --> Externe_Database
+ExpenseEntryController --> ExpenseEntryService: "Delegeert uitvoering naar"
+ExpenseEntryService --> ExpenseEntryRepository: "Maakt gebruik van"
+ExpenseEntryRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
 
-ExpenseOverviewController --> ExpenseOverviewService
-ExpenseOverviewService --> ExpenseOverviewRepository
-ExpenseOverviewRepository --> Externe_Database
+ExpenseOverviewController --> ExpenseOverviewService: "Delegeert uitvoering naar"
+ExpenseOverviewService --> ExpenseOverviewRepository: "Maakt gebruik van"
+ExpenseOverviewRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
 
 @enduml
