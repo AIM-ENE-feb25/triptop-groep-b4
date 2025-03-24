@@ -49,4 +49,5 @@ LoginService --> IdentityProvider: "Verstuurt verzoeken naar endpoints (HTTP/JSO
 HotelService --> Booking.com: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 VluchtService --> Airscraper: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 
+SHOW_LEGEND(TRUE)
 @enduml
