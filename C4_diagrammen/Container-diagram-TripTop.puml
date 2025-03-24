@@ -8,7 +8,7 @@ Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om een vakan
 Person(Reisagent, "Reisagent", "Een reisagent die het systeem gebruikt om een reiziger te helpen")
 
 System_Boundary(TripTop, "TripTop") {
-    Container(Web_app, "Webapplicatie", "React/JavaScript", "Verwerkt de weergave van informatie")
+    Container(Frontend, "Frontend", "React/JavaScript", "Verwerkt de weergave van informatie")
     Container(Backend, "Backend", "Java/SpringBoot", "Behandelt alle logica binnen TripTop")
     ContainerDb(Database, "Database", "SQL", "Bevat alle gegevens die door TripTop worden gebruikt")
 }
@@ -19,10 +19,10 @@ System_Ext(BookingCom, "Booking.com", "Haalt alle hotelgegevens op")
 System_Ext(GoogleMapsAPI, "Google Maps API", "Haalt kaartgegevens op")
 
 Backend --> Database : "Vraagt gegevens op uit de database (IP/TCP/SQL)"
-Reiziger --> Web_app: "Verstuurt een verzoek om een vakantie te boeken (HTTP/JSON)"
-Reisagent --> Web_app: "Verstuurt een verzoek om een reiziger te helpen (HTTP/JSON)"
-Web_app --> Backend: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
-Web_app --> GoogleMapsAPI: "Verstuurt een verzoek om kaartinformatie op te halen (?)"
+Reiziger --> Frontend: "Verstuurt een verzoek om een vakantie te boeken (HTTP/JSON)"
+Reisagent --> Frontend: "Verstuurt een verzoek om een reiziger te helpen (HTTP/JSON)"
+Frontend --> Backend: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Frontend --> GoogleMapsAPI: "Verstuurt een verzoek om kaartinformatie op te halen (?)"
 Backend --> Identiteitsprovider: "Verstuurt inlogverzoeken (JSON)"
 Backend --> AirScraper: "Verstuurt een verzoek om vluchtgegevens op te halen (?)"
 Backend --> BookingCom: "Verstuurt een verzoek om hotelinformatie op te halen (?)"
