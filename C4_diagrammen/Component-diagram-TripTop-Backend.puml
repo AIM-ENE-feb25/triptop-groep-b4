@@ -1,0 +1,49 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om zijn vakantie te boeken")
+Person(ReisAgent, "ReisAgent", "Een reizagent die het systeem gebruikt om reizgers te helpen")
+
+Container(Frontend, "Frontend", "Een frotend die de inputs van de gebruiker verwerkt en door stuurt")
+
+Container_Boundary(ContainerBoundary, "Backend") {
+
+Component(LoginController, "LoginController", "JAVA")
+Component(LoginService, "LoginService", "JAVA")
+Component(LoginRepository, "LoginRepository", "JAVA")
+
+Component(HotelController, "HotelController", "JAVA")
+Component(HotelService, "HotelService", "JAVA")
+Component(HotelRepository, "HotelRepository", "JAVA")
+
+Component(VliegtuigController, "VliegtuigController", "JAVA")
+Component(VliegtuigService, "VliegtuigService", "JAVA")
+Component(VliegtuigRepository, "VliegtuigRepository", "JAVA")
+
+}
+
+ContainerDb(Externe_Database," ExterneDatabase","SQL Server")
+
+Reiziger --> Frontend: "Voert acties uit op"
+ReisAgent --> Frontend: "Voert acties uit op"
+
+
+Frontend --> LoginController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Frontend --> HotelController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Frontend --> VliegtuigController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+
+LoginController --> LoginService: "Delegeert verantwoordelijkheid van taak naar"
+LoginService --> LoginRepository: "Maakt gebruik van"
+LoginRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+
+HotelController --> HotelService: "Delegeert verantwoordelijkheid van taak naar"
+HotelService --> HotelRepository: "Maakt gebruik van"
+HotelRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+
+VliegtuigController --> VliegtuigService: "Delegeert verantwoordelijkheid van taak naar"
+VliegtuigService --> VliegtuigRepository: "Maakt gebruik van"
+VliegtuigRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+
+@enduml
