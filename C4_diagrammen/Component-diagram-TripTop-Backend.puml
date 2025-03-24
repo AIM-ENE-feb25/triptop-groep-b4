@@ -8,6 +8,12 @@ Person(ReisAgent, "ReisAgent", "Een reizagent die het systeem gebruikt om reizge
 
 Container(Frontend, "Frontend", "Een frotend die de inputs van de gebruiker verwerkt en door stuurt")
 
+System_Ext(IdentityProvider, "Identity Provider", "Verifieert gebruikersidentiteit")
+System_Ext(Booking.com, "Booking.com API", "Wordt gebruikt voor het dophalen van hotel informatie")
+System_Ext(Airscraper, "Airscraper API", "Wordt gebruikt voor het ophalen van vluchten informatie")
+
+
+
 Container_Boundary(ContainerBoundary, "Backend") {
 
 Component(LoginController, "LoginController", "JAVA")
@@ -16,11 +22,11 @@ Component(LoginRepository, "LoginRepository", "JAVA")
 
 Component(HotelController, "HotelController", "JAVA")
 Component(HotelService, "HotelService", "JAVA")
-Component(HotelRepository, "HotelRepository", "JAVA")
+'Component(HotelRepository, "HotelRepository", "JAVA")
 
 Component(VliegtuigController, "VliegtuigController", "JAVA")
 Component(VliegtuigService, "VliegtuigService", "JAVA")
-Component(VliegtuigRepository, "VliegtuigRepository", "JAVA")
+'Component(VliegtuigRepository, "VliegtuigRepository", "JAVA")
 
 }
 
@@ -36,14 +42,24 @@ Frontend --> VliegtuigController: "Verstuurt verzoeken naar endpoints (HTTP/JSON
 
 LoginController --> LoginService: "Delegeert verantwoordelijkheid van taak naar"
 LoginService --> LoginRepository: "Maakt gebruik van"
-LoginRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+LoginRepository --> Externe_Database: "Haalt en slaat gegevens op van de database (IP/TCP/SQL)"
 
 HotelController --> HotelService: "Delegeert verantwoordelijkheid van taak naar"
+/'
 HotelService --> HotelRepository: "Maakt gebruik van"
 HotelRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+HotelRepository --> Externe_Database: "Slaat gegevens op in de database (IP/TCP/SQL)"
+'/
 
 VliegtuigController --> VliegtuigService: "Delegeert verantwoordelijkheid van taak naar"
+/'
 VliegtuigService --> VliegtuigRepository: "Maakt gebruik van"
 VliegtuigRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+VliegtuigRepository --> Externe_Database: "Slaat gegevens op in de database (IP/TCP/SQL)"
+'/
+
+LoginService --> IdentityProvider: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+HotelService --> Booking.com: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+VliegtuigService --> Airscraper: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
 
 @enduml
