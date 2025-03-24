@@ -19,7 +19,7 @@ Component(ExpenseEntryRepository, "ExpenseEntryRepository", "JAVA")
 Component(ExpenseOverviewController, "ExpenseOverviewController", "JAVA")
 Component(ExpenseOverviewService, "ExpenseOverviewService", "JAVA")
 Component(ExpenseOverviewRepository, "ExpenseOverviewRepository", "JAVA")
-                                                  }
+}
 
 ContainerDb(Externe_Database," ExterneDatabase","SQL Server")
 
