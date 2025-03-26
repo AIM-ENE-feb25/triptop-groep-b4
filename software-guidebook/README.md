@@ -8,31 +8,56 @@ Dit software guidebook geeft een overzicht van de Triptop-applicatie. Het bevat 
 1. De architectuur van de infrastructuur en hoe de software kan worden geinstalleerd. 
 
 ## 2. Context
+De TripTop applicatie is ontworpen als een platform voor het plannen van reizen. Gebruikers
+kunnen reizen organiseren en accomodaties en vluchten boeken via externe API's die zijn
+geïntegreerd in de applicatie. Reizigers en reisagenten gebruiken de applicatie voor
+reisplanning, waarbij de reizigers hun reis plannen en de reisagenten ondersteuning bieden
+bij het plannen van reizen.
 
 ![Context-Diagram-TripTop](../C4_diagrammen/context-diagram-triptop.png)
->TODO:
->Toelichting op de context van de software:
 
 ### 2.1. Functionaliteit
-
+De functionaliteiten van de applicatie omvatten:
+* Reisplanning: Gebruikers kunnen accomodaties en vluchten boeken.
+* Kaartweergave: De applicatie kan kaarten tonen met locaties van accomodaties en vluchten via
+de integratie van de Google Maps API.
+* Authenticatie en authorisatie: Gebruikers worden geauthenticeerd en geauthoriseerd via een
+externe Identity Provider.
 
 ### 2.2. Gebruikers
-Het team heeft ervoor gekozen om twee gebruikers te integreren in de applicatie. Dit zijn: reizigers en reisagenten. Dit heeft het team gedaan, omdat dit de enige twee actoren zijn waarover werd gesproken in de casus.
+Het team heeft ervoor gekozen om twee typen gebruikers in de applicatie op te nemen:
+* Reiziger: Dit is de belangrijkste gebruiker van de applicatie. De reiziger gebruikt
+de applicatie om hun reizen te plannen, waaronder het boeken van accomodaties en het
+zoeken naar geschikte vluchten.
+* Reisagent: Deze gebruiker helpt de reiziger met het plannen van hun reis door advies
+te geven een aanbevelingen te doen over routes, accomodaties en vluchten. De reisagent
+dient als een ondersteunende rol voor de reiziger.
+
+Deze twee gebruikersrollen zijn gekozen, omdat ze de belangrijkste actoren zijn die in
+de casus worden genoemd.
 
 ### 2.3. Externe systemen
-Het team heeft ervoor gekozen om vier externe systemen te integreren in de applicatie. Dit zijn:
-1. Google Maps
+Er zijn vier externe systemen geïntegreerd in de TripTop applicatie:
+1. Google Maps API
 
-Dit externe systeem gaat ervoor zorgen dat kaarten en locaties kunnen worden weergegeven in de applicatie.
-2. Booking.com
+Deze API wordt gebruikt om kaarten en locaties op te vragen. Het zorgt ervoor dat gebruikers routes kunnen 
+visualiseren en bestemmingen kunnen vinden binnen de applicatie.
+2. Booking.com API
 
-Dit externe systeem gaat ervoor zorgen dat de gebruiker accomodaties kan vinden afgestemd op zijn wensen.
-2. AirScraper
+Via deze API kunnen gebruikers accommodaties vinden en boeken op basis van hun specifieke wensen. De 
+API zorgt voor toegang tot de database van accommodaties, inclusief prijzen en beschikbaarheid.
 
-Dit externe systeem gaat ervoor zorgen dat de gebruiker vluchten kan vinden afgestemd op zijn wensen. Deze API maakt mogelijk dat vluchten, vluchthavens en prijzen van de vluchten beschikbaar zijn.
-3. Identity Provider
+3. AirScraper API
 
-Dit externe systeem gaat ervoor zorgen dat de gebruiker kan inloggen in de applicatie. De applicatie maakt gebruik van een externe Identity Provider om de gebruiker te authenticeren en te authoriseren. Dit wordt gedaan door een extern systeem omdat het erg generiek is en niet specifiek is voor deze applicatie.
+Deze API biedt informatie over vluchten, luchthavens en prijzen van vluchten. Het stelt gebruikers
+in staat om vluchten te zoeken en te boeken die aan hun reisplannen voldoen.
+
+4. Identity Provider
+
+De applicatie maakt gebruik van een externe identity provider voor de authenticatie en autorisatie 
+van gebruikers. Dit externe systeem zorgt ervoor dat gebruikers zich veilig kunnen aanmelden in de 
+applicatie en hun identiteit wordt gecontroleerd, zonder dat de applicatie zelf verantwoordelijk is
+voor het beheer van wachtwoorden of inloggegevens.
 
 ## 3. Functional Overview
 
@@ -72,37 +97,37 @@ Als gebruiker wil ik de bouwstenen van mijn reis flexibel kunnen uitbreiden met 
 
 ![Domain Model](../opdracht-diagrammen/Domain%20Model.png)
 ### 3.5 Mapping Domain Model van/naar de APIs
-Class::attribuut | Is input voor API + Endpoint          | Wordt gevuld door API + Endpoint | Wordt geleverd door eindgebruiker | Moet worden opgeslagen in de applicatie
-|---|---------------------------------------|--------------------|-----------------------------------|---|
-Trip::startDatum |                                       |                    | x                                 | 
-Trip::eindDatum |                                       |                    | x                                 | 
-Trip::budget |                                       |                    | x                                 |
-Verblijf::startDatum |                                       |                    | x                                 | x
-Verblijf::eindDatum |                                       |                    | x                                 | x
-Verblijfplaats::locatie | Booking/search? (POST)                | Booking.com / ?    |                                   | x
-Verblijfplaats::prijs | Booking/search? (POST)                | Booking.com / ?    |                                   | x
-Reis::startDatum | AirScraper/searchFlightsComplete(GET) | AirScraper/searchFlightsComplete    |                                   | x
-Reis::eindDatum | AirScraper/searchFlightsComplete(GET) | AirScraper/searchFlightsComplete   |                                   | x
-Reis::prijs | AirScraper/searchFlightsComplete(GET) | AirScraper/searchFlightsComplete    |                                   | x
-Reis::vervoer |                                       |                    | x                                 | 
-Locatie::lat | Google Maps API / ?  (?)              | Google Maps API / ? |                                   | x
-Locatie::lon | Google Maps API / ?  (?)              | Google Maps API / ? |                                   | x
-Excursie::titel | n.v.t.             | n.v.t.    |          n.v.t.        |n.v.t.   
-Excursie::datum | n.v.t.            | n.v.t.    |        n.v.t.                     | n.v.t.   
-Excursie::startTijd | n.v.t.             | n.v.t.   |         n.v.t.               | n.v.t.   
-Excursie::eindTijd | n.v.t.                                | n.v.t.   |         n.v.t.                | n.v.t.   
-Excursie::prijs |         n.v.t.                   | n.v.t.    |         n.v.t.                | n.v.t.   
-Reiziger::telefoonnummer |                                       |                    | x                                 | x
-Reiziger::postcode |                                       |                    | x                                 |x
-Reiziger::huisnummer |                                       |                    | x                                 | x
-Reservering::reserveringsnummer |                                       |                    | x                       | x
-Reservering::status                     |                                       |                    | x              | x
-TriptopGebruiker::voornaam |                                       |                    | x                                 |x
-TriptopGebruiker::tussenvoegsels |                                       |                    | x                                 |x
-TriptopGebruiker::achternaam |                                       |                    | x                                 |x
-TriptopGebruiker::email |                                       |                    | x                                 | x
-TriptopGebruiker::wachtwoord |                                       |                    | x                                 |x
-Reisbureaumedewerker::titel |                                       |                    | x                                 |x
+| Class::attribuut                 | Is input voor API + Endpoint          | Wordt gevuld door API + Endpoint | Wordt geleverd door eindgebruiker | Moet worden opgeslagen in de applicatie |
+|----------------------------------|---------------------------------------|----------------------------------|-----------------------------------|-----------------------------------------|
+| Trip::startDatum                 |                                       |                                  | x                                 |                                         |
+| Trip::eindDatum                  |                                       |                                  | x                                 |                                         |
+| Trip::budget                     |                                       |                                  | x                                 |                                         |
+| Verblijf::startDatum             |                                       |                                  | x                                 | x                                       |
+| Verblijf::eindDatum              |                                       |                                  | x                                 | x                                       |
+| Verblijfplaats::locatie          | Booking/getHotelDetails (GET)         | Booking/getHotelDetails          |                                   | x                                       |
+| Verblijfplaats::prijs            | Booking/getHotelDetails (GET)         | Booking/getHotelDetails          |                                   | x                                       |
+| Reis::startDatum                 | AirScraper/searchFlightsComplete(GET) | AirScraper/searchFlightsComplete |                                   | x                                       |
+| Reis::eindDatum                  | AirScraper/searchFlightsComplete(GET) | AirScraper/searchFlightsComplete |                                   | x                                       |
+| Reis::prijs                      | AirScraper/searchFlightsComplete(GET) | AirScraper/searchFlightsComplete |                                   | x                                       |
+| Reis::vervoer                    |                                       |                                  | x                                 |                                         |
+| Locatie::lat                     | Google Maps API / ?  (?)              | Google Maps API / ?              |                                   | x                                       |
+| Locatie::lon                     | Google Maps API / ?  (?)              | Google Maps API / ?              |                                   | x                                       |
+| Excursie::titel                  | n.v.t.                                | n.v.t.                           | n.v.t.                            | n.v.t.                                  |
+| Excursie::datum                  | n.v.t.                                | n.v.t.                           | n.v.t.                            | n.v.t.                                  |
+| Excursie::startTijd              | n.v.t.                                | n.v.t.                           | n.v.t.                            | n.v.t.                                  |
+| Excursie::eindTijd               | n.v.t.                                | n.v.t.                           | n.v.t.                            | n.v.t.                                  |
+| Excursie::prijs                  | n.v.t.                                | n.v.t.                           | n.v.t.                            | n.v.t.                                  |
+| Reiziger::telefoonnummer         |                                       |                                  | x                                 | x                                       |
+| Reiziger::postcode               |                                       |                                  | x                                 | x                                       |
+| Reiziger::huisnummer             |                                       |                                  | x                                 | x                                       |
+| Reservering::reserveringsnummer  |                                       |                                  | x                                 | x                                       |
+| Reservering::status              |                                       |                                  | x                                 | x                                       |
+| TriptopGebruiker::voornaam       |                                       |                                  | x                                 | x                                       |
+| TriptopGebruiker::tussenvoegsels |                                       |                                  | x                                 | x                                       |
+| TriptopGebruiker::achternaam     |                                       |                                  | x                                 | x                                       |
+| TriptopGebruiker::email          |                                       |                                  | x                                 | x                                       |
+| TriptopGebruiker::wachtwoord     |                                       |                                  | x                                 | x                                       |
+| Reisbureaumedewerker::titel      |                                       |                                  | x                                 | x                                       |
 
 ## 4. Quality Attributes
 
@@ -127,10 +152,17 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 ## 7. Software Architecture
 
 ###     7.1. Containers
-![Container-Diagram-TripTop](../C4_diagrammen/container-diagram-triptop.png)
->TODO:
-> 
-> Voeg toe: Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
+#### Container diagram TripTop
+
+> ![Container-Diagram-TripTop](../C4_diagrammen/container-diagram-triptop.png)
+
+Het systeem van TripTop bestaad hier uit de volgende containers webapplicatie, backend en een database.
+Daarnaast zijn er ook erxterne programma's waar de containers gebruik van maken. 
+De webapplicatie maakt gebruik van de Google maps api voor het tonen van een kaart.
+De backend maakt gebruik van de Booking.com api voor het laten zien van hotels.
+Daarnaast maakt de backend ook gebruik van de Airscraper api voor het ophalen van vluchtdata.
+
+> ![Dynamic-Container-Diagram-BookingCom](../C4_diagrammen/DynamicContainerDiagramBooking.png)
 
 ###     7.2. Components
 
@@ -147,65 +179,63 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 > [!IMPORTANT]
 > Voeg toe: 3 tot 5 ADR's die beslissingen beschrijven die zijn genomen tijdens het ontwerpen en bouwen van de software.
 
-### 8.1. ADR-001 TITLE
-
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
-
-#### Context 
-
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
-
-#### Considered Options
-
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
-
-#### Decision
-
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
-
-#### Status 
-
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
-
-#### Consequences 
-
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
-
-### 8.2. ADR-002 TITLE
-
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
+### 8.1. ADR-001 Keuze van Google Maps API voor kaartgegevens
 
 #### Context
 
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
+De TripTop applicatie moet kaartgegevens op kunnen halen voor het bereiken van de reisbestemming.
 
 #### Considered Options
 
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
+| Forces          | Google Maps API | OpenStreetMap | Mapbox |
+| --------------- | --------------- | ------------- | ------ |
+| Kosten          | +               | ++            | -      |
+| Grootte dataset | ++              | 0             | +      |
+| Eenvoud         | 0               | -             | 0      |
 
 #### Decision
 
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+We hebben gekozen voor de Google Maps API omdat het op alle criteria relatief positief scoort.
 
 #### Status
 
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+Accepted
 
 #### Consequences
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+Afhankelijk van een closed source bron, rate limits of pricing zouden veranderd kunnen worden.
+
+### 8.2. ADR-002 Booking.com Api
+
+#### Context
+
+We moeten een manier vinden om met een externe api informatie op te halen over hotels. Dit doen we via RapidAPI zijn webiste
+
+#### Considered Options
+
+|Forces | Booking.com | Hotels |
+|---|---|---|
+| prijs | 0 | 0 |
+| up to date | + | - |
+| amount of available data | + | - |
+| example data | + | - |
+
+#### Decision
+
+We hebben gekozen voor Booking.com , omdat deze api ons veel data bied. Daarnaast wordt deze regulier geupdate en worden er vragen beantwoord door de maker. Ook geeft deze api veel voorbeeld data wat helpt met het uitwerken van features.
+
+#### Status
+Accepted
+
+#### Consequences
+
+> Toegang tot actuele gegevens: Met deze API kunnen ontwikkelaars real-time gegevens van Booking.com integreren in hun applicaties, wat zorgt voor up-to-date informatie voor gebruikers.​
+
+> Flexibiliteit in datagebruik: De API stelt ontwikkelaars in staat specifieke gegevens op te halen en te gebruiken volgens hun behoeften, wat de flexibiliteit en functionaliteit van hun applicaties vergroot.​
+
+> Afhankelijkheid van externe bronnen: Bij het gebruik van de API ben je afhankelijk van de prestaties en betrouwbaarheid van de externe applicatie. Problemen aan de kant van Booking.com kunnen direct invloed hebben op de functionaliteit van jouw applicatie.
+
+> Limiet op gratis gebruik; Bij het gebruiken van deze APi hebben we een limiet aan gratis gebruik. Als deze API in een volledige applicatie wordt gebruikt met veel gebruikers zou het geld gaan kosten om hem goed te gebruiken
 
 ### 8.3. ADR-003 TITLE
 

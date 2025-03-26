@@ -4,7 +4,7 @@
 title C4 Context Diagram - TripTop
 
 Person(Reiziger, "Reiziger", "Gebruikt de applicatie om reizen te plannen")
-Person(ReisAgent, "ReisAgent", "Biedt hulp bij het plannen van reizen")
+Person(ReisAgent, "Reisagent", "Biedt hulp bij het plannen van reizen")
 
 System(TripTop, "TripTop Applicatie", "Applicatie voor het plannen van reizen")
 
@@ -21,4 +21,5 @@ TripTop --> Google_maps_api : "Haalt informatie op over kaarten"
 TripTop --> Booking : "Haalt informatie op over accomodaties"
 TripTop --> AirScraper : "Haalt informatie op over vluchten"
 
+SHOW_LEGEND(true)
 @enduml
