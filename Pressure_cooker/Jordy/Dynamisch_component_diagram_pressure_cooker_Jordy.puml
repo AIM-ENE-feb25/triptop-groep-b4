@@ -1,0 +1,25 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title C4 Dynamic Container Diagram Booking.com api - TripTop
+left to right direction
+
+Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om hotels te zoeken")
+
+Container_Boundary(ContainerBoundary, "Container Boundary") {
+    Container(WebApp, "WebApplication", "React/JavaScript", "Frontend interface for TripTop")
+    Container(Backend, "Backend", "Java/SpringBoot", "Handles application logic and API requests")
+}
+
+System_Ext(BookingCom, "Booking.com", "Haalt alle hotelgegevens op")
+
+Rel(Reiziger, WebApp, "1: Selecteerd trip optie", $techn="HTTP", $tags="", $link="")
+Rel(WebApp, Backend, "2: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(Backend, BookingCom,"3: Vraagt hotels op", $techn="HTTP", $tags="", $link="")
+Rel(BookingCom, Backend, "4: Retourneert Hotels", $techn="JSON", $tags="", $link="")
+Rel(Backend, WebApp, "5: Retourneert Hotels", $techn="JSON", $tags="", $link="")
+Rel(WebApp, Reiziger, "6: Toont Hotels", $techn="HTML", $tags="", $link="")
+
+
+SHOW_LEGEND(true)
+@enduml
