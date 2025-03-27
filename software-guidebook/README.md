@@ -156,23 +156,53 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 > ![Container-Diagram-TripTop](../C4_diagrammen/container-diagram-triptop.png)
 
-Het systeem van TripTop bestaad hier uit de volgende containers webapplicatie, backend en een database.
+Het systeem van TripTop bestaad hier uit de volgende containers: frontend, backend en een database.
 Daarnaast zijn er ook erxterne programma's waar de containers gebruik van maken. 
 De webapplicatie maakt gebruik van de Google maps api voor het tonen van een kaart.
 De backend maakt gebruik van de Booking.com api voor het laten zien van hotels.
 Daarnaast maakt de backend ook gebruik van de Airscraper api voor het ophalen van vluchtdata.
-
+#### Dynamic container diagram TripTop reis boeken
 > ![Dynamic-Container-Diagram-BookingCom](../C4_diagrammen/DynamicContainerDiagramBooking.png)
+#### Dynamic container diagram TripTop Inloggen
+> ![Dynamic-Container-Diagram-LoggingIn](../C4_diagrammen/DynamicContainerDiagramLoggingIn.png)
+
 
 ###     7.2. Components
 
 > [!IMPORTANT]
 > Voeg toe: Component Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
+#### Component diagram TripTop Backend
 
+Dit component diagram bestaat uit twee actoren, de containers Frontend, ExterneDatabase, drie externe systemen en componenten die weergeven hoe de backend is opgebouwd.
+De frontend verzamelt de input van de twee actoren en verstuurt deze naar de backend via HTTP/JSON verzoeken. In de backend vindt de verwerking van verzoeken plaats. 
+Het is opgesplitst in meerdere Java-componenten die elk verantwoordelijk zijn voor een bepaald domein:
+- LoginController: verantwoordelijk voor het beheren van inlogacties.
+- HotelController: verantwoordelijk voor het beheren van hotelgerelateerde acties.
+- VluchtController: verantwoordelijk voor het beheren van vluchtgerelateerde acties.
+- LoginService: verwerkt inlogverzoeken door gebruik te maken van de Identity Provider en stuurt deze door naar de LoginRepository.
+- HotelService: Verwerkt hotelgerelateerde verzoeken en stuurt API-aanvragen naar de Booking.com API.
+- VluchtService: Verwerkt vluchtgerelateerde verzoeken en stuurt API-aanvragen naar de AirScraper API.
+- LoginRepository: Verantwoordelijk voor het opslaan en ophalen van inloggegevens uit de ExterneDatabase.
+
+Doordat de backend is opgesplitst in meerdere componenten die elk verantwoordelijk zijn voor een bepaald domein, voldoet het diagram aan het Single Responsibility Principle.
+Het diagram voldoet ook aan het Open/Closed Principle omdat er makkelijk nieuwe componenten toegevoegd kunnen worden zonder de bestaande code aan te passen.
+> ![Component-Diagram-TripTop-Backend](../C4_diagrammen/Component-diagram-triptop-backend.png)
+#### Component diagram TripTop Frontend
+TO DO: motivatie/toelichting
+> ![Component-Diagram-TripTop-Frontend](../C4_diagrammen/Component-diagram-triptop-frontend.png)
 ###     7.3. Design & Code
 
 > [!IMPORTANT]
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
+
+**Ontwerpvraag:** Hoe ga je om met aanroepen van externe services die niet beschikbaar zijn en toch verwacht wordt dat er waardevolle output gegeven wordt?
+> ![ClassDiagramStrategy](../C4_diagrammen/ClassDiagramStrategy.png)
+> 
+>Het idee achter dit ontwerp is dat er een fallback wordt gegeven als de externe service niet beschikbaar is. Dit kan bijvoorbeeld een standaard waarde zijn of een foutmelding. Dit zorgt ervoor dat de applicatie niet vastloopt als de externe service niet beschikbaar is.
+>Het voldoet aan het Single Responsibility Principle omdat de verantwoordelijkheid van het geven van een fallback waarde bij de FallbackService ligt, terwijl de foutafhandelingslogica in de strategiën zelf zit. 
+> Het voldoet ook aan het Open/Closed Principle omdat er makkelijk nieuwe fallbacks toegevoegd kunnen worden zonder de bestaande code aan te passen.
+>
+>![SequenceDiagramStrategy](../C4_diagrammen/SequenceDiagramStrategy.png)
 
 ## 8. Architectural Decision Records
 

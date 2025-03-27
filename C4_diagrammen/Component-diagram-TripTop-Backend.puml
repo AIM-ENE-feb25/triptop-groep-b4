@@ -26,8 +26,8 @@ Component(VluchtService, "VluchtService", "JAVA")
 ContainerDb(Externe_Database," ExterneDatabase","SQL Server")
 }
 System_Ext(IdentityProvider, "Identity Provider", "Verifieert gebruikersidentiteit")
-System_Ext(Booking.com, "Booking.com API", "Wordt gebruikt voor het dophalen van hotel informatie")
-System_Ext(Airscraper, "Airscraper API", "Wordt gebruikt voor het ophalen van vluchten informatie")
+System_Ext(Booking.com, "Booking.com API", "Wordt gebruikt voor het ophalen van hotelinformatie")
+System_Ext(Airscraper, "Airscraper API", "Wordt gebruikt voor het ophalen van vluchtinformatie")
 
 
 Reiziger --> Frontend: "Voert acties uit op"
