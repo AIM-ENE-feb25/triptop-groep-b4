@@ -1,0 +1,37 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title C4 Dynamic Container Diagram Booking.com api - TripTop
+left to right direction
+
+Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om hotels te zoeken")
+Container(WebApp, "WebApplication", "React/JavaScript", "Frontend interface for TripTop")
+
+Container_Boundary(ContainerBoundary, "Container Boundary") {
+    Component(HotelController, "HotelController", "Java/SpringBoot", "Handles application logic and API requests")
+    Component(HotelActionHandler, "HotelActionHandler", "Java/SpringBoot", "Handles application logic and API requests")
+    Component(InlogActionHandler, "InlogActionHandler", "Java/SpringBoot", "Handles application logic and API requests")
+    Component(HotelService, "HotelService", "Java/SpringBoot", "Handles application logic and API requests")
+}
+
+System_Ext(BookingCom, "Booking.com", "Haalt alle hotelgegevens op voor het boeken van een hotel")
+
+Rel(Reiziger, WebApp, "1: Selecteerd trip optie", $techn="HTTP", $tags="", $link="")
+Rel(WebApp, HotelController, "2: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(HotelController, HotelActionHandler, "3: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(HotelActionHandler, InlogActionHandler, 3: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(InlogActionHandler, HotelActionHandler, "5: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(HotelActionHandler, HotelService, "6: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(HotelService, BookingCom, "7: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(BookingCom, HotelService, "8: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(HotelService, HotelActionHandler, "9: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(HotelActionHandler, HotelController, "10: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(HotelController, WebApp, "11: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+Rel(WebApp, Reiziger, "12: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
+
+
+
+
+SHOW_LEGEND(true)
+@enduml
