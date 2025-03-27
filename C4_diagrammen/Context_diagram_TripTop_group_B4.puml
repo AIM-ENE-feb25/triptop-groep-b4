@@ -1,7 +1,10 @@
 @startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 !include <C4/C4_Container>
 
 title C4 Context Diagram - TripTop
+
+AddElementTag("true")
 
 Person(Reiziger, "Reiziger", "Gebruikt de applicatie om reizen te plannen")
 Person(ReisAgent, "Reisagent", "Biedt hulp bij het plannen van reizen")
