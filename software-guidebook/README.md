@@ -188,7 +188,19 @@ Doordat de backend is opgesplitst in meerdere componenten die elk verantwoordeli
 Het diagram voldoet ook aan het Open/Closed Principle omdat er makkelijk nieuwe componenten toegevoegd kunnen worden zonder de bestaande code aan te passen.
 > ![Component-Diagram-TripTop-Backend](../C4_diagrammen/Component-diagram-triptop-backend.png)
 #### Component diagram TripTop Frontend
-TO DO: motivatie/toelichting
+
+Dit component diagram bestaat uit twee actoren, de container Backend, een extern systeem en componenten die weergeven hoe de frontend is opgebouwd en hoe deze met de backend communiceert.
+De frontend verzamelt de input van de twee actoren en verstuurt deze naar de backend via HTTP/JSON verzoeken.
+- Vlucht: verantwoordelijk voor het ophalen van vluchtgegevens via de backend.
+- Vliegveld: verantwoordelijk voor het ophalen van vliegveldgegevens via de backend.
+- Vluchtlijst: de vluchten en vliegvelden worden in een lijst weergegeven.
+- VluchtOverzicht: de vluchtlijst wordt weergeven in een overzicht.
+- Hotel: verantwoordelijk voor het ophalen van hotelgegevens via de backend.
+- HotelLijst: de hotels worden in een lijst weergegeven.
+- HotelOverzicht: de hotelijst wordt weergegeven in een overzicht.
+- Inlogformulier: formulier waarin de gebruiker zijn inloggegevens kan invullen.
+- Inlog scherm: het inlogformulier wordt weergegeven waarna de ingevulde gegevens worden doorgestuurd naar de backend.
+- Kaart: verantwoordelijk voor het ophalen van kaartgegevens via de backend. Geeft vliegvelden en hotels weer.
 > ![Component-Diagram-TripTop-Frontend](../C4_diagrammen/Component-diagram-triptop-frontend.png)
 ###     7.3. Design & Code
 
