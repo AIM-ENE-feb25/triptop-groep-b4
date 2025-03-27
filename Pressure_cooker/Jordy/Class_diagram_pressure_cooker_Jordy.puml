@@ -1,0 +1,32 @@
+@startuml
+
+interface "HotelActionHandler"
+interface "InlogActionHandler"
+interface "VluchtActionHandler"
+interface "VluchtServicePoort"
+interface "HotelServicePoort"
+
+class "hotelcontroller"
+class "HotelService"
+class "VluchtController"
+class "VluchtService"
+class "hotelcontroller"
+class "HotelActionManager"
+class "VluchtActionManager"
+class "AccountActionManager"
+
+"hotelcontroller" --> "HotelActionHandler"
+"HotelService" 	..|> "HotelServicePoort"
+"VluchtController" --> "VluchtActionHandler"
+"VluchtService" ..|> "VluchtServicePoort"
+"HotelActionManager" ..|> "HotelActionHandler"
+"HotelActionManager" --> "InlogActionHandler"
+"AccountActionManager" ..|> "InlogActionHandler"
+"VluchtActionManager" ..|> "VluchtActionHandler"
+"VluchtActionManager" --> "InlogActionHandler"
+"HotelActionManager" --> "HotelServicePoort"
+"VluchtActionManager" --> "VluchtServicePoort"
+
+
+
+@enduml
