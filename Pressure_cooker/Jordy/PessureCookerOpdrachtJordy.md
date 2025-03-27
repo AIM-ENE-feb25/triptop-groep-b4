@@ -26,5 +26,7 @@
 - public void PayFlight(Flight flight, Account account);
 
 ## Dynamisch component diagram
-
+![dynamisch diagram hotel](Dynamisch_component_diagram_pressure_cooker_Jordy_Hotel.png)
+![dynamisch diagram vlucht](Dynamisch_component_diagram_pressure_cooker_Jordy_Vlucht.png)
 ## Class diagram
+![class diagram pressure cooker](Class_diagram_pressure_cooker_Jordy.png)
