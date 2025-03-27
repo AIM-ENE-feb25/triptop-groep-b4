@@ -6,32 +6,29 @@ title C4 Dynamic Container Diagram Booking.com api - TripTop
 left to right direction
 
 Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om hotels te zoeken")
-Container(WebApp, "WebApplication", "React/JavaScript", "Frontend interface for TripTop")
+Container(Frontend, "Frontend", "React/JavaScript", "Frontend interface voor TripTop")
 
 Container_Boundary(ContainerBoundary, "Container Boundary") {
-    Component(HotelController, "HotelController", "Java/SpringBoot", "Handles application logic and API requests")
-    Component(HotelActionHandler, "HotelActionHandler", "Java/SpringBoot", "Handles application logic and API requests")
-    Component(InlogActionHandler, "InlogActionHandler", "Java/SpringBoot", "Handles application logic and API requests")
-    Component(HotelService, "HotelService", "Java/SpringBoot", "Handles application logic and API requests")
+    Component(HotelController, "HotelController", "Java/SpringBoot", "Behandeld de inputs van de frontend voor hotels")
+    Component(HotelActionHandler, "HotelActionHandler", "Java/SpringBoot", "Behandeld of de gebruiker de acties uit mag voeren op zijn boeking")
+    Component(InlogActionHandler, "InlogActionHandler", "Java/SpringBoot", "Behandeld de gegevens van de gebruiker en checkt voor de inlog")
+    Component(HotelService, "HotelService", "Java/SpringBoot", "Behandeld request sturen naar de api en de data op de goede manier doorgeven aan de rest van de applicatie")
 }
 
 System_Ext(BookingCom, "Booking.com", "Haalt alle hotelgegevens op voor het boeken van een hotel")
 
-Rel(Reiziger, WebApp, "1: Selecteerd trip optie", $techn="HTTP", $tags="", $link="")
-Rel(WebApp, HotelController, "2: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(HotelController, HotelActionHandler, "3: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(HotelActionHandler, InlogActionHandler, 3: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(InlogActionHandler, HotelActionHandler, "5: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(HotelActionHandler, HotelService, "6: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(HotelService, BookingCom, "7: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(BookingCom, HotelService, "8: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(HotelService, HotelActionHandler, "9: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(HotelActionHandler, HotelController, "10: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(HotelController, WebApp, "11: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-Rel(WebApp, Reiziger, "12: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
-
-
-
+Rel(Reiziger, Frontend, "1: Selecteerd vlucht om te boeken", $techn="HTTP", $tags="", $link="")
+Rel(Frontend, HotelController, "2: Verstuurt vlucht details", $techn="HTTP", $tags="", $link="")
+Rel(HotelController, HotelActionHandler, "3: Roept actie aan om een vlucht te boeken", $techn="", $tags="", $link="")
+Rel(HotelActionHandler, InlogActionHandler, 4: Check of de gebruiker is ingelogd", $techn="", $tags="", $link="")
+Rel(InlogActionHandler, HotelActionHandler, "5: Verstuurd gebruiker gegevens terug", $techn="", $tags="", $link="")
+Rel(HotelActionHandler, HotelService, "6: Roept actie aan om een vlucht te boeken", $techn="", $tags="", $link="")
+Rel(HotelService, BookingCom, "7: Verstuurt API request om een vlucht te boeken", $techn="HTTP", $tags="", $link="")
+Rel(BookingCom, HotelService, "8: Verstuurt API response", $techn="HTTP", $tags="", $link="")
+Rel(HotelService, HotelActionHandler, "9: Stuurt resultaat door om staat aan te passen", $techn="", $tags="", $link="")
+Rel(HotelActionHandler, HotelController, "10: Stuurt resultaat door", $techn="", $tags="", $link="")
+Rel(HotelController, Frontend, "11: Stuurt resultaat door", $techn="HTTP", $tags="", $link="")
+Rel(Frontend, Reiziger, "12: Toont resultaat van de boeking", $techn="HTML", $tags="", $link="")
 
 SHOW_LEGEND(true)
 @enduml
