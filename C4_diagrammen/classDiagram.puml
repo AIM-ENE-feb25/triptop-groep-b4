@@ -1,0 +1,54 @@
+@startuml
+title C4 Class Diagram - Auth, Hotel, and Flight Booking
+
+class LoginController {
+    -LoginService loginService
+}
+class LoginService{}
+class LoginRepository{}
+class HotelController{
+    -LoginService loginService
+    -HotelService hotelService
+}
+class HotelService{}
+class VluchtController{
+    -LoginService loginService
+    -VluchtService vluchtService
+}
+class VluchtService{}
+class Reiziger{}
+class Hotel{}
+class Flight{}
+interface ILogin {
+    +	String authenticatie(String username, String password);
+    +   boolean validateToken(String token);
+}
+
+interface IHotel{
+	+ Hotel findHotelById(Long hotelId);
+	+ Hotel findHotelByDates(Date startDate, Date returnDate);
+	+ boolean bookHotel(Long hotelId, Long userId);
+}
+
+interface IFlight {
+    + Flight findFlightById(Long flightId);
+	+ List<Flight> findFlightByAirports(String startAirport, String returnAirport);
+	+ List<Flight> findFlightByDates(Date startDate, Date returnDate);
+	+ boolean bookFlight(Long flightId, Long userId);}
+}
+
+VluchtController --> VluchtService
+VluchtService -|> IFlight
+VluchtController --> LoginService
+
+HotelController --> HotelService
+HotelService -|> IHotel
+HotelController --> LoginService
+
+LoginController --> LoginService
+LoginService -|> ILogin
+LoginService --> LoginRepository
+
+
+
+@enduml
