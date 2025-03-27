@@ -9,13 +9,13 @@ Container_Boundary(ContainerBoundary, "Container Boundary") {
     Container(Frontend, "Frontend", "React/JavaScript", "Frontend interface voor TripTop")
     Container(Backend, "Backend", "Java", "Handelt applicatie logica en API requests af")
 }
-Container(IdentityProvider, "IdentityProvider", "External System", "Handelt authenticatie en authorizatie af")
+Container(IdentityProvider, "IdentityProvider", "External System", "Handelt authenticatie en autorisatie af")
 
-Rel(Reiziger, Frontend, "1: Vult inloggevens in", $techn="HTTP", $tags="", $link="")
-Rel(Frontend, Backend, "2: Verstuurt inloggevens", $techn="HTTP", $tags="", $link="")
+Rel(Reiziger, Frontend, "1: Vult inloggegevens in", $techn="HTTP", $tags="", $link="")
+Rel(Frontend, Backend, "2: Verstuurt inloggegevens", $techn="HTTP", $tags="", $link="")
 Rel(Backend, IdentityProvider, "3: Valideert inloggegevens", $techn="HTTP", $tags="", $link="")
 Rel(IdentityProvider, Backend, "4: Retourneert authenticatietoken", $techn="HTTP", $tags="", $link="")
-Rel(Backend, Frontend, "5: Retourneert gebruikersessiegegevens", $techn="HTTP", $tags="", $link="")
+Rel(Backend, Frontend, "5: Retourneert gebruikerssessiegegevens", $techn="HTTP", $tags="", $link="")
 Rel(Frontend, Reiziger, "6: Gebruiker is ingelogd en wordt doorgestuurd naar het dashboard", $techn="HTTP", $tags="", $link="")
 
 SHOW_LEGEND(true)

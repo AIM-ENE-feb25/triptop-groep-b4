@@ -4,10 +4,10 @@
 
 
 Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om zijn vakantie te boeken")
-Person(ReisAgent, "ReisAgent", "Een reizagent die het systeem gebruikt om reizgers te helpen")
+Person(ReisAgent, "ReisAgent", "Een reisagent die het systeem gebruikt om reizigers te helpen")
 
 System_Boundary(System_Boundary, TripTop){
-Container(Frontend, "Frontend", "Een frotend die de inputs van de gebruiker verwerkt en door stuurt")
+Container(Frontend, "Frontend", "Een frontend die de inputs van de gebruiker verwerkt en door stuurt")
 
 Container_Boundary(ContainerBoundary, "Backend") {
 

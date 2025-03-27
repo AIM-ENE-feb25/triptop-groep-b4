@@ -13,7 +13,7 @@ Container_Boundary(ContainerBoundary, "Container Boundary") {
 
 System_Ext(BookingCom, "Booking.com", "Haalt alle hotelgegevens op")
 
-Rel(Reiziger, Frontend, "1: Selecteerd trip optie", $techn="HTTP", $tags="", $link="")
+Rel(Reiziger, Frontend, "1: Selecteert trip optie", $techn="HTTP", $tags="", $link="")
 Rel(Frontend, Backend, "2: Verstuurt trip details", $techn="HTTP", $tags="", $link="")
 Rel(Backend, BookingCom,"3: Vraagt hotels op", $techn="HTTP", $tags="", $link="")
 Rel(BookingCom, Backend, "4: Retourneert Hotels", $techn="JSON", $tags="", $link="")

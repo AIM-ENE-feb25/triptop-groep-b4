@@ -5,11 +5,11 @@ Dit software guidebook geeft een overzicht van de Triptop-applicatie. Het bevat 
 1. De vereisten, beperkingen en principes. 
 1. De software-architectuur, met inbegrip van de technologiekeuzes op hoog niveau en de structuur van de software. 
 1. De ontwerp- en codebeslissingen die zijn genomen om de software te realiseren.
-1. De architectuur van de infrastructuur en hoe de software kan worden geinstalleerd. 
+1. De architectuur van de infrastructuur en hoe de software kan worden geïnstalleerd.
 
 ## 2. Context
 De TripTop applicatie is ontworpen als een platform voor het plannen van reizen. Gebruikers
-kunnen reizen organiseren en accomodaties en vluchten boeken via externe API's die zijn
+kunnen reizen organiseren en accommodaties en vluchten boeken via externe API's die zijn
 geïntegreerd in de applicatie. Reizigers en reisagenten gebruiken de applicatie voor
 reisplanning, waarbij de reizigers hun reis plannen en de reisagenten ondersteuning bieden
 bij het plannen van reizen.
@@ -18,19 +18,19 @@ bij het plannen van reizen.
 
 ### 2.1. Functionaliteit
 De functionaliteiten van de applicatie omvatten:
-* Reisplanning: Gebruikers kunnen accomodaties en vluchten boeken.
-* Kaartweergave: De applicatie kan kaarten tonen met locaties van accomodaties en vluchten via
+* Reisplanning: Gebruikers kunnen accommodaties en vluchten boeken.
+* Kaartweergave: De applicatie kan kaarten tonen met locaties van accommodaties en vluchten via
 de integratie van de Google Maps API.
-* Authenticatie en authorisatie: Gebruikers worden geauthenticeerd en geauthoriseerd via een
+* Authenticatie en autorisatie: Gebruikers worden geauthenticeerd en geautoriseerd via een
 externe Identity Provider.
 
 ### 2.2. Gebruikers
 Het team heeft ervoor gekozen om twee typen gebruikers in de applicatie op te nemen:
 * Reiziger: Dit is de belangrijkste gebruiker van de applicatie. De reiziger gebruikt
-de applicatie om hun reizen te plannen, waaronder het boeken van accomodaties en het
+de applicatie om hun reizen te plannen, waaronder het boeken van accommodaties en het
 zoeken naar geschikte vluchten.
 * Reisagent: Deze gebruiker helpt de reiziger met het plannen van hun reis door advies
-te geven een aanbevelingen te doen over routes, accomodaties en vluchten. De reisagent
+te geven een aanbevelingen te doen over routes, accommodaties en vluchten. De reisagent
 dient als een ondersteunende rol voor de reiziger.
 
 Deze twee gebruikersrollen zijn gekozen, omdat ze de belangrijkste actoren zijn die in
@@ -156,8 +156,8 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 > ![Container-Diagram-TripTop](../C4_diagrammen/container-diagram-triptop.png)
 
-Het systeem van TripTop bestaad hier uit de volgende containers: frontend, backend en een database.
-Daarnaast zijn er ook erxterne programma's waar de containers gebruik van maken. 
+Het systeem van TripTop bestaat hier uit de volgende containers: frontend, backend en een database.
+Daarnaast zijn er ook externe programma's waar de containers gebruik van maken.
 De webapplicatie maakt gebruik van de Google maps api voor het tonen van een kaart.
 De backend maakt gebruik van de Booking.com api voor het laten zien van hotels.
 Daarnaast maakt de backend ook gebruik van de Airscraper api voor het ophalen van vluchtdata.
@@ -197,7 +197,7 @@ De frontend verzamelt de input van de twee actoren en verstuurt deze naar de bac
 - VluchtOverzicht: de vluchtlijst wordt weergeven in een overzicht.
 - Hotel: verantwoordelijk voor het ophalen van hotelgegevens via de backend.
 - HotelLijst: de hotels worden in een lijst weergegeven.
-- HotelOverzicht: de hotelijst wordt weergegeven in een overzicht.
+- HotelOverzicht: de hotellijst wordt weergegeven in een overzicht.
 - Inlogformulier: formulier waarin de gebruiker zijn inloggegevens kan invullen.
 - Inlog scherm: het inlogformulier wordt weergegeven waarna de ingevulde gegevens worden doorgestuurd naar de backend.
 - Kaart: verantwoordelijk voor het ophalen van kaartgegevens via de backend. Geeft vliegvelden en hotels weer.
@@ -251,7 +251,7 @@ Afhankelijk van een closed source bron, rate limits of pricing zouden veranderd 
 
 #### Context
 
-We moeten een manier vinden om met een externe api informatie op te halen over hotels. Dit doen we via RapidAPI zijn webiste
+We moeten een manier vinden om met een externe api informatie op te halen over hotels. Dit doen we via RapidAPI zijn website
 
 #### Considered Options
 
@@ -264,7 +264,7 @@ We moeten een manier vinden om met een externe api informatie op te halen over h
 
 #### Decision
 
-We hebben gekozen voor Booking.com , omdat deze api ons veel data bied. Daarnaast wordt deze regulier geupdate en worden er vragen beantwoord door de maker. Ook geeft deze api veel voorbeeld data wat helpt met het uitwerken van features.
+We hebben gekozen voor Booking.com, omdat deze api ons veel data bied. Daarnaast wordt deze regulier geüpdatet en worden er vragen beantwoord door de maker. Ook geeft deze api veel voorbeeld data wat helpt met het uitwerken van features.
 
 #### Status
 Accepted
