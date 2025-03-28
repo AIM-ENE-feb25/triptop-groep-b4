@@ -1,0 +1,40 @@
+@startuml Class diagram
+
+skinparam classAttributeIconSize 0
+
+' Interfaces
+interface LoginController
+interface LoginService
+interface LoginRepository
+
+' Classes
+class LoginControllerImpl implements LoginController {
+    +login(authorizationCode: String): ResponseEntity
+}
+
+class LoginServiceImpl implements LoginService {
+    +authorizationCodeToIdentityToken(authorizationCode: String): IdentityToken
+}
+
+class LoginRepositoryImpl implements LoginRepository {
+    +getUser(identityToken: IdentityToken): User
+    +save(user: User): void
+}
+
+' Value objects
+class IdentityToken {
+    -value: String
+}
+
+class User {
+    -email: String
+    -name: String
+}
+
+' Relationships
+LoginControllerImpl --> LoginService
+LoginServiceImpl --> LoginRepositoryImpl
+LoginServiceImpl --> IdentityToken
+LoginRepositoryImpl --> User
+
+@enduml
