@@ -59,6 +59,31 @@ class "AccountActionManager"{
 + boolean checkInlogStatus(Account account);
 }
 
+enum "Bookingstate"{
+Gepland
+Geregeld
+Betaald
+Niet uitvoerbaar
+Uitgevoerd
+}
+
+class "Hotel" {
+- int hotelId
+- String hotelName
+- Bookingstate state
+}
+
+class "Flight" {
+- Int flightNumber
+- Bookingstate state
+}
+
+class "Account"{
+- String userToken
+- String name
+- String email
+}
+
 "hotelcontroller" --> "HotelActionHandler"
 "HotelService" 	..|> "HotelServicePoort"
 "VluchtController" --> "VluchtActionHandler"
@@ -70,7 +95,11 @@ class "AccountActionManager"{
 "VluchtActionManager" --> "InlogActionHandler"
 "HotelActionManager" --> "HotelServicePoort"
 "VluchtActionManager" --> "VluchtServicePoort"
-
+"Flight" --> "Bookingstate"
+"Hotel" --> "Bookingstate"
+"VluchtActionManager" --> "Flight"
+"HotelActionManager" --> "Hotel"
+"AccountActionManager" --> "Account"
 
 
 @enduml
