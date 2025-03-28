@@ -1,19 +1,63 @@
 @startuml
 
-interface "HotelActionHandler"
-interface "InlogActionHandler"
-interface "VluchtActionHandler"
-interface "VluchtServicePoort"
-interface "HotelServicePoort"
+interface "HotelActionHandler"{
++ void BookHotel(Hotel hotel, Account account);
++ void CancelHotelBooking(Hotel hotel, Account account);
++ void PayHotel(Hotel hotel, Account account);
+}
+interface "InlogActionHandler"{
++ boolean checkInlogStatus(Account account);
+}
+interface "VluchtActionHandler"{
 
-class "hotelcontroller"
-class "HotelService"
-class "VluchtController"
-class "VluchtService"
-class "hotelcontroller"
-class "HotelActionManager"
-class "VluchtActionManager"
-class "AccountActionManager"
++ void BookFlight(Flight flight, Account account);
++ void CancelFlightBooking(Flight flight, Account account);
++ void PayFlight(Flight flight, Account account);
+}
+interface "VluchtServicePoort"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+interface "HotelServicePoort"{
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+
+class "hotelcontroller" {
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+class "HotelService"{
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+class "VluchtController"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+class "VluchtService"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+class "HotelActionManager"{
++ void BookHotel(Hotel hotel, Account account);
++ void CancelHotelBooking(Hotel hotel, Account account);
++ void PayHotel(Hotel hotel, Account account);
+}
+class "VluchtActionManager"{
++ void BookFlight(Flight flight, Account account);
++ void CancelFlightBooking(Flight flight, Account account);
++ void PayFlight(Flight flight, Account account);
+}
+class "AccountActionManager"{
++ boolean checkInlogStatus(Account account);
+}
 
 "hotelcontroller" --> "HotelActionHandler"
 "HotelService" 	..|> "HotelServicePoort"
