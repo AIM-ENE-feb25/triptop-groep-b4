@@ -216,6 +216,14 @@ De frontend verzamelt de input van de twee actoren en verstuurt deze naar de bac
 >
 >![SequenceDiagramStrategy](../C4_diagrammen/SequenceDiagramStrategy.png)
 
+**Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
+>![class diagram pressure cooker](../Pressure_cooker/Jordy/Class_diagram_pressure_cooker_Jordy.png)
+>
+>Het design pattern dat ik heb gekozen voor deze ontwerpvraag is het state pattern. Ik heb hiervoor gekozen om dat de ontwerpvraag ook gaat over toestanden.
+>Het klasse diagram houd zich ook aan het program to interface pricinpe door gebruikt te maken van interfaces en alleen aan te roepen via de intefaces.
+>Het klasse diagram voldoet ook aan het open/ closed principe, want door interfaces te gebruiken zouden de klasse minder snel veranderen maar wel makkelijk uitbreiden.
+>
+
 ## 8. Architectural Decision Records
 
 > [!IMPORTANT]
