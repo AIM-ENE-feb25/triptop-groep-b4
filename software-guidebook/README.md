@@ -229,7 +229,7 @@ De frontend verzamelt de input van de twee actoren en verstuurt deze naar de bac
 > [!IMPORTANT]
 > Voeg toe: 3 tot 5 ADR's die beslissingen beschrijven die zijn genomen tijdens het ontwerpen en bouwen van de software.
 
-### 8.1. ADR-001 Keuze van Google Maps API voor kaartgegevens
+### 8.1. ADR-001 Google Maps API voor kaartgegevens
 
 #### Context
 
@@ -287,35 +287,51 @@ Accepted
 
 > Limiet op gratis gebruik; Bij het gebruiken van deze APi hebben we een limiet aan gratis gebruik. Als deze API in een volledige applicatie wordt gebruikt met veel gebruikers zou het geld gaan kosten om hem goed te gebruiken
 
-### 8.3. ADR-003 TITLE
-
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
+### 8.3. ADR-003 Adapter pattern voor identity providers
 
 #### Context
 
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
+De applicatie moet gemakkelijk aangepast kunnen worden om verschillende identity providers te ondersteunen.
+Het is dus belangrijk dat er een passend pattern gekozen wordt om dit mogelijk te maken.
 
 #### Considered Options
 
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
+##### Strategy
+
+Dit pattern gaat niet werken, omdat de verschillende strategieën dezelfde interface vereisen.
+Dit is juist niet het geval bij verschillende identity providers.
+
+##### State
+
+Dit pattern is onlogisch, omdat het wisselen van identity providers de state niet of nauwelijks veranderd.
+
+##### Adapter
+
+Dit pattern past het beste bij het probleem dat we proberen op te lossen.
+Bij dit pattern maak je namelijk een extra class tussen twee classes als adapter.
+Hiermee kunnen we de interfaces van de verschillende identity providers "vertalen" naar onze eigen gewenste interface.
+
+##### Facade
+
+Dit pattern is ook niet heel logisch, omdat de interfaces van identity providers vaak niet zo ingewikkeld zijn.
+
+##### Factory method
+
+Dit pattern is niet van toepassing, omdat de interfaces van de identity providers al wel op voorhand bekend zijn.
 
 #### Decision
 
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+We gebruiken het adapter pattern aangezien dit de meest logische pattern is om het probleem op te lossen.
 
 #### Status
 
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+Accepted
 
 #### Consequences
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+Elke implementatie een identity provider zal gebruik moeten maken van de adapter.
+Dit kan overbodig voelen voor sommige implementaties, maar het is nodig om ze allemaal te laten werken met onze eigen code.
+Het kan dus resulteren in wat dubbele code, wat een klein nadeel dat geaccepteerd zal moeten worden.
 
 ### 8.4. ADR-004 Implementatie design pattern onderzoeksvraag Jordy
 
