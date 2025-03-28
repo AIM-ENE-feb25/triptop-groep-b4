@@ -204,9 +204,6 @@ De frontend verzamelt de input van de twee actoren en verstuurt deze naar de bac
 > ![Component-Diagram-TripTop-Frontend](../C4_diagrammen/Component-diagram-TripTop-Frontend.png)
 ###     7.3. Design & Code
 
-> [!IMPORTANT]
-> Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
-
 **Ontwerpvraag:** Hoe ga je om met aanroepen van externe services die niet beschikbaar zijn en toch verwacht wordt dat er waardevolle output gegeven wordt?
 > ![ClassDiagramStrategy](../C4_diagrammen/classDiagramStrategy.png)
 > 
@@ -375,36 +372,23 @@ In Pogress
 ### 8.5. ADR-005 Strategy pattern voor het aanroepen van externe services
 
 #### Context
+**Onderzoeksvraag:** Hoe ga je om met aanroepen van externe services die niet beschikbaar zijn en toch verwacht wordt dat er waardevolle output gegeven wordt?
 
 De applicatie maakt veel gebruik van externe services, maar als deze niet beschikbaar zijn, moet de applicatie nog steeds kunnen functioneren.
 Het is dus belangrijk dat er een passend pattern gekozen wordt om dit mogelijk te maken. 
 
 #### Considered Options
+Er zijn een aantal patterns overwogen om de ontwerpvraag op te lossen. Hierbij zijn verschillende criteria overwogen:
 
-#### State pattern
-Dit pattern wordt gebruikt om het gedrag van een object te wijzigen afhankelijk van zijn interne toestand.
-Dit pattern is minder geschikt voor dit probleem, omdat het vooral gaat om het wijzigen van gedrag gebaseerd op de toestand van het object zelf,
-terwijl het hier gaat om het wijzigen van gedrag gebaseerd op de toestand van een externe service.
-
-#### Adapter pattern
-Dit pattern wordt gebruikt om een interface aan te passen van een bestaande klasse zodat deze compatibel wordt met een andere interface die vereist is door de client.
-Het adapterpatroon verandert alleen de manier waarop services worden aangeroepen, maar biedt geen strategieën voor foutafhandeling en is dus minder geschikt.
-
-#### Facade pattern
-Dit pattern wordt gebruikt om een eenvoudige interface te bieden voor een complex subsysteem. 
-Het is niet geschikt voor dit probleem, omdat het gaat om het vereenvoudigen van de interface en niet om het bieden van een fallback-strategie.
-
-#### Factory method pattern
-Dit pattern biedt een manier om objecten te creëren zonder het exacte type van objecten die zullen worden gecreëerd, te hoeven specificeren.
-Dit patroon kan nuttig zijn als je dynamisch verschillende foutafhandelingsstrategieën wilt instantiëren, maar op zichzelf biedt het geen oplossingen voor foutafhandeling. Het helpt alleen bij het maken van de objecten.
-
-#### Strategy pattern
-Dit pattern maakt het mogelijk om verschillende strategieën voor een bepaalde operatie (zoals foutafhandeling) te definiëren en te wisselen zonder dat de client hiervan af hoeft te weten.
-Dit is het meest geschikte patroon omdat het specifiek bedoeld is om dynamisch wisselende strategieën toe te passen.
-Door dit pattern te gebruiken, kun je verschillende foutafhandelingsstrategieën implementeren en deze eenvoudig vervangen of uitbreiden zonder dat de rest van je systeem hoeft te worden aangepast.
-
+| Forces                                            | Strategy | Adapter | State | Facade | Factory method |
+|---------------------------------------------------|----------|---------|-------|--------|----------------|
+| Uitbreidbaarheid                                  | ++       | -       | --    | -      | +              |
+| Complexiteit                                      | +        | +       | -     | ++     | +              |
+| Geschikt voor wisselen van foutafhandelingslogica | ++       | -       | 0     | --     | +              |
 #### Decision
-In dit project gaan we het strategy pattern gebruiken, omdat dit de meest geschikte optie is.
+Nadat alle patterns zijn overwogen zijn we tot de conlcusie gekomen dat het strategy pattern de beste optie is.
+Dit pattern is het meest geschikt voor het wisselen van foutafhandelingslogica en zorgt voor een duidelijke scheiding van verantwoordelijkheden.
+Door gebruik te maken van dit pattern is het makkelijk om verschillende foutafhandelingsstrategieën te implementeren en te wisselen zonder dat de rest van het systeem hoeft te worden aangepast.
 
 #### Status
 Accepted
