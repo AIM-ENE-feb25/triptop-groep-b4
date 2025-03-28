@@ -372,36 +372,55 @@ In Pogress
 #### Consequences
 In Pogress
 
-### 8.5. ADR-005 TITLE
-
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
+### 8.5. ADR-005 Strategy pattern voor het aanroepen van externe services
 
 #### Context
 
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
+De applicatie maakt veel gebruik van externe services, maar als deze niet beschikbaar zijn, moet de applicatie nog steeds kunnen functioneren.
+Het is dus belangrijk dat er een passend pattern gekozen wordt om dit mogelijk te maken. 
 
 #### Considered Options
 
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
+#### State pattern
+Dit pattern wordt gebruikt om het gedrag van een object te wijzigen afhankelijk van zijn interne toestand.
+Dit pattern is minder geschikt voor dit probleem, omdat het vooral gaat om het wijzigen van gedrag gebaseerd op de toestand van het object zelf,
+terwijl het hier gaat om het wijzigen van gedrag gebaseerd op de toestand van een externe service.
+
+#### Adapter pattern
+Dit pattern wordt gebruikt om een interface aan te passen van een bestaande klasse zodat deze compatibel wordt met een andere interface die vereist is door de client.
+Het adapterpatroon verandert alleen de manier waarop services worden aangeroepen, maar biedt geen strategieën voor foutafhandeling en is dus minder geschikt.
+
+#### Facade pattern
+Dit pattern wordt gebruikt om een eenvoudige interface te bieden voor een complex subsysteem. 
+Het is niet geschikt voor dit probleem, omdat het gaat om het vereenvoudigen van de interface en niet om het bieden van een fallback-strategie.
+
+#### Factory method pattern
+Dit pattern biedt een manier om objecten te creëren zonder het exacte type van objecten die zullen worden gecreëerd, te hoeven specificeren.
+Dit patroon kan nuttig zijn als je dynamisch verschillende foutafhandelingsstrategieën wilt instantiëren, maar op zichzelf biedt het geen oplossingen voor foutafhandeling. Het helpt alleen bij het maken van de objecten.
+
+#### Strategy pattern
+Dit pattern maakt het mogelijk om verschillende strategieën voor een bepaalde operatie (zoals foutafhandeling) te definiëren en te wisselen zonder dat de client hiervan af hoeft te weten.
+Dit is het meest geschikte patroon omdat het specifiek bedoeld is om dynamisch wisselende strategieën toe te passen.
+Door dit pattern te gebruiken, kun je verschillende foutafhandelingsstrategieën implementeren en deze eenvoudig vervangen of uitbreiden zonder dat de rest van je systeem hoeft te worden aangepast.
 
 #### Decision
-
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+In dit project gaan we het strategy pattern gebruiken, omdat dit de meest geschikte optie is.
 
 #### Status
-
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
-
+Accepted
 #### Consequences
 
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+- Het zorgt voor flexibiliteit en uitbreidbaarheid.
 
+Het pattern maakt het eenvoudig om verschillende foutafhandelingsstrategieën te implementeren en te wisselen zonder dat de rest van het systeem hoeft te worden aangepast.
+- Het zorgt voor een duidelijke scheiding van verantwoordelijkheden (separation of concerns).
+
+De foutafhandelingslogica wordt gescheiden van de rest van de applicatie, waardoor het gemakkelijker wordt om deze te begrijpen en te onderhouden. De verschillende manieren waarop
+met fouten wordt omgegaan worden geïsoleerd in aparte strategieën, waardoor de code overzichtelijker wordt.
+
+- Het kan leiden tot een toename van de complexiteit.
+
+Het Strategy pattern voegt extra klassen en interfaces toe aan de applicatie, omdat elke foutafhandelingsstrategie zijn eigen klasse vereist. Dit kan leiden tot een complexere architectuur.
 ## 9. Deployment, Operation and Support
 
 > [!TIP]
