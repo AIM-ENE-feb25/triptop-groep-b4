@@ -208,7 +208,7 @@ De frontend verzamelt de input van de twee actoren en verstuurt deze naar de bac
 > Voeg toe: Per ontwerpvraag een Class Diagram plus een Sequence Diagram van een aantal scenario's inclusief begeleidende tekst.
 
 **Ontwerpvraag:** Hoe ga je om met aanroepen van externe services die niet beschikbaar zijn en toch verwacht wordt dat er waardevolle output gegeven wordt?
-> ![ClassDiagramStrategy](../C4_diagrammen/ClassDiagramStrategy.png)
+> ![ClassDiagramStrategy](../C4_diagrammen/classDiagramStrategy.png)
 > 
 >Het idee achter dit ontwerp is dat er een fallback wordt gegeven als de externe service niet beschikbaar is. Dit kan bijvoorbeeld een standaard waarde zijn of een foutmelding. Dit zorgt ervoor dat de applicatie niet vastloopt als de externe service niet beschikbaar is.
 >Het voldoet aan het Single Responsibility Principle omdat de verantwoordelijkheid van het geven van een fallback waarde bij de FallbackService ligt, terwijl de foutafhandelingslogica in de strategiën zelf zit. 
@@ -220,8 +220,18 @@ De frontend verzamelt de input van de twee actoren en verstuurt deze naar de bac
 >![class diagram pressure cooker](../Pressure_cooker/Jordy/Class_diagram_pressure_cooker_Jordy.png)
 >
 >Het design pattern dat ik heb gekozen voor deze ontwerpvraag is het state pattern. Ik heb hiervoor gekozen om dat de ontwerpvraag ook gaat over toestanden.
->Het klasse diagram houd zich ook aan het program to interface pricinpe door gebruikt te maken van interfaces en alleen aan te roepen via de intefaces.
+>Het klasse diagram houdt zich ook aan het program to interface principe door gebruikt te maken van interfaces en alleen aan te roepen via de intefaces.
 >Het klasse diagram voldoet ook aan het open/ closed principe, want door interfaces te gebruiken zouden de klasse minder snel veranderen maar wel makkelijk uitbreiden.
+>
+
+**Ontwerpvraag:** Hoe kunnen we verschillende identity providers met verschillende interfaces integreren voor het gehele systeem?
+>![class diagram pressure cooker](../Pressure_cooker/Rens/class_diagram.png)
+>
+>Het gekozen design pattern voor deze ontwerpvraag is het adapter pattern. Voor verdere uitleg over deze ontwerpkeuze, zie [ADR-003](#83-adr-003-adapter-pattern-voor-identity-providers).
+>Het klasse diagram voldoet aan de twee bijbehorende principes: single responsibility en open/closed.
+>Dit betekent dat elke klasse en methode een eigen enkele verantwoordelijkheid heeft, waardoor de code netjes gescheiden is van elkaar.
+>Daarnaast zorgt de adapter ervoor dat er gemakkelijk nieuwe implementaties toegevoegd kunnen worden (open).
+>De adapter zelf ligt vast, anders moeten alle implementaties aangepast worden (closed).
 >
 
 ## 8. Architectural Decision Records
