@@ -317,35 +317,34 @@ Accepted
 > [!TIP]
 > This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
 
-### 8.4. ADR-004 TITLE
-
-> [!TIP]
-> These documents have names that are short noun phrases. For example, "ADR 1: Deployment on Ruby on Rails 3.0.10" or "ADR 9: LDAP for Multitenant Integration". The whole ADR should be one or two pages long. We will write each ADR as if it is a conversation with a future developer. This requires good writing style, with full sentences organized into paragraphs. Bullets are acceptable only for visual style, not as an excuse for writing sentence fragments. (Bullets kill people, even PowerPoint bullets.)
+### 8.4. ADR-004 Implementatie design pattern onderzoeksvraag Jordy
 
 #### Context
 
-> [!TIP]
-> This section describes the forces at play, including technological, political, social, and project local. These forces are probably in tension, and should be called out as such. The language in this section is value-neutral. It is simply describing facts about the problem we're facing and points out factors to take into account or to weigh when making the final decision.
+**Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
+
+Voor het uitwerken van deze ontwerpvraag heb ik gekozen voor het state pattern, omdat deze goed past bij het managen van toestanden.
+Ik had eerst dit uitgwerkt door de state bij te houden in een enum. dit heeft wel als nadeel dat er overal veel if statements komen.
+Om dit te voorkomen heb ik gekeken naar de state pattern opdracht. Ik ben tot de conclusie gekomen dat ik een interface moet maken met klasse die de interfaces implementern.
+Voor elke state moet ik dan een klasse maken. Het probleem nu is wat voor acties de state classes kunnen. gaan ze altijd naar de volgende state met de actie of kunnen ze ook een state teru?
+En hoe kan ik dit het beste implenteren?
 
 #### Considered Options
-
-> [!TIP]
-> This section describes the options that were considered, and gives some indication as to why the chosen option was selected.
+| Forces |     |     |
+|--------|-----|-----|
+|        |     |     |
+|        |     |     |
+|        |     |     |
+|        |     |     |
 
 #### Decision
-
-> [!TIP]
-> This section describes our response to the forces/problem. It is stated in full sentences, with active voice. "We will …"
+In Pogress
 
 #### Status
-
-> [!TIP]
-> A decision may be "proposed" if the project stakeholders haven't agreed with it yet, or "accepted" once it is agreed. If a later ADR changes or reverses a decision, it may be marked as "deprecated" or "superseded" with a reference to its replacement.
+In Pogress
 
 #### Consequences
-
-> [!TIP]
-> This section describes the resulting context, after applying the decision. All consequences should be listed here, not just the "positive" ones. A particular decision may have positive, negative, and neutral consequences, but all of them affect the team and project in the future.
+In Pogress
 
 ### 8.5. ADR-005 TITLE
 
