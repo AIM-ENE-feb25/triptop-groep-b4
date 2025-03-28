@@ -1,0 +1,44 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+Person(Bezoeker, "Bezoeker", "Een bezoeker die het systeem gebruikt om zijn uitgaven te beheren")
+Container(Frontend, "Frontend", "Een frotend die de inputs van de gebruiker verwerkt en door stuurt")
+
+Container_Boundary(ContainerBoundary, "Backend") {
+
+Component(LoginController, "LoginController", "JAVA")
+Component(LoginService, "LoginService", "JAVA")
+Component(LoginRepository, "LoginRepository", "JAVA")
+
+Component(ExpenseEntryController, "ExpenseEntryController", "JAVA")
+Component(ExpenseEntryService, "ExpenseEntryService", "JAVA")
+Component(ExpenseEntryRepository, "ExpenseEntryRepository", "JAVA")
+
+Component(ExpenseOverviewController, "ExpenseOverviewController", "JAVA")
+Component(ExpenseOverviewService, "ExpenseOverviewService", "JAVA")
+Component(ExpenseOverviewRepository, "ExpenseOverviewRepository", "JAVA")
+}
+
+ContainerDb(Externe_Database," ExterneDatabase","SQL Server")
+
+Bezoeker --> Frontend: "Voert acties uit op"
+
+Frontend --> LoginController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Frontend --> ExpenseEntryController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Frontend --> ExpenseOverviewController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+
+LoginController --> LoginService: "Delegeert verantwoordelijkheid van taak naar"
+LoginService --> LoginRepository: "Maakt gebruik van"
+LoginRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+
+ExpenseEntryController --> ExpenseEntryService: "Delegeert verantwoordelijkheid van taak naar"
+ExpenseEntryService --> ExpenseEntryRepository: "Maakt gebruik van"
+ExpenseEntryRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+
+ExpenseOverviewController --> ExpenseOverviewService: "Delegeert verantwoordelijkheid van taak naar"
+ExpenseOverviewService --> ExpenseOverviewRepository: "Maakt gebruik van"
+ExpenseOverviewRepository --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+
+@enduml

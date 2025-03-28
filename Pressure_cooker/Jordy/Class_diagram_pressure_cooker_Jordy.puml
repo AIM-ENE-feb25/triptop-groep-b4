@@ -1,0 +1,105 @@
+@startuml
+
+interface "HotelActionHandler"{
++ void BookHotel(Hotel hotel, Account account);
++ void CancelHotelBooking(Hotel hotel, Account account);
++ void PayHotel(Hotel hotel, Account account);
+}
+interface "InlogActionHandler"{
++ boolean checkInlogStatus(Account account);
+}
+interface "VluchtActionHandler"{
+
++ void BookFlight(Flight flight, Account account);
++ void CancelFlightBooking(Flight flight, Account account);
++ void PayFlight(Flight flight, Account account);
+}
+interface "VluchtServicePoort"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+interface "HotelServicePoort"{
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+
+class "hotelcontroller" {
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+class "HotelService"{
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+class "VluchtController"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+class "VluchtService"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+class "HotelActionManager"{
++ void BookHotel(Hotel hotel, Account account);
++ void CancelHotelBooking(Hotel hotel, Account account);
++ void PayHotel(Hotel hotel, Account account);
+}
+class "VluchtActionManager"{
++ void BookFlight(Flight flight, Account account);
++ void CancelFlightBooking(Flight flight, Account account);
++ void PayFlight(Flight flight, Account account);
+}
+class "AccountActionManager"{
++ boolean checkInlogStatus(Account account);
+}
+
+enum "Bookingstate"{
+Gepland
+Geregeld
+Betaald
+Niet uitvoerbaar
+Uitgevoerd
+}
+
+class "Hotel" {
+- int hotelId
+- String hotelName
+- Bookingstate state
+}
+
+class "Flight" {
+- Int flightNumber
+- Bookingstate state
+}
+
+class "Account"{
+- String userToken
+- String name
+- String email
+}
+
+"hotelcontroller" --> "HotelActionHandler"
+"HotelService" 	..|> "HotelServicePoort"
+"VluchtController" --> "VluchtActionHandler"
+"VluchtService" ..|> "VluchtServicePoort"
+"HotelActionManager" ..|> "HotelActionHandler"
+"HotelActionManager" --> "InlogActionHandler"
+"AccountActionManager" ..|> "InlogActionHandler"
+"VluchtActionManager" ..|> "VluchtActionHandler"
+"VluchtActionManager" --> "InlogActionHandler"
+"HotelActionManager" --> "HotelServicePoort"
+"VluchtActionManager" --> "VluchtServicePoort"
+"Flight" --> "Bookingstate"
+"Hotel" --> "Bookingstate"
+"VluchtActionManager" --> "Flight"
+"HotelActionManager" --> "Hotel"
+"AccountActionManager" --> "Account"
+
+
+@enduml

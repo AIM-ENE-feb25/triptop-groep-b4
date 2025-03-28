@@ -1,0 +1,38 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+Person(Bezoeker, "Bezoeker", "Een bezoeker die het systeem gebruikt om zijn uitgaven te beheren")
+Container(Backend, "Backend", "Een Backend die de logica van de aplictie verwerkt")
+
+Container_Boundary(ContainerBoundary, "Frontend") {
+
+Component(Main, "Main", "React")
+Component(Login, "Login", "React")
+Component(Enter_expense, "Enter expense", "React")
+
+Component(Expense_overview, "Expense overview", "React")
+Component(Header, "Header", "React")
+Component(Routes, "Routes", "React")
+
+}
+
+ContainerDb(Externe_Database," ExterneDatabase","SQL Server")
+
+Bezoeker --> Main : "Roept frontend aan via"
+
+Main --> Header : "Roept aan"
+Main --> Routes : "stuurt door naar"
+
+Routes --> Expense_overview: "Roept componenten aan voor actie"
+Routes --> Login: "Roept componenten aan voor actie"
+Routes --> Enter_expense: "Roept componenten aan voor actie"
+
+Expense_overview --> Backend: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Login --> Backend: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Enter_expense --> Backend: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+
+Backend --> Externe_Database: "Vraagt gegevens op uit de database (IP/TCP/SQL)"
+
+@enduml
