@@ -1,0 +1,27 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+actor Client
+
+Client -> AirScraperService: haalVluchtenOp()
+
+AirScraperService -> ServiceStrategy: execute()
+
+alt Retry Strategy
+    ServiceStrategy -> RetryStrategy: execute()
+    RetryStrategy --> AirScraperService: Resultaat
+end
+
+alt CircuitBreaker Strategy
+    ServiceStrategy -> CircuitBreakerStrategy: execute()
+    CircuitBreakerStrategy --> AirScraperService: Resultaat
+end
+
+alt Fallback Strategy
+    ServiceStrategy -> FallbackStrategy: execute()
+    FallbackStrategy --> AirScraperService: Resultaat
+end
+
+AirScraperService --> Client: Resultaat
+
+@enduml

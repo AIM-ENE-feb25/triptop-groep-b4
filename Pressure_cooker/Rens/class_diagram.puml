@@ -1,0 +1,48 @@
+@startuml Adapter Pattern Class Diagram
+
+skinparam classAttributeIconSize 0
+
+' Interfaces
+interface LoginController
+interface LoginService
+interface LoginRepository
+
+' Classes
+class LoginControllerImpl implements LoginController {
+    +login(authorizationCode: String): ResponseEntity
+}
+
+' Adapter class
+class LoginServiceAdapter implements LoginService {
+    -adaptee: LoginServiceImpl
+    +authorizationCodeToIdentityToken(authorizationCode: String): IdentityToken
+}
+
+' Legacy service
+class LoginServiceImpl {
+    +authorizationCodeToIdentityToken(authorizationCode: String): IdentityToken
+}
+
+' Repository
+class LoginRepositoryImpl implements LoginRepository {
+    +getUser(identityToken: IdentityToken): User
+    +save(user: User): void
+}
+
+' Value objects
+class IdentityToken {
+    -value: String
+}
+
+class User {
+    -email: String
+    -name: String
+}
+
+' Relationships
+LoginControllerImpl --> LoginServiceAdapter
+LoginServiceAdapter --> LoginServiceImpl : adaptee
+LoginServiceImpl --> LoginRepositoryImpl
+LoginRepositoryImpl --> User
+
+@enduml

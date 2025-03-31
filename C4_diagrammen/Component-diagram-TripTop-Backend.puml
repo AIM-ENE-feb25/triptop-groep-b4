@@ -1,11 +1,13 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
 
 Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om zijn vakantie te boeken")
-Person(ReisAgent, "ReisAgent", "Een reizagent die het systeem gebruikt om reizgers te helpen")
+Person(ReisAgent, "ReisAgent", "Een reisagent die het systeem gebruikt om reizigers te helpen")
 
 System_Boundary(System_Boundary, TripTop){
-Container(Frontend, "Frontend", "Een frotend die de inputs van de gebruiker verwerkt en door stuurt")
+Container(Frontend, "Frontend", "Een frontend die de inputs van de gebruiker verwerkt en door stuurt")
 
 Container_Boundary(ContainerBoundary, "Backend") {
 
@@ -24,28 +26,28 @@ Component(VluchtService, "VluchtService", "JAVA")
 ContainerDb(Externe_Database," ExterneDatabase","SQL Server")
 }
 System_Ext(IdentityProvider, "Identity Provider", "Verifieert gebruikersidentiteit")
-System_Ext(Booking.com, "Booking.com API", "Wordt gebruikt voor het dophalen van hotel informatie")
-System_Ext(Airscraper, "Airscraper API", "Wordt gebruikt voor het ophalen van vluchten informatie")
+System_Ext(Booking.com, "Booking.com API", "Wordt gebruikt voor het ophalen van hotelinformatie")
+System_Ext(Airscraper, "Airscraper API", "Wordt gebruikt voor het ophalen van vluchtinformatie")
 
 
 Reiziger --> Frontend: "Voert acties uit op"
 ReisAgent --> Frontend: "Voert acties uit op"
 
 
-Frontend --> LoginController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
-Frontend --> HotelController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
-Frontend --> VluchtController: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+Frontend --> LoginController: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
+Frontend --> HotelController: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
+Frontend --> VluchtController: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
 
 LoginController --> LoginService: "Delegeert verantwoordelijkheid van taak naar"
 LoginService --> LoginRepository: "Maakt gebruik van"
-LoginRepository --> Externe_Database: "Haalt en slaat gegevens op van de database (IP/TCP/SQL)"
+LoginRepository --> Externe_Database: "Haalt en slaat gegevens op van de database [IP/TCP/SQL]"
 
 HotelController --> HotelService: "Delegeert verantwoordelijkheid van taak naar"
 VluchtController --> VluchtService: "Delegeert verantwoordelijkheid van taak naar"
 
-LoginService --> IdentityProvider: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
-HotelService --> Booking.com: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
-VluchtService --> Airscraper: "Verstuurt verzoeken naar endpoints (HTTP/JSON)"
+LoginService --> IdentityProvider: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
+HotelService --> Booking.com: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
+VluchtService --> Airscraper: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
 
 SHOW_LEGEND(TRUE)
 @enduml

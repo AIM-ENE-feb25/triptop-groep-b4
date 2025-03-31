@@ -1,0 +1,31 @@
+@startuml
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title C4 Container Diagram - TripTop
+
+Person(Reiziger, "Reiziger", "Een reiziger die het systeem gebruikt om een vakantie te boeken")
+Person(Reisagent, "Reisagent", "Een reisagent die het systeem gebruikt om een reiziger te helpen")
+
+System_Boundary(TripTop, "TripTop") {
+    Container(Frontend, "Frontend", "React/JavaScript", "Verwerkt de weergave van informatie")
+    Container(Backend, "Backend", "Java/SpringBoot", "Behandelt alle logica binnen TripTop")
+    ContainerDb(Database, "Database", "SQL", "Bevat alle gegevens die door TripTop worden gebruikt")
+}
+
+System_Ext(Identiteitsprovider, "Identiteitsprovider", "Verzorgt het inloggen")
+System_Ext(AirScraper, "AirScraper", "Haalt alle vluchtgegevens op")
+System_Ext(BookingCom, "Booking.com", "Haalt alle hotelgegevens op")
+System_Ext(GoogleMapsAPI, "Google Maps API", "Haalt kaartgegevens op")
+
+Backend --> Database : "Vraagt gegevens op uit de database [TCP/IP/SQL]"
+Reiziger --> Frontend: "Verstuurt een verzoek om een vakantie te boeken [HTTP/JSON]"
+Reisagent --> Frontend: "Verstuurt een verzoek om een reiziger te helpen [HTTP/JSON]"
+Frontend --> Backend: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
+Frontend --> GoogleMapsAPI: "Verstuurt een verzoek om kaartinformatie op te halen [HTTP/JSON]"
+Backend --> Identiteitsprovider: "Verstuurt inlogverzoeken [HTTP/JSON]"
+Backend --> AirScraper: "Verstuurt een verzoek om vluchtgegevens op te halen [HTTP/JSON]"
+Backend --> BookingCom: "Verstuurt een verzoek om hotelinformatie op te halen [HTTP/JSON]"
+
+SHOW_LEGEND(true)
+@enduml
