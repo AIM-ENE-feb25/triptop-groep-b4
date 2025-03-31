@@ -20,6 +20,15 @@ public class Hotel {
         state = new Gepland();
     }
 
+    public void BookHotel(){
+
+    }
+    public void PayHotelBooking(){
+
+    }
+    public void CancelHotelBooking(){
+
+    }
 
     public int getHotelId() {
         return hotelId;

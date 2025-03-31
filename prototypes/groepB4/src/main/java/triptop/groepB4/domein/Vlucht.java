@@ -16,6 +16,16 @@ public class Vlucht {
         state = new Gepland();
     }
 
+    public void BookFlight(){
+
+    }
+    public void PayFlightBooking(){
+
+    }
+    public void CancelFlightBooking(){
+
+    }
+
     public int getFlightId() {
         return flightId;
     }
