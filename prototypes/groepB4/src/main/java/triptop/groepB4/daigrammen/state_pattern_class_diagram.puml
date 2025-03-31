@@ -2,14 +2,14 @@
 
 'interfaces
 interface "HotelActionHandler"{
-+ void BookHotel(Hotel hotel, Account account);
-+ void CancelHotelBooking(Hotel hotel, Account account);
-+ void PayHotel(Hotel hotel, Account account);
++ void BookHotel();
++ void CancelHotelBooking();
++ void PayHotel();
 }
 interface "VluchtActionHandler"{
-+ void BookFlight(Flight flight, Account account);
-+ void CancelFlightBooking(Flight flight, Account account);
-+ void PayFlight(Flight flight, Account account);
++ void BookFlight();
++ void CancelFlightBooking();
++ void PayFlight();
 }
 interface "VluchtServicePoort"{
 + void BookFlight()
@@ -48,14 +48,14 @@ class "VluchtService"{
 + void PayFlightBooking()
 }
 class "HotelActionManager"{
-+ void BookHotel(Hotel hotel, Account account);
-+ void CancelHotelBooking(Hotel hotel, Account account);
-+ void PayHotel(Hotel hotel, Account account);
++ void BookHotel();
++ void CancelHotelBooking();
++ void PayHotel();
 }
 class "VluchtActionManager"{
-+ void BookFlight(Flight flight, Account account);
-+ void CancelFlightBooking(Flight flight, Account account);
-+ void PayFlight(Flight flight, Account account);
++ void BookFlight();
++ void CancelFlightBooking();
++ void PayFlight();
 }
 class "Gepland" {
 + void stateActie()
@@ -81,10 +81,16 @@ class "Hotel" {
 - int hotelId
 - String hotelName
 - Bookingstate state
+- void BookHotel()
+- void CancelHotelBooking()
+- void PayHotelBooking()
 }
 class "Flight" {
 - Int flightNumber
 - Bookingstate state
+- void BookFlight()
+- void CancelFlightBooking()
+- void PayFlightBooking()
 }
 
 'relaties
