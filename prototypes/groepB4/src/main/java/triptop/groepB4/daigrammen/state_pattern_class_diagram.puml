@@ -1,0 +1,113 @@
+@startuml
+
+'interfaces
+interface "HotelActionHandler"{
++ void BookHotel(Hotel hotel, Account account);
++ void CancelHotelBooking(Hotel hotel, Account account);
++ void PayHotel(Hotel hotel, Account account);
+}
+interface "VluchtActionHandler"{
++ void BookFlight(Flight flight, Account account);
++ void CancelFlightBooking(Flight flight, Account account);
++ void PayFlight(Flight flight, Account account);
+}
+interface "VluchtServicePoort"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+interface "HotelServicePoort"{
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+interface "Bookingstate" {
++ void stateActie()
++ void cancelBooking()
+}
+
+'classes
+class "hotelcontroller" {
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+class "HotelService"{
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+class "VluchtController"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+class "VluchtService"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+class "HotelActionManager"{
++ void BookHotel(Hotel hotel, Account account);
++ void CancelHotelBooking(Hotel hotel, Account account);
++ void PayHotel(Hotel hotel, Account account);
+}
+class "VluchtActionManager"{
++ void BookFlight(Flight flight, Account account);
++ void CancelFlightBooking(Flight flight, Account account);
++ void PayFlight(Flight flight, Account account);
+}
+class "Gepland" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Geregeld" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Betaald" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Niet uitvoerbaar" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Uitgevoerd" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Hotel" {
+- int hotelId
+- String hotelName
+- Bookingstate state
+}
+class "Flight" {
+- Int flightNumber
+- Bookingstate state
+}
+
+'relaties
+"hotelcontroller" --> "HotelActionHandler"
+"HotelService" 	..|> "HotelServicePoort"
+"VluchtController" --> "VluchtActionHandler"
+"VluchtService" ..|> "VluchtServicePoort"
+"HotelActionManager" ..|> "HotelActionHandler"
+"VluchtActionManager" ..|> "VluchtActionHandler"
+"Gepland" --> "HotelServicePoort"
+"Gepland" --> "VluchtServicePoort"
+"Geregeld" --> "HotelServicePoort"
+"Geregeld" --> "VluchtServicePoort"
+"Betaald" --> "HotelServicePoort"
+"Betaald" --> "VluchtServicePoort"
+"Flight" --> "Bookingstate"
+"Hotel" --> "Bookingstate"
+"Bookingstate" <|.. "Gepland"
+"Bookingstate" <|.. "Geregeld"
+"Bookingstate" <|.. "Betaald"
+"Bookingstate" <|.. "Niet uitvoerbaar"
+"Bookingstate" <|.. "Uitgevoerd"
+"VluchtActionManager" --> "Flight"
+"HotelActionManager" --> "Hotel"
+
+@enduml
