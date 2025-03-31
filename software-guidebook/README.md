@@ -205,13 +205,13 @@ De frontend verzamelt de input van de twee actoren en verstuurt deze naar de bac
 ###     7.3. Design & Code
 
 **Ontwerpvraag:** Hoe ga je om met aanroepen van externe services die niet beschikbaar zijn en toch verwacht wordt dat er waardevolle output gegeven wordt?
-> ![ClassDiagramStrategy](../C4_diagrammen/classDiagramStrategy.png)
+> ![ClassDiagramStrategy](../Pressure_cooker/Vera/classDiagramStrategy.png)
 > 
 >Het idee achter dit ontwerp is dat er een fallback wordt gegeven als de externe service niet beschikbaar is. Dit kan bijvoorbeeld een standaard waarde zijn of een foutmelding. Dit zorgt ervoor dat de applicatie niet vastloopt als de externe service niet beschikbaar is.
 >Het voldoet aan het Single Responsibility Principle omdat de verantwoordelijkheid van het geven van een fallback waarde bij de FallbackService ligt, terwijl de foutafhandelingslogica in de strategiën zelf zit. 
 > Het voldoet ook aan het Open/Closed Principle omdat er makkelijk nieuwe fallbacks toegevoegd kunnen worden zonder de bestaande code aan te passen.
 >
->![SequenceDiagramStrategy](../C4_diagrammen/SequenceDiagramStrategy.png)
+>![SequenceDiagramStrategy](../Pressure_cooker/Vera/SequenceDiagramStrategy.png)
 
 **Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
 >![class diagram pressure cooker](../Pressure_cooker/Jordy/Class_diagram_pressure_cooker_Jordy.png)
@@ -302,29 +302,11 @@ De applicatie moet gemakkelijk aangepast kunnen worden om verschillende identity
 Het is dus belangrijk dat er een passend pattern gekozen wordt om dit mogelijk te maken.
 
 #### Considered Options
-
-##### Strategy
-
-Dit pattern gaat niet werken, omdat de verschillende strategieën dezelfde interface vereisen.
-Dit is juist niet het geval bij verschillende identity providers.
-
-##### State
-
-Dit pattern is onlogisch, omdat het wisselen van identity providers de state niet of nauwelijks veranderd.
-
-##### Adapter
-
-Dit pattern past het beste bij het probleem dat we proberen op te lossen.
-Bij dit pattern maak je namelijk een extra class tussen twee classes als adapter.
-Hiermee kunnen we de interfaces van de verschillende identity providers "vertalen" naar onze eigen gewenste interface.
-
-##### Facade
-
-Dit pattern is ook niet heel logisch, omdat de interfaces van identity providers vaak niet zo ingewikkeld zijn.
-
-##### Factory method
-
-Dit pattern is niet van toepassing, omdat de interfaces van de identity providers al wel op voorhand bekend zijn.
+| Forces                                 | Strategy | Adapter | State | Facade | Factory method |
+|----------------------------------------|----------|---------|-------|--------|----------------|
+| Ondersteuning verschillende interfaces | -        | ++      | --    | -      | +              |
+| Behoud van bestaande code              | +        | ++      | -     | ++     | +              |
+| Makkelijk uitbreidbaar                 | -        | ++      | -     | -      | +              |
 
 #### Decision
 
