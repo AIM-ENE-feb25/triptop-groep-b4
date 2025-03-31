@@ -18,14 +18,14 @@ System_Ext(AirScraper, "AirScraper", "Haalt alle vluchtgegevens op")
 System_Ext(BookingCom, "Booking.com", "Haalt alle hotelgegevens op")
 System_Ext(GoogleMapsAPI, "Google Maps API", "Haalt kaartgegevens op")
 
-Backend --> Database : "Vraagt gegevens op uit de database [IP/TCP/SQL]"
+Backend --> Database : "Vraagt gegevens op uit de database [TCP/IP/SQL]"
 Reiziger --> Frontend: "Verstuurt een verzoek om een vakantie te boeken [HTTP/JSON]"
 Reisagent --> Frontend: "Verstuurt een verzoek om een reiziger te helpen [HTTP/JSON]"
 Frontend --> Backend: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
-Frontend --> GoogleMapsAPI: "Verstuurt een verzoek om kaartinformatie op te halen [?]"
-Backend --> Identiteitsprovider: "Verstuurt inlogverzoeken [JSON]"
-Backend --> AirScraper: "Verstuurt een verzoek om vluchtgegevens op te halen [?]"
-Backend --> BookingCom: "Verstuurt een verzoek om hotelinformatie op te halen [?]"
+Frontend --> GoogleMapsAPI: "Verstuurt een verzoek om kaartinformatie op te halen [HTTP/JSON]"
+Backend --> Identiteitsprovider: "Verstuurt inlogverzoeken [HTTP/JSON]"
+Backend --> AirScraper: "Verstuurt een verzoek om vluchtgegevens op te halen [HTTP/JSON]"
+Backend --> BookingCom: "Verstuurt een verzoek om hotelinformatie op te halen [HTTP/JSON]"
 
 SHOW_LEGEND(true)
 @enduml
