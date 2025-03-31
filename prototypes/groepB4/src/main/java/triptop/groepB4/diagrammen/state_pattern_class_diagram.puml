@@ -44,6 +44,7 @@ class "HotelService"{
 + void executeStrategy()
 }
 class "VluchtController"{
++ void GetFlights()
 + void BookFlight()
 + void CancelFlightBooking()
 + void PayFlightBooking()
