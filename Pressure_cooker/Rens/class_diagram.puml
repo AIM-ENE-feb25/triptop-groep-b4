@@ -12,18 +12,19 @@ class LoginControllerImpl implements LoginController {
     +login(authorizationCode: String): ResponseEntity
 }
 
-class LoginServiceImpl implements LoginService {
+' Adapter class
+class LoginServiceAdapter implements LoginService {
+    -adaptee: LoginServiceImpl
     +authorizationCodeToIdentityToken(authorizationCode: String): IdentityToken
 }
 
-' Adapter
-class LoginRepositoryAdapter implements LoginRepository {
-    +getUser(identityToken: IdentityToken): User
-    +save(user: User): void
+' Legacy service
+class LoginServiceImpl {
+    +authorizationCodeToIdentityToken(authorizationCode: String): IdentityToken
 }
 
-' Externe / Legacy class
-class LoginRepositoryImpl {
+' Repository
+class LoginRepositoryImpl implements LoginRepository {
     +getUser(identityToken: IdentityToken): User
     +save(user: User): void
 }
@@ -39,10 +40,9 @@ class User {
 }
 
 ' Relationships
-LoginControllerImpl --> LoginService
-LoginServiceImpl --> LoginRepositoryAdapter
-LoginRepositoryAdapter --> LoginRepositoryImpl
-LoginServiceImpl --> IdentityToken
+LoginControllerImpl --> LoginServiceAdapter
+LoginServiceAdapter --> LoginServiceImpl : adaptee
+LoginServiceImpl --> LoginRepositoryImpl
 LoginRepositoryImpl --> User
 
 @enduml
