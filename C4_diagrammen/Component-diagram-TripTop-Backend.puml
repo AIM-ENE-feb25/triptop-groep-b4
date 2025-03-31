@@ -11,21 +11,22 @@ Container(Frontend, "Frontend", "Een frontend die de inputs van de gebruiker ver
 
 Container_Boundary(ContainerBoundary, "Backend") {
 
-Component(LoginController, "LoginController", "JAVA")
-Component(LoginService, "LoginService", "JAVA")
-Component(LoginRepository, "LoginRepository", "JAVA")
+Component(LoginController, "LoginController", "JAVA", "Verantwoordelijk voor het beheren van inlogacties.")
+Component(LoginService, "LoginService", "JAVA", "Verwerkt inlogverzoeken door gebruik te maken van de Identity Provider en stuurt deze door naar de LoginRepository.")
+Component(LoginRepository, "LoginRepository", "JAVA", "Verantwoordelijk voor het opslaan en ophalen van inloggegevens uit de ExterneDatabase.")
 
-Component(HotelController, "HotelController", "JAVA")
-Component(HotelService, "HotelService", "JAVA")
+Component(HotelController, "HotelController", "JAVA", "Verantwoordelijk voor het beheren van hotelgerelateerde acties.")
+Component(HotelService, "HotelService", "JAVA", "Verwerkt hotelgerelateerde verzoeken en stuurt API-aanvragen naar de Booking.com API.")
 
-Component(VluchtController, "VluchtController", "JAVA")
-Component(VluchtService, "VluchtService", "JAVA")
+Component(VluchtController, "VluchtController", "JAVA", "Verantwoordelijk voor het beheren van vluchtgerelateerde acties.")
+Component(VluchtService, "VluchtService", "JAVA", "Verwerkt vluchtgerelateerde verzoeken en stuurt API-aanvragen naar de AirScraper API.")
 
 }
 
 ContainerDb(Externe_Database," ExterneDatabase","SQL Server")
 }
 System_Ext(IdentityProvider, "Identity Provider", "Verifieert gebruikersidentiteit")
+System_Ext(SMSVerify, "SMS Verify", "Verstuurt verificatiecodes via SMS")
 System_Ext(Booking.com, "Booking.com API", "Wordt gebruikt voor het ophalen van hotelinformatie")
 System_Ext(Airscraper, "Airscraper API", "Wordt gebruikt voor het ophalen van vluchtinformatie")
 
@@ -46,6 +47,7 @@ HotelController --> HotelService: "Delegeert verantwoordelijkheid van taak naar"
 VluchtController --> VluchtService: "Delegeert verantwoordelijkheid van taak naar"
 
 LoginService --> IdentityProvider: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
+LoginService --> SMSVerify: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
 HotelService --> Booking.com: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
 VluchtService --> Airscraper: "Verstuurt verzoeken naar endpoints [HTTP/JSON]"
 

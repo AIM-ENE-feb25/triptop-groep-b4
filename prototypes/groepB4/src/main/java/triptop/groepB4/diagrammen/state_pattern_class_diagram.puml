@@ -1,0 +1,144 @@
+@startuml
+
+'interfaces
+interface "HotelActionHandler"{
++ void BookHotel();
++ void CancelHotelBooking();
++ void PayHotel();
+}
+interface "VluchtActionHandler"{
++ void BookFlight();
++ void CancelFlightBooking();
++ void PayFlight();
+}
+interface "VluchtServicePoort"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+interface "HotelServicePoort"{
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+interface "Bookingstate" {
++ void stateActie()
++ void cancelBooking()
+}
+interface ServiceStrategy {
+    + void execute();
+}
+
+'classes
+class "hotelcontroller" {
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
+}
+class "HotelService"{
+- ServiceStrategy strategy
++ void BookHotel()
++ void CancelHotelBooking()
++ void PayHotelBooking()
++ void setStrategy(ServiceStrategy strategy)
++ void executeStrategy()
+}
+class "VluchtController"{
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
+}
+class "VluchtService"{
+- ServiceStrategy strategy
++ void BookFlight()
++ void CancelFlightBooking()
++ void PayFlightBooking()
++ void setStrategy(ServiceStrategy strategy)
++ void executeStrategy()
+}
+class RetryStrategy {
+    + void execute();
+}
+
+class CircuitBreakerStrategy {
+    + void execute();
+}
+
+class FallbackStrategy {
+    + void execute();
+}
+class "HotelActionManager"{
++ void BookHotel();
++ void CancelHotelBooking();
++ void PayHotel();
+}
+class "VluchtActionManager"{
++ void BookFlight();
++ void CancelFlightBooking();
++ void PayFlight();
+}
+class "Gepland" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Geregeld" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Betaald" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Niet uitvoerbaar" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Uitgevoerd" {
++ void stateActie()
++ void cancelBooking()
+}
+class "Hotel" {
+- int hotelId
+- String hotelName
+- Bookingstate state
+- void BookHotel()
+- void CancelHotelBooking()
+- void PayHotelBooking()
+}
+class "Flight" {
+- Int flightNumber
+- Bookingstate state
+- void BookFlight()
+- void CancelFlightBooking()
+- void PayFlightBooking()
+}
+
+'relaties
+"hotelcontroller" --> "HotelActionHandler"
+"HotelService" 	..|> "HotelServicePoort"
+"VluchtController" --> "VluchtActionHandler"
+"VluchtService" ..|> "VluchtServicePoort"
+"VluchtService" --> "ServiceStrategy" : Maakt gebruik van
+"HotelService" --> "ServiceStrategy" : Maakt gebruik van
+"RetryStrategy" --|> "ServiceStrategy"
+"CircuitBreakerStrategy" --|> "ServiceStrategy"
+"FallbackStrategy" --|> "ServiceStrategy"
+"HotelActionManager" ..|> "HotelActionHandler"
+"VluchtActionManager" ..|> "VluchtActionHandler"
+"Gepland" --> "HotelServicePoort"
+"Gepland" --> "VluchtServicePoort"
+"Geregeld" --> "HotelServicePoort"
+"Geregeld" --> "VluchtServicePoort"
+"Betaald" --> "HotelServicePoort"
+"Betaald" --> "VluchtServicePoort"
+"Flight" --> "Bookingstate"
+"Hotel" --> "Bookingstate"
+"Bookingstate" <|.. "Gepland"
+"Bookingstate" <|.. "Geregeld"
+"Bookingstate" <|.. "Betaald"
+"Bookingstate" <|.. "Niet uitvoerbaar"
+"Bookingstate" <|.. "Uitgevoerd"
+"VluchtActionManager" --> "Flight"
+"HotelActionManager" --> "Hotel"
+
+@enduml
