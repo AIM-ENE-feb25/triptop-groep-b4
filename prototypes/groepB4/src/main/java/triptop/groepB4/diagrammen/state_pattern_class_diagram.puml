@@ -25,6 +25,9 @@ interface "Bookingstate" {
 + void stateActie()
 + void cancelBooking()
 }
+interface ServiceStrategy {
+    + void execute();
+}
 
 'classes
 class "hotelcontroller" {
@@ -33,9 +36,12 @@ class "hotelcontroller" {
 + void PayHotelBooking()
 }
 class "HotelService"{
+- ServiceStrategy strategy
 + void BookHotel()
 + void CancelHotelBooking()
 + void PayHotelBooking()
++ void setStrategy(ServiceStrategy strategy)
++ void executeStrategy()
 }
 class "VluchtController"{
 + void BookFlight()
@@ -43,9 +49,23 @@ class "VluchtController"{
 + void PayFlightBooking()
 }
 class "VluchtService"{
+- ServiceStrategy strategy
 + void BookFlight()
 + void CancelFlightBooking()
 + void PayFlightBooking()
++ void setStrategy(ServiceStrategy strategy)
++ void executeStrategy()
+}
+class RetryStrategy {
+    + void execute();
+}
+
+class CircuitBreakerStrategy {
+    + void execute();
+}
+
+class FallbackStrategy {
+    + void execute();
 }
 class "HotelActionManager"{
 + void BookHotel();
@@ -98,6 +118,11 @@ class "Flight" {
 "HotelService" 	..|> "HotelServicePoort"
 "VluchtController" --> "VluchtActionHandler"
 "VluchtService" ..|> "VluchtServicePoort"
+"VluchtService" --> "ServiceStrategy" : Maakt gebruik van
+"HotelService" --> "ServiceStrategy" : Maakt gebruik van
+"RetryStrategy" --|> "ServiceStrategy"
+"CircuitBreakerStrategy" --|> "ServiceStrategy"
+"FallbackStrategy" --|> "ServiceStrategy"
 "HotelActionManager" ..|> "HotelActionHandler"
 "VluchtActionManager" ..|> "VluchtActionHandler"
 "Gepland" --> "HotelServicePoort"

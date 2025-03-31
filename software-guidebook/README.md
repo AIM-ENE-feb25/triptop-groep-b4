@@ -168,39 +168,21 @@ Daarnaast maakt de backend ook gebruik van de Airscraper api voor het ophalen va
 
 
 ###     7.2. Components
-
-> [!IMPORTANT]
-> Voeg toe: Component Diagram plus een Dynamic Diagram van een aantal scenario's inclusief begeleidende tekst.
 #### Component diagram TripTop Backend
-
-Dit component diagram bestaat uit twee actoren, de containers Frontend, ExterneDatabase, drie externe systemen en componenten die weergeven hoe de backend is opgebouwd.
-De frontend verzamelt de input van de twee actoren en verstuurt deze naar de backend via HTTP/JSON verzoeken. In de backend vindt de verwerking van verzoeken plaats. 
-Het is opgesplitst in meerdere Java-componenten die elk verantwoordelijk zijn voor een bepaald domein:
-- LoginController: verantwoordelijk voor het beheren van inlogacties.
-- HotelController: verantwoordelijk voor het beheren van hotelgerelateerde acties.
-- VluchtController: verantwoordelijk voor het beheren van vluchtgerelateerde acties.
-- LoginService: verwerkt inlogverzoeken door gebruik te maken van de Identity Provider en stuurt deze door naar de LoginRepository.
-- HotelService: Verwerkt hotelgerelateerde verzoeken en stuurt API-aanvragen naar de Booking.com API.
-- VluchtService: Verwerkt vluchtgerelateerde verzoeken en stuurt API-aanvragen naar de AirScraper API.
-- LoginRepository: Verantwoordelijk voor het opslaan en ophalen van inloggegevens uit de ExterneDatabase.
-
 Doordat de backend is opgesplitst in meerdere componenten die elk verantwoordelijk zijn voor een bepaald domein, voldoet het diagram aan het Single Responsibility Principle.
-Het diagram voldoet ook aan het Open/Closed Principle omdat er makkelijk nieuwe componenten toegevoegd kunnen worden zonder de bestaande code aan te passen.
+De HotelController handelt alleen hotel gerelateerde acties af, de VluchtController handelt alleen vlucht gerelateerde acties af, etc.
+Voor elk bouwblok is er gekozen om een aparte controller en service toe te voegen. Dit maakt het makkelijk om de applicatie uit te breiden en dus voldoet het aan het Open/Closed Principle.
+Ook omdat bij het toevoegen van een nieuw component er geen bestaande code aangepast hoeft te worden.
+De interactie met externe systemen gebeurt via de services. Dit zorgt ervoor dat de rest van de applicatie hier niet afhankelijk van is. Dit maakt
+het makkelijker om bijvoorbeeld een API te vervangen zonder grote aanpassingen te hoeven doen aan de rest van de applicatie.
 > ![Component-Diagram-TripTop-Backend](../C4_diagrammen/Component-diagram-TripTop-Backend.png)
 #### Component diagram TripTop Frontend
 
-Dit component diagram bestaat uit twee actoren, de container Backend, een extern systeem en componenten die weergeven hoe de frontend is opgebouwd en hoe deze met de backend communiceert.
-De frontend verzamelt de input van de twee actoren en verstuurt deze naar de backend via HTTP/JSON verzoeken.
-- Vlucht: verantwoordelijk voor het ophalen van vluchtgegevens via de backend.
-- Vliegveld: verantwoordelijk voor het ophalen van vliegveldgegevens via de backend.
-- Vluchtlijst: de vluchten en vliegvelden worden in een lijst weergegeven.
-- VluchtOverzicht: de vluchtlijst wordt weergeven in een overzicht.
-- Hotel: verantwoordelijk voor het ophalen van hotelgegevens via de backend.
-- HotelLijst: de hotels worden in een lijst weergegeven.
-- HotelOverzicht: de hotellijst wordt weergegeven in een overzicht.
-- Inlogformulier: formulier waarin de gebruiker zijn inloggegevens kan invullen.
-- Inlog scherm: het inlogformulier wordt weergegeven waarna de ingevulde gegevens worden doorgestuurd naar de backend.
-- Kaart: verantwoordelijk voor het ophalen van kaartgegevens via de backend. Geeft vliegvelden en hotels weer.
+Het component App is het centrale component waarin andere componenten worden geladen. Dit maakt het eenvoudig om nieuwe functionaliteiten toe te voegen zonder de basisstructuur te wijzigen, 
+wat aansluit bij het Open/Closed Principle. Elk component is verantwoordelijk voor een specifieke taak, zoals het weergeven van de kaart of het tonen van de reisgegevens.
+Dit zorgt voor een duidelijke scheiding van verantwoordelijkheden en maakt het eenvoudig om de code te onderhouden en uit te breiden. Dit voldoet aan het Single Responsibility Principle. 
+De frontend is opgedeeld in presentatiecomponenten, zoals Hotel Overzicht, en data-fetching componenten, zoals Hotel.
+Dit voorkomt dat de presentatiecomponenten verantwoordelijk zijn voor het ophalen van data, wat zorgt voor een betere splitsing van functionaliteiten.
 > ![Component-Diagram-TripTop-Frontend](../C4_diagrammen/Component-diagram-TripTop-Frontend.png)
 ###     7.3. Design & Code
 
@@ -270,12 +252,12 @@ We moeten een manier vinden om met een externe api informatie op te halen over h
 
 #### Considered Options
 
-|Forces | Booking.com | Hotels |
-|---|---|---|
-| prijs | 0 | 0 |
-| up to date | + | - |
-| amount of available data | + | - |
-| example data | + | - |
+| Forces                   | Booking.com | Hotels |
+|--------------------------|-------------|--------|
+| prijs                    | 0           | 0      |
+| up to date               | +           | -      |
+| amount of available data | +           | -      |
+| example data             | +           | -      |
 
 #### Decision
 
