@@ -17,13 +17,13 @@ public class Vlucht {
     }
 
     public void BookFlight(){
-
+        state.stateActie(this, "Book");
     }
     public void PayFlightBooking(){
-
+        state.stateActie(this, "Pay");
     }
     public void CancelFlightBooking(){
-
+        state.cancelBooking(this);
     }
 
     public int getFlightId() {
@@ -45,4 +45,11 @@ public class Vlucht {
     private BookingState state;
 
 
+    @Override
+    public String toString() {
+        return "Vlucht{" +
+                "flightId=" + flightId +
+                ", state=" + state +
+                '}';
+    }
 }

@@ -2,19 +2,20 @@ package triptop.groepB4.service;
 
 import triptop.groepB4.domein.Vlucht;
 
-public class VluchtService implements VluchtServicePoort{
+public class VluchtActionManager implements VluchtActionHandler{
+
     @Override
     public void BookFlight(Vlucht vlucht) {
-        System.out.println("vlucht geboekt!!");
+        vlucht.BookFlight();
     }
 
     @Override
     public void PayFlightBooking(Vlucht vlucht) {
-        System.out.println("vlucht betaald!!");
+        vlucht.PayFlightBooking();
     }
 
     @Override
     public void CancelFlightBooking(Vlucht vlucht) {
-        System.out.println("vlucht boeking geannuleerd :(");
+        vlucht.CancelFlightBooking();
     }
 }

@@ -2,7 +2,7 @@ package triptop.groepB4.service;
 
 import triptop.groepB4.domein.Vlucht;
 
-public interface VluchtServicePoort {
+public interface VluchtActionHandler {
 
     public void BookFlight(Vlucht vlucht);
     public void PayFlightBooking(Vlucht vlucht);

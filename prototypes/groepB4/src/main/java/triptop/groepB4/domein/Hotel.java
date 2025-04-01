@@ -21,13 +21,13 @@ public class Hotel {
     }
 
     public void BookHotel(){
-
+        state.stateActie(this, "Book");
     }
     public void PayHotelBooking(){
-
+        state.stateActie(this, "Pay");
     }
     public void CancelHotelBooking(){
-
+        state.cancelBooking(this);
     }
 
     public int getHotelId() {
@@ -52,5 +52,14 @@ public class Hotel {
 
     public void setState(BookingState state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "Hotel{" +
+                "hotelId=" + hotelId +
+                ", hotelName='" + hotelName + '\'' +
+                ", state=" + state +
+                '}';
     }
 }

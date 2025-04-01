@@ -5,12 +5,12 @@ import triptop.groepB4.domein.Vlucht;
 
 public class Niet_uitvoerbaar implements BookingState{
     @Override
-    public void stateActie(Hotel hotel) {
+    public void stateActie(Hotel hotel, String actie) {
 
     }
 
     @Override
-    public void stateActie(Vlucht vlucht) {
+    public void stateActie(Vlucht vlucht, String actie) {
 
     }
 

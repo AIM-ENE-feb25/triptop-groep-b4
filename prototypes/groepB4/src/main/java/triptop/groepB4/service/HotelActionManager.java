@@ -2,19 +2,19 @@ package triptop.groepB4.service;
 
 import triptop.groepB4.domein.Hotel;
 
-public class HotelService implements HotelServicePoort {
+public class HotelActionManager implements HotelActionHandler {
     @Override
     public void BookHotel(Hotel hotel) {
-        System.out.println("Hotel geboekt!!");
+        hotel.BookHotel();
     }
 
     @Override
     public void PayHotelBooking(Hotel hotel) {
-        System.out.println("Hotel betaald!!");
+        hotel.PayHotelBooking();
     }
 
     @Override
     public void CancelHotelBooking(Hotel hotel) {
-        System.out.println("Hotel boeking geannuleerd :(");
+        hotel.CancelHotelBooking();
     }
 }

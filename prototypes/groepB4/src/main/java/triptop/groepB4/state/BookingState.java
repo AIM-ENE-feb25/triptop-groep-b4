@@ -5,8 +5,8 @@ import triptop.groepB4.domein.Vlucht;
 
 public interface BookingState {
 
-    public void stateActie(Hotel hotel);
-    public void stateActie(Vlucht vlucht);
+    public void stateActie(Hotel hotel, String actie);
+    public void stateActie(Vlucht vlucht, String actie);
     public void cancelBooking(Hotel hotel);
     public void cancelBooking(Vlucht vlucht);
 }
