@@ -23,7 +23,7 @@ public class Betaald implements BookingState{
     @Override
     public void stateActie(Vlucht vlucht, String actie) {
         if (actie == "uitvoeren"){
-            vluchtServicePoort.VoerVerblijfUit(vlucht);
+            vluchtServicePoort.VoerVluchtUit(vlucht);
         } else {
             System.out.println("Deze actie: "+ actie + " bij de huidige state " + vlucht.getState());
         }

@@ -26,6 +26,10 @@ public class Vlucht {
         state.cancelBooking(this);
     }
 
+    public void VoerVluchtUit(){
+        state.stateActie(this, "uitvoeren");
+    }
+
     public int getFlightId() {
         return flightId;
     }
