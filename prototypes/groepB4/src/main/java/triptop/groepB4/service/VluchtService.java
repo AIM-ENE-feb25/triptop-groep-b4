@@ -17,4 +17,9 @@ public class VluchtService implements VluchtServicePoort{
     public void CancelFlightBooking(Vlucht vlucht) {
         System.out.println("vlucht boeking geannuleerd :(");
     }
+
+    @Override
+    public void VoerVerblijfUit(Vlucht vlucht) {
+
+    }
 }

@@ -13,14 +13,21 @@ public class Geregeld implements BookingState{
     HotelServicePoort hotelServicePoort = new HotelService();
     @Override
     public void stateActie(Hotel hotel, String actie) {
-        hotelServicePoort.PayHotelBooking(hotel);
+        if (actie == "Pay"){
+            hotelServicePoort.PayHotelBooking(hotel);
+        } else {
+            System.out.println("Deze actie: "+ actie + " bij de huidige state " + hotel.getState());
+        }
     }
 
     @Override
     public void stateActie(Vlucht vlucht, String actie) {
-        vluchtServicePoort.PayFlightBooking(vlucht);
+        if (actie == "Pay"){
+            vluchtServicePoort.PayFlightBooking(vlucht);
+        } else {
+            System.out.println("Deze actie: "+ actie + " bij de huidige state " + vlucht.getState());
+        }
     }
-
     @Override
     public void cancelBooking(Hotel hotel) {
         hotelServicePoort.CancelHotelBooking(hotel);

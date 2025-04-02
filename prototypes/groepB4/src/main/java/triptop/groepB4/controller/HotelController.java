@@ -13,18 +13,33 @@ public class HotelController {
 
     @PostMapping("/BookHotel")
     public void BookHotel(){
-        Hotel hotel = new Hotel(1,"test");
+        Hotel hotel = checkIfExists(1,"test");
         hotelActionHandler.BookHotel(hotel);
     }
     @PostMapping("/PayHotel")
     public void PayHotelBooking(){
-        Hotel hotel = new Hotel(1,"test");
+        Hotel hotel = checkIfExists(1,"test");
         hotelActionHandler.PayHotelBooking(hotel);
     }
 
     @PostMapping("/CancelHotelBooking")
     public void CancelHotelBooking(){
-        Hotel hotel = new Hotel(1,"test");
+        Hotel hotel = checkIfExists(1,"test");
         hotelActionHandler.CancelHotelBooking(hotel);
+    }
+
+    @PostMapping("/VoerBoekingUit")
+    public void VoerBoekingUit(){
+        Hotel hotel = checkIfExists(1,"test");
+        hotelActionHandler.VoerBoekingUit(hotel);
+    }
+
+    public Hotel checkIfExists(int id, String hotelName){
+        Hotel hotel = hotelActionHandler.getHotel(id);
+        if (hotel == null){
+            hotel = new Hotel(id, hotelName);
+            hotelActionHandler.NewHotel(hotel);
+        }
+        return hotel;
     }
 }

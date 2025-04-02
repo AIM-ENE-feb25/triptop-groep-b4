@@ -14,13 +14,20 @@ public class Gepland implements  BookingState{
 
     @Override
     public void stateActie(Hotel hotel, String actie) {
-        hotelServicePoort.BookHotel(hotel);
+        if (actie == "Book"){
+            hotelServicePoort.BookHotel(hotel);
+        } else {
+            System.out.println("Deze actie: "+ actie + " bij de huidige state " + hotel.getState());
+        }
     }
 
     @Override
     public void stateActie(Vlucht vlucht, String actie) {
-
-        vluchtServicePoort.BookFlight(vlucht);
+        if (actie == "Book"){
+            vluchtServicePoort.BookFlight(vlucht);
+        } else {
+            System.out.println("Deze actie: "+ actie + " bij de huidige state " + vlucht.getState());
+        }
     }
 
     @Override

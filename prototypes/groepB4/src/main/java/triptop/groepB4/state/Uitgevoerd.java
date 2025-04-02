@@ -8,26 +8,23 @@ import triptop.groepB4.service.VluchtService;
 import triptop.groepB4.service.VluchtServicePoort;
 
 public class Uitgevoerd implements BookingState{
-
-    VluchtServicePoort vluchtServicePoort = new VluchtService();
-    HotelServicePoort hotelServicePoort = new HotelService();
     @Override
     public void stateActie(Hotel hotel, String actie) {
-
+        System.out.println("Deze actie:"+ actie + "bij de huidige state " + hotel.getState());
     }
 
     @Override
     public void stateActie(Vlucht vlucht, String actie) {
-
+        System.out.println("Deze actie:"+ actie + "bij de huidige state " + vlucht.getState());
     }
 
     @Override
     public void cancelBooking(Hotel hotel) {
-
+        System.out.println("Deze actie: annuleren bij de huidige state " + hotel.getState());
     }
 
     @Override
     public void cancelBooking(Vlucht vlucht) {
-
+        System.out.println("Deze actie: annuleren bij de huidige state " + vlucht.getState());
     }
 }

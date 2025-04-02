@@ -29,6 +29,9 @@ public class Hotel {
     public void CancelHotelBooking(){
         state.cancelBooking(this);
     }
+    public void VoerBoekingUit() {
+        state.stateActie(this, "uitvoeren");
+    }
 
     public int getHotelId() {
         return hotelId;

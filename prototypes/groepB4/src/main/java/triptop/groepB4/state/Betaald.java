@@ -13,12 +13,20 @@ public class Betaald implements BookingState{
     HotelServicePoort hotelServicePoort = new HotelService();
     @Override
     public void stateActie(Hotel hotel, String actie) {
-
+        if (actie == "uitvoeren"){
+            hotelServicePoort.VoerVerblijfUit(hotel);
+        } else {
+            System.out.println("Deze actie: "+ actie + " bij de huidige state " + hotel.getState());
+        }
     }
 
     @Override
     public void stateActie(Vlucht vlucht, String actie) {
-
+        if (actie == "uitvoeren"){
+            vluchtServicePoort.VoerVerblijfUit(vlucht);
+        } else {
+            System.out.println("Deze actie: "+ actie + " bij de huidige state " + vlucht.getState());
+        }
     }
 
     @Override
