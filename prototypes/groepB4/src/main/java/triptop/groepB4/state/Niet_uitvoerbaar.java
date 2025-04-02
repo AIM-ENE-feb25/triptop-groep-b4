@@ -6,12 +6,12 @@ import triptop.groepB4.domein.Vlucht;
 public class Niet_uitvoerbaar implements BookingState{
     @Override
     public void stateActie(Hotel hotel, String actie) {
-            System.out.println("Deze actie: "+ actie + " bij de huidige state " + hotel.getState());
+            System.out.println("Deze actie: "+ actie + " is niet mogelijk bij de huidige state " + hotel.getState());
     }
 
     @Override
     public void stateActie(Vlucht vlucht, String actie) {
-            System.out.println("Deze actie: "+ actie + " bij de huidige state " + vlucht.getState());
+            System.out.println("Deze actie: "+ actie + " is niet mogelijk bij de huidige state " + vlucht.getState());
     }
 
     @Override

@@ -17,7 +17,7 @@ public class Gepland implements  BookingState{
         if (actie == "Book"){
             hotelServicePoort.BookHotel(hotel);
         } else {
-            System.out.println("Deze actie: "+ actie + " bij de huidige state " + hotel.getState());
+            System.out.println("Deze actie: "+ actie + " is niet mogelijk bij de huidige state " + hotel.getState());
         }
     }
 
@@ -26,7 +26,7 @@ public class Gepland implements  BookingState{
         if (actie == "Book"){
             vluchtServicePoort.BookFlight(vlucht);
         } else {
-            System.out.println("Deze actie: "+ actie + " bij de huidige state " + vlucht.getState());
+            System.out.println("Deze actie: "+ actie + " is niet mogelijk bij de huidige state " + vlucht.getState());
         }
     }
 

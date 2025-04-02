@@ -16,7 +16,7 @@ public class Betaald implements BookingState{
         if (actie == "uitvoeren"){
             hotelServicePoort.VoerVerblijfUit(hotel);
         } else {
-            System.out.println("Deze actie: "+ actie + " bij de huidige state " + hotel.getState());
+            System.out.println("Deze actie: "+ actie + " is niet mogelijk bij de huidige state " + hotel.getState());
         }
     }
 
@@ -25,7 +25,7 @@ public class Betaald implements BookingState{
         if (actie == "uitvoeren"){
             vluchtServicePoort.VoerVluchtUit(vlucht);
         } else {
-            System.out.println("Deze actie: "+ actie + " bij de huidige state " + vlucht.getState());
+            System.out.println("Deze actie: "+ actie + " is niet mogelijk bij de huidige state " + vlucht.getState());
         }
     }
 

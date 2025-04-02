@@ -16,7 +16,7 @@ public class Geregeld implements BookingState{
         if (actie == "Pay"){
             hotelServicePoort.PayHotelBooking(hotel);
         } else {
-            System.out.println("Deze actie: "+ actie + " bij de huidige state " + hotel.getState());
+            System.out.println("Deze actie: "+ actie + " is niet mogelijk bij de huidige state " + hotel.getState());
         }
     }
 
@@ -25,7 +25,7 @@ public class Geregeld implements BookingState{
         if (actie == "Pay"){
             vluchtServicePoort.PayFlightBooking(vlucht);
         } else {
-            System.out.println("Deze actie: "+ actie + " bij de huidige state " + vlucht.getState());
+            System.out.println("Deze actie: "+ actie + " is niet mogelijk bij de huidige state " + vlucht.getState());
         }
     }
     @Override

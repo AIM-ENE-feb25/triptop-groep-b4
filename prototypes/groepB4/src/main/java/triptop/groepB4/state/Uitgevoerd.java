@@ -10,21 +10,21 @@ import triptop.groepB4.service.VluchtServicePoort;
 public class Uitgevoerd implements BookingState{
     @Override
     public void stateActie(Hotel hotel, String actie) {
-        System.out.println("Deze actie:"+ actie + "bij de huidige state " + hotel.getState());
+        System.out.println("Deze actie:"+ actie + " is niet mogelijk bij de huidige state " + hotel.getState());
     }
 
     @Override
     public void stateActie(Vlucht vlucht, String actie) {
-        System.out.println("Deze actie:"+ actie + "bij de huidige state " + vlucht.getState());
+        System.out.println("Deze actie:"+ actie + " is niet mogelijk bij de huidige state " + vlucht.getState());
     }
 
     @Override
     public void cancelBooking(Hotel hotel) {
-        System.out.println("Deze actie: annuleren bij de huidige state " + hotel.getState());
+        System.out.println("Deze actie: annuleren is niet mogelijk bij de huidige state " + hotel.getState());
     }
 
     @Override
     public void cancelBooking(Vlucht vlucht) {
-        System.out.println("Deze actie: annuleren bij de huidige state " + vlucht.getState());
+        System.out.println("Deze actie: annuleren is niet mogelijk bij de huidige state " + vlucht.getState());
     }
 }
