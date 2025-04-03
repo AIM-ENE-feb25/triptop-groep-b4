@@ -1,8 +1,5 @@
 package triptop.groepB4.service;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public class SmsVerifyLoginServiceAdapter extends LoginService {
     private SmsVerifyLoginService smsVerifyLoginService;
 
