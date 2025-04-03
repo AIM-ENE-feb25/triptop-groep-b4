@@ -1,0 +1,23 @@
+@startuml Adapter Pattern Sequence Diagram
+actor User
+
+group Hotel boeken succes
+    User -> HotelController : POST request id = 1
+    HotelController -> HotelActionManager :Hotel hotel = getHotel(id)
+    HotelController -> HotelActionManager :Boekhotel(hotel)
+    HotelActionManager -> Hotel: Boekhotel()
+    Hotel -> Gepland : StateActie(this)
+    Gepland -> HotelService : Boekhotel(hotel)
+    HotelService -> Hotel : setState(new Geregeld())
+end
+
+group Hotel boeking annuleren na boeken
+    User -> HotelController : POST request id = 1
+    HotelController -> HotelActionManager :Hotel hotel = getHotel(id)
+    HotelController -> HotelActionManager :CancelHotelBooking(hotel)
+    HotelActionManager -> Hotel: CancelHotelBooking()
+    Hotel -> Gepland : StateActie(this)
+    Gepland -> HotelService : CancelHotelBooking(hotel)
+    HotelService -> Hotel : setState(new Geregeld())
+end
+@enduml
