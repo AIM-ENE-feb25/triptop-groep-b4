@@ -338,15 +338,16 @@ De huidige uitdaging is het bepalen van de acties die elke State klasse kan uitv
 | Complexiteit     | Relatief laag, maar met onderhoudsproblemen door de if-statements | Iets complexer door de toevoeging van interfaces en klassen, maar schaalbaar |
 
 #### Decision
-Ik heb gekozen om de state pattern te implementeren met waarbij elke state een actie heeft. Dit helpt met de hoeveelheid if-statements en zorgt ervoor dat de applicatie makkelijker schaalbaar is. In de implementatie zal ik bij elke toestand een eigen klasse maken die de juiste acties voor die toestand uitvoert.
+Er is gekozen om het state pattern te implementeren waarbij elke state een actie heeft. Dit helpt met de hoeveelheid if-statements en zorgt ervoor dat de applicatie makkelijker schaalbaar is. 
+In de implementatie zal bij elke toestand een eigen klasse worden gemaakt die de juiste acties voor die toestand uitvoert.
 
 #### Status
 Accepted
 
 #### Consequences
 
-Het voordeel van deze keuze is dat je minder last gaat hebben van if statements. Daarnaast zal de applicatie ook makkelijker uitbreidbaar zijn door de interface extra functies te geven of extra states te maken. Het nadeel hiervan is dat er veel boilerplate code is en mogelijke extra complexiteit in de states.
-
+Het voordeel van deze keuze is dat je minder last gaat hebben van if statements. Daarnaast zal de applicatie ook makkelijker uitbreidbaar zijn door de interface extra functies te geven of extra states 
+te maken. Het nadeel hiervan is dat er veel boilerplate code is en mogelijke extra complexiteit in de states.
 
 ### 8.5. ADR-005 State pattern voor het aanroepen van externe services
 
@@ -391,7 +392,7 @@ Voer het volgende commando uit in de terminal:
 `git clone https://github.com/AIM-ENE-feb25/triptop-groep-b4`
 Na het uitvoeren van dit commando worden alle projectbestanden in de map "triptop-groep-b4" geplaatst.
 
-### 9.2 Uitvoeren ProtoType
+### 9.2 Uitvoeren Prototype
 
 ### Installeren dependencies
  - Open een IDE naar keuze
