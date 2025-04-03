@@ -5,7 +5,6 @@ import triptop.groepB4.state.Betaald;
 import triptop.groepB4.state.Geregeld;
 import triptop.groepB4.state.Niet_uitvoerbaar;
 import triptop.groepB4.state.Uitgevoerd;
-import triptop.groepB4.strategy.ApiGateway;
 
 public class HotelService implements HotelServicePoort {
     private final ApiGateway apiGateway;

@@ -1,9 +1,11 @@
-package triptop.groepB4.strategy;
+package triptop.groepB4.service;
 
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClient;
 import org.asynchttpclient.Response;
 import org.springframework.http.ResponseEntity;
+import triptop.groepB4.state.ApiState;
+import triptop.groepB4.state.WorkingState;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
