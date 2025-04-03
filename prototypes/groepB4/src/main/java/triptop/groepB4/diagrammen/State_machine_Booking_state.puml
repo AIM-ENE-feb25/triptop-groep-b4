@@ -1,0 +1,30 @@
+@startuml
+
+state Gepland {
+}
+
+state Geregeld {
+}
+
+state Betaald {
+}
+
+state Uitgevoerd {
+}
+
+state Niet_Uitvoerbaar {
+}
+
+[*] --> Gepland
+Gepland --> Geregeld : "actie == boeken"
+Geregeld --> Betaald : "actie == betalen"
+Betaald --> Uitgevoerd : "actie == uitvoeren"
+Uitgevoerd --> [*]
+
+Gepland --> Niet_Uitvoerbaar : "als de gebruiker zijn booking wilt annuleren"
+Geregeld --> Niet_Uitvoerbaar: "als de gebruiker zijn booking wilt annuleren"
+Betaald --> Niet_Uitvoerbaar: "als de gebruiker zijn booking wilt annuleren"
+Niet_Uitvoerbaar --> [*]
+
+
+@enduml
