@@ -2,47 +2,52 @@
 
 skinparam classAttributeIconSize 0
 
-' Interfaces
-interface LoginController
-interface LoginService
-interface LoginRepository
-
-' Classes
-class LoginControllerImpl implements LoginController {
-    +login(authorizationCode: String): ResponseEntity
+class IdentityProviderLoginController {
+    +ResponseEntity<String> login(String username, String password)
 }
 
-' Adapter class
-class LoginServiceAdapter implements LoginService {
-    -adaptee: LoginServiceImpl
-    +authorizationCodeToIdentityToken(authorizationCode: String): IdentityToken
+class SmsVerifyLoginController {
+    +ResponseEntity<String> login(String verificationCode)
 }
 
-' Legacy service
-class LoginServiceImpl {
-    +authorizationCodeToIdentityToken(authorizationCode: String): IdentityToken
+abstract class LoginService {
+    +String login()
+    #abstract String getUsername()
 }
 
-' Repository
-class LoginRepositoryImpl implements LoginRepository {
-    +getUser(identityToken: IdentityToken): User
-    +save(user: User): void
+class IdentityProviderLoginService {
+    -String username
+    -String password
+    +IdentityProviderLoginService(String username, String password)
+    +String getUsername()
+    +boolean authenticate()
 }
 
-' Value objects
-class IdentityToken {
-    -value: String
+class IdentityProviderLoginServiceAdapter {
+    -IdentityProviderLoginService identityProviderLoginService
+    +IdentityProviderLoginServiceAdapter(IdentityProviderLoginService identityProviderLoginService)
+    +String getUsername()
 }
 
-class User {
-    -email: String
-    -name: String
+class SmsVerifyLoginService {
+    -String verificationCode
+    +SmsVerifyLoginService(String verificationCode)
+    +String getUsername()
+    +boolean authenticate()
 }
 
-' Relationships
-LoginControllerImpl --> LoginServiceAdapter
-LoginServiceAdapter --> LoginServiceImpl : adaptee
-LoginServiceImpl --> LoginRepositoryImpl
-LoginRepositoryImpl --> User
+class SmsVerifyLoginServiceAdapter {
+    -SmsVerifyLoginService smsVerifyLoginService
+    +SmsVerifyLoginServiceAdapter(SmsVerifyLoginService smsVerifyLoginService)
+    +String getUsername()
+}
+
+IdentityProviderLoginController --> IdentityProviderLoginServiceAdapter
+IdentityProviderLoginServiceAdapter --|> LoginService
+IdentityProviderLoginServiceAdapter --> IdentityProviderLoginService
+
+SmsVerifyLoginController --> SmsVerifyLoginServiceAdapter
+SmsVerifyLoginServiceAdapter --|> LoginService
+SmsVerifyLoginServiceAdapter --> SmsVerifyLoginService
 
 @enduml
