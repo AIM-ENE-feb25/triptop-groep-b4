@@ -329,7 +329,7 @@ Bij het uitwerken van deze ontwerpvraag is er gekozen voor het State Pattern, om
 Om dit probleem op te lossen, is er gekeken naar de implementatie van het State Pattern. De conclusie is dat er een interface gedefineerd, waarna verschillende klassen deze interface implementeren. Elke toestand wordt dan gemodelleerd door een specifieke klasse die de acties voor die toestand bevat.
 De huidige uitdaging is het bepalen van de acties die elke State klasse kan uitvoeren. Kunnen de toestanden altijd naar de volgende toestand overgaan via een actie, of moeten ze ook in staat zijn om terug te schakelen naar een vorige toestand? Hoe kan dit het beste geimplementeerd worden?
 
-#### Overwogen Opties
+#### Considered Options
 
 | Forces           | Optie 1: Enum-gebaseerd                                           | Optie 2: State Pattern met Interfaces                                        |
 |------------------|-------------------------------------------------------------------|------------------------------------------------------------------------------|
@@ -337,16 +337,15 @@ De huidige uitdaging is het bepalen van de acties die elke State klasse kan uitv
 | Uitbreidbaarheid | Moeilijker, extra toestanden vereisen wijziging van de enum       | Gemakkelijker, nieuwe toestanden kunnen als nieuwe klassen worden toegevoegd |
 | Complexiteit     | Relatief laag, maar met onderhoudsproblemen door de if-statements | Iets complexer door de toevoeging van interfaces en klassen, maar schaalbaar |
 
-#### Beslissing
-De keuze valt op het State Pattern met interfaces. Dit biedt de benodigde flexibiliteit en schaalbaarheid zonder de problemen van het gebruik van enums en if-statements. In de implementatie zal elke toestand een eigen klasse krijgen die de juiste acties voor die toestand uitvoert. Dit maakt de codebase beter onderhoudbaar en uitbreidbaar op de lange termijn.
+#### Decision
+Ik heb gekozen om de state pattern te implementeren met waarbij elke state een actie heeft. Dit helpt met de hoeveelheid if-statements en zorgt ervoor dat de applicatie makkelijker schaalbaar is. In de implementatie zal ik bij elke toestand een eigen klasse maken die de juiste acties voor die toestand uitvoert.
 
 #### Status
 Accepted
 
-#### Gevolgen
+#### Consequences
 
-- Positief: De flexibiliteit van het systeem neemt toe, omdat nieuwe toestanden en acties eenvoudig kunnen worden toegevoegd zonder de bestaande logica te verstoren.
-- Negatief: Er komt enige complexiteit bij kijken door de introductie van interfaces en meerdere klassen, maar dit is beheersbaar en noodzakelijk voor de schaalbaarheid van het systeem.
+Het voordeel van deze keuze is dat je minder last gaat hebben van if statements. Daarnaast zal de applicatie ook makkelijker uitbreidbaar zijn door de interface extra functies te geven of extra states te maken. Het nadeel hiervan is dat er veel boilerplate code is en mogelijke extra complexiteit in de states.
 
 
 ### 8.5. ADR-005 State pattern voor het aanroepen van externe services
