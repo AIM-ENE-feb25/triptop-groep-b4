@@ -149,6 +149,8 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 > [!IMPORTANT]
 > Beschrijf zelf de belangrijkste architecturele en design principes die zijn toegepast in de software.
 
+Bij het uitwerken van het prototype hebben we gebruik gemaakt van program to interface. Hiermee zorgen we ervoor dat alle klassen los van elkaar zijn en geen directe dependencies hebben. Hierbij zal er dan dus ook altijd een interface zijn tussen klassen die elkaar aanroepen.  
+
 ## 7. Software Architecture
 
 ###     7.1. Containers
