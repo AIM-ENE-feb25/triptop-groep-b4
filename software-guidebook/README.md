@@ -190,6 +190,8 @@ De frontend is opgedeeld in presentatiecomponenten, zoals Hotel Overzicht, en da
 Dit voorkomt dat de presentatiecomponenten verantwoordelijk zijn voor het ophalen van data, wat zorgt voor een betere splitsing van functionaliteiten.
 > ![Component-Diagram-TripTop-Frontend](../C4_diagrammen/Component-diagram-TripTop-Frontend.png)
 ###     7.3. Design & Code
+Algemene diagram:
+>![class diagram algemeen](..//prototypes/groepB4/src/main/java/triptop/groepB4/diagrammen/state_pattern_class_diagram.png)
 
 **Ontwerpvraag:** Hoe ga je om met aanroepen van externe services die niet beschikbaar zijn en toch verwacht wordt dat er waardevolle output gegeven wordt?
 >Wanneer een externe service niet beschikbaar is, moet het systeem slim omgaan met deze situatie, zodat de gebruiker toch waardevolle
@@ -205,8 +207,6 @@ Dit voorkomt dat de presentatiecomponenten verantwoordelijk zijn voor het ophale
 >![stateDiagramApiStates](../prototypes/groepB4/src/main/java/triptop/groepB4/diagrammen/stateDiagramApiStates.png)
 
 **Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
->![class diagram pressure cooker](..//prototypes/groepB4/src/main/java/triptop/groepB4/diagrammen/state_pattern_class_diagram.png)
-
 >Het design pattern dat ik heb gekozen voor deze ontwerpvraag is het state pattern. Ik heb hiervoor gekozen om dat de ontwerpvraag ook gaat over toestanden.
 >Het klasse diagram houdt zich ook aan het program to interface principe door gebruikt te maken van interfaces en alleen aan te roepen via de intefaces.
 >Het klasse diagram voldoet ook aan het open/ closed principe, want door interfaces te gebruiken zouden de klasse minder snel veranderen maar wel makkelijk uitbreiden.
