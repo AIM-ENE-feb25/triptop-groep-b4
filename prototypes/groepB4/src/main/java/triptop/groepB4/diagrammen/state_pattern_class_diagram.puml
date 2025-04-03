@@ -29,7 +29,7 @@ interface "Bookingstate" {
 + void cancelBooking()
 }
 interface ApiState {
-    + void execute();
++ void execute(ApiGateway apiGateway, String url);
 }
 'classes
 class "hotelcontroller" {
@@ -77,6 +77,7 @@ class ApiGateway{
     + ResponseEntity<String> getFlightDetails\n(String itineraryId, String sessionId, String origin, String destination, String date)
     + ResponseEntity<String> fetchResponse(String url)
     + ResponseEntity<String> getCache()
+    + void getState()
     + void setState(ApiState state)
 }
 
