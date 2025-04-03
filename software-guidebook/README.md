@@ -311,10 +311,10 @@ Het kan dus resulteren in wat dubbele code, wat een klein nadeel dat geaccepteer
 **Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
 
 Voor het uitwerken van deze ontwerpvraag heb ik gekozen voor het state pattern, omdat deze goed past bij het managen van toestanden.
-Ik had eerst dit uitgwerkt door de state bij te houden in een enum. dit heeft wel als nadeel dat er overal veel if statements komen.
-Om dit te voorkomen heb ik gekeken naar de state pattern opdracht. Ik ben tot de conclusie gekomen dat ik een interface moet maken met klasse die de interfaces implementern.
-Voor elke state moet ik dan een klasse maken. Het probleem nu is wat voor acties de state classes kunnen. gaan ze altijd naar de volgende state met de actie of kunnen ze ook een state teru?
-En hoe kan ik dit het beste implenteren?
+Ik had eerst dit uitgewerkt door de state bij te houden in een enum. dit heeft wel als nadeel dat er overal veel if statements komen.
+Om dit te voorkomen heb ik gekeken naar de state pattern opdracht. Ik ben tot de conclusie gekomen dat ik een interface moet maken met klasse die de interfaces implementeren.
+Voor elke state moet ik dan een klasse maken. Het probleem nu is wat voor acties de state classes kunnen. gaan ze altijd naar de volgende state met de actie of kunnen ze ook een state terug?
+En hoe kan ik dit het beste implementeren?
 
 #### Considered Options
 | Forces |     |     |
