@@ -146,10 +146,13 @@ Voordat deze casusomschrijving tot stand kwam, heeft de opdrachtgever de volgend
 
 ## 6. Principles
 
-> [!IMPORTANT]
-> Beschrijf zelf de belangrijkste architecturele en design principes die zijn toegepast in de software.
-
-Bij het uitwerken van het prototype hebben we gebruik gemaakt van program to interface. Hiermee zorgen we ervoor dat alle klassen los van elkaar zijn en geen directe dependencies hebben. Hierbij zal er dan dus ook altijd een interface zijn tussen klassen die elkaar aanroepen. Daarnaast hebben we ook het open/closed principe hebben gehanteerd. De Klassen zijn dus uitbreidbaar voor meer functies en er hoeft dan ook niks te worden aangepast voor de toevoeging. 
+Bij het uitwerken van het prototype is er gebruik gemaakt van program to interface. Dit betekent dat klassen communiceren via interfaces in plaats van directe 
+afhankelijkheden van klassen. Hierdoor blijven componenten losgekoppeld en kunnen ze eenvoudiger worden aangepast of vervangen zonder dat dit gevolgen heeft 
+voor andere delen van de software. Een voorbeeld hiervan is de ApiState interface, die door meerdere toestanden wordt geïmplementeerd. Dit zorgt ervoor dat het 
+ApiGateway object niet afhankelijk is van een specifieke implementatie van de API-toestand, maar makkelijk kan schakelen tussen verschillende toestanden.
+Naast het program to interface principe is ook het open/closed principe gehanteerd. De klassen zijn hierdoor uitbreidbaar. Dat betekent dat de huidige code niet hoeft worden aangepast
+bij het toevoegen van nieuwe functies. In deze applicatie is dit principe toegepast door gebruik te maken van het State Pattern. De verschillende toestanden zijn afzonderlijke klassen. 
+Als in de toekomst een nieuwe toestand wordt toegevoegd, kan dit zonder bestaande code in ApiGateway of andere klassen aan te passen.
 
 ## 7. Software Architecture
 
