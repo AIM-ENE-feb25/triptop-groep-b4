@@ -213,8 +213,8 @@ Dit voorkomt dat de presentatiecomponenten verantwoordelijk zijn voor het ophale
 >Het gekozen design pattern voor deze ontwerpvraag is het adapter pattern. Voor verdere uitleg over deze ontwerpkeuze, zie [ADR-003](#83-adr-003-adapter-pattern-voor-identity-providers).
 >Het klasse diagram voldoet aan de twee bijbehorende principes: single responsibility en open/closed.
 >Dit betekent dat elke klasse en methode een eigen enkele verantwoordelijkheid heeft, waardoor de code netjes gescheiden is van elkaar.
->Daarnaast zorgt de adapter ervoor dat er gemakkelijk nieuwe implementaties toegevoegd kunnen worden (open).
->De adapter zelf ligt vast, anders moeten alle implementaties aangepast worden (closed).
+>Daarnaast zorgt de generieke login service ervoor dat er gemakkelijk nieuwe implementaties toegevoegd kunnen worden (open).
+>De login service zelf ligt vast, het is aan de adapters om alle implementaties af te handelen (closed).
 >
 >![sequence diagram pressure cooker](../Pressure_cooker/Rens/sequence_diagram.png)
 >
