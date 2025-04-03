@@ -391,5 +391,14 @@ met fouten wordt omgegaan worden geïsoleerd in aparte strategieën, waardoor de
 Het Strategy pattern voegt extra klassen en interfaces toe aan de applicatie, omdat elke foutafhandelingsstrategie zijn eigen klasse vereist. Dit kan leiden tot een complexere architectuur.
 ## 9. Deployment, Operation and Support
 
-> [!TIP]
-> Zelf beschrijven van wat je moet doen om de software te installeren en te kunnen runnen.
+### 9.1 Installatie
+
+#### 1. Open een terminal
+
+Open een terminal naar wens.
+
+#### 2. Voer het Git-commando uit
+
+Voer het volgende commando uit in de terminal:
+`git clone https://github.com/AIM-ENE-feb25/triptop-groep-b4`
+Na het uitvoeren van dit commando worden alle projectbestanden in de map "triptop-groep-b4" geplaatst.
