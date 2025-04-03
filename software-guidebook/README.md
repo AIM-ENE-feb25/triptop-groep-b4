@@ -61,6 +61,11 @@ voor het beheer van wachtwoorden of inloggegevens.
 
 5. SMS Verify
 
+SMS Verify biedt een mogelijkheid tot inloggen.
+Bij het registeren kunnen gebruikers hiervoor kiezen, waarbij ze hun telefoonnummer dienen in te voeren.
+Met dit telefoonnummer kan daarna ingelogd worden.
+Er hoeft dus geen gebruikersnaam of wachtwoord opgeslagen te worden.
+
 ## 3. Functional Overview
 
 Om de belangrijkste features toe te lichten zijn er user stories en twee domain stories gemaakt en een overzicht van het domein in de vorm van een domeinmodel. Op deze plek staat typisch een user story map maar die ontbreekt in dit voorbeeld.
