@@ -16,9 +16,9 @@ state Niet_Uitvoerbaar {
 }
 
 [*] --> Gepland
-Gepland --> Geregeld : "actie == boeken"
-Geregeld --> Betaald : "actie == betalen"
-Betaald --> Uitgevoerd : "actie == uitvoeren"
+Gepland --> Geregeld : "gebruiker boekt een bouwblok"
+Geregeld --> Betaald : "gebruiker betaalt voor een bouwblok"
+Betaald --> Uitgevoerd : "gebruiker voert zijn boeking om=p het bouwblok uit"
 Uitgevoerd --> [*]
 
 Gepland --> Niet_Uitvoerbaar : "als de gebruiker zijn booking wilt annuleren"

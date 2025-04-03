@@ -204,11 +204,18 @@ Dit voorkomt dat de presentatiecomponenten verantwoordelijk zijn voor het ophale
 >![SequenceDiagramStrategy](../Pressure_cooker/Vera/SequenceDiagramStrategy.png)
 >![stateDiagramApiStates](../prototypes/groepB4/src/main/java/triptop/groepB4/diagrammen/stateDiagramApiStates.png)
 
->**Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
->![class diagram pressure cooker](../Pressure_cooker/Jordy/Class_diagram_pressure_cooker_Jordy.png)
->Het design pattern dat is gekozen voor deze ontwerpvraag is het state pattern. Hiervoor is gekozen om dat de ontwerpvraag ook gaat over toestanden.
->Het klasse diagram houdt zich aan het program to interface principe door gebruikt te maken van interfaces en alleen aan te roepen via de intefaces.
->Het klasse diagram voldoet ook aan het open/ closed principe, want door interfaces te gebruiken zouden de klasse minder snel veranderen, maar wel makkelijk uitbreidbaar zijn.
+**Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
+>![class diagram pressure cooker](..//prototypes/groepB4/src/main/java/triptop/groepB4/diagrammen/state_pattern_class_diagram.png)
+
+>Het design pattern dat ik heb gekozen voor deze ontwerpvraag is het state pattern. Ik heb hiervoor gekozen om dat de ontwerpvraag ook gaat over toestanden.
+>Het klasse diagram houdt zich ook aan het program to interface principe door gebruikt te maken van interfaces en alleen aan te roepen via de intefaces.
+>Het klasse diagram voldoet ook aan het open/ closed principe, want door interfaces te gebruiken zouden de klasse minder snel veranderen maar wel makkelijk uitbreiden.
+
+>![class diagram pressure cooker](..//prototypes/groepB4/src/main/java/triptop/groepB4/diagrammen/State_machine_Booking_state.png)
+
+De state van de boeking begint altijd in gepland. Als de reiziger heeft geboekt gaat de state naar geregeld. Daarna als de reiziger heeft betaald gaat de state naar betaald. Als laatst, wanneer de gebruiker zijn verblijf/vlucht uitvoert gaat de state naar uitgevoerd. Als de boeking in de states: gepland, geregeld of betaald staat kan de boeking nog geannuleerd worden. Wanneer de state op uitgevoerd staat kan de boeking niet meer worden geannuleerd. Als een boeking in de state uitgevoerd of niet_uitvoerbaar bevind kan de state ook niet meer verande, daarnaast is het ook niet mogelijk om een state achteruit te gaan(BV: geregeld naar gepland).
+>![sequency diagram ontwerp vraag](../C4_diagrammen/State_Pattern_Sequence_Diagram_Jordy.png)
+
 
 >**Ontwerpvraag:** Hoe kunnen we verschillende identity providers met verschillende interfaces integreren voor het gehele systeem?
 >![class diagram pressure cooker](../Pressure_cooker/Rens/class_diagram.png)

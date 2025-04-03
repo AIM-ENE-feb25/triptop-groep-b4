@@ -1,4 +1,4 @@
-@startuml Adapter Pattern Sequence Diagram
+@startuml State Pattern Sequence Diagram Jordy
 actor User
 
 group Hotel boeken succes
