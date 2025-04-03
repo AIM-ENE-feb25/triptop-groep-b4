@@ -129,6 +129,46 @@ class "Flight" {
 - void PayFlightBooking()
 }
 
+class IdentityProviderLoginController {
+    +ResponseEntity<String> login(String username, String password)
+}
+
+class SmsVerifyLoginController {
+    +ResponseEntity<String> login(String verificationCode)
+}
+
+abstract class LoginService {
+    +String login()
+    #abstract String getUsername()
+}
+
+class IdentityProviderLoginService {
+    -String username
+    -String password
+    +IdentityProviderLoginService(String username, String password)
+    +String getUsername()
+    +boolean authenticate()
+}
+
+class IdentityProviderLoginServiceAdapter {
+    -IdentityProviderLoginService identityProviderLoginService
+    +IdentityProviderLoginServiceAdapter(IdentityProviderLoginService identityProviderLoginService)
+    +String getUsername()
+}
+
+class SmsVerifyLoginService {
+    -String verificationCode
+    +SmsVerifyLoginService(String verificationCode)
+    +String getUsername()
+    +boolean authenticate()
+}
+
+class SmsVerifyLoginServiceAdapter {
+    -SmsVerifyLoginService smsVerifyLoginService
+    +SmsVerifyLoginServiceAdapter(SmsVerifyLoginService smsVerifyLoginService)
+    +String getUsername()
+}
+
 'relaties
 "hotelcontroller" --> "HotelActionHandler"
 "HotelService" 	..|> "HotelServicePoort"
@@ -157,5 +197,11 @@ class "Flight" {
 "WorkingState" --|> "ApiState"
 "RetryState" --|> "ApiState"
 "FallbackState" --|> "ApiState"
+IdentityProviderLoginController --> IdentityProviderLoginServiceAdapter
+IdentityProviderLoginServiceAdapter --|> LoginService
+IdentityProviderLoginServiceAdapter --> IdentityProviderLoginService
+SmsVerifyLoginController --> SmsVerifyLoginServiceAdapter
+SmsVerifyLoginServiceAdapter --|> LoginService
+SmsVerifyLoginServiceAdapter --> SmsVerifyLoginService
 
 @enduml
