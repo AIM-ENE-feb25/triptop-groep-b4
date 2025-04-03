@@ -402,3 +402,14 @@ Open een terminal naar wens.
 Voer het volgende commando uit in de terminal:
 `git clone https://github.com/AIM-ENE-feb25/triptop-groep-b4`
 Na het uitvoeren van dit commando worden alle projectbestanden in de map "triptop-groep-b4" geplaatst.
+
+### 9.2 Uitvoeren ProtoType
+
+### Installeren dependencies
+ - Open een IDE naar keuze
+ - Open de terminal en route naar de map: Prototypes/GroepB4
+ - Run in de terminal: mvn install
+
+### Uitvoeren prototype
+ - In de IDE voer het bestand GroepB4Application.java uit
+ - Roep een endpoint aan via je browser of applicatie naar keuze (namen van de endpoints zijn te vinden in de map controllers bij de bijbehorende klasse)
