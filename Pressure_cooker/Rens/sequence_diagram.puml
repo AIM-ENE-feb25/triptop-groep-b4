@@ -1,0 +1,25 @@
+@startuml Adapter Pattern Sequence Diagram
+actor User
+
+group Identity Provider Login Flow
+    User -> IdentityProviderLoginController : POST /login/identity-provider\n(username, password)
+    IdentityProviderLoginController -> IdentityProviderLoginServiceAdapter : new(...)
+    IdentityProviderLoginServiceAdapter -> IdentityProviderLoginService : authenticate()
+    IdentityProviderLoginService -> IdentityProviderLoginServiceAdapter : boolean
+    IdentityProviderLoginServiceAdapter -> IdentityProviderLoginService : getUsername()
+    IdentityProviderLoginService -> IdentityProviderLoginServiceAdapter : String
+    IdentityProviderLoginServiceAdapter -> IdentityProviderLoginController : getUsername()
+    IdentityProviderLoginController -> User : JWT (username)
+end
+
+group SMS Verify Login Flow
+    User -> SmsVerifyLoginController : POST /login/sms-verify\n(verificationCode)
+    SmsVerifyLoginController -> SmsVerifyLoginServiceAdapter : new(...)
+    SmsVerifyLoginServiceAdapter -> SmsVerifyLoginService : authenticate()
+    SmsVerifyLoginService -> SmsVerifyLoginServiceAdapter : boolean
+    SmsVerifyLoginServiceAdapter -> SmsVerifyLoginService : getUsername()
+    SmsVerifyLoginService -> SmsVerifyLoginServiceAdapter : String
+    SmsVerifyLoginServiceAdapter -> SmsVerifyLoginController : getUsername()
+    SmsVerifyLoginController -> User : JWT (username)
+end
+@enduml

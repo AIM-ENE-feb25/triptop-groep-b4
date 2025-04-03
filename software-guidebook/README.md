@@ -230,6 +230,10 @@ De frontend verzamelt de input van de twee actoren en verstuurt deze naar de bac
 >Daarnaast zorgt de adapter ervoor dat er gemakkelijk nieuwe implementaties toegevoegd kunnen worden (open).
 >De adapter zelf ligt vast, anders moeten alle implementaties aangepast worden (closed).
 >
+>![sequence diagram pressure cooker](../Pressure_cooker/Rens/sequence_diagram.png)
+>
+> In dit sequentiediagram zie je hoe het proces van inloggen verloopt. Er zijn 2 mogelijke flows, eentje met de identity provider en eentje met SMS verify. De opbouw van beide flows zijn identiek, het verschil zit hem in de implementatie. Daarvoor dienen de adapters.
+>
 
 ## 8. Architectural Decision Records
 
