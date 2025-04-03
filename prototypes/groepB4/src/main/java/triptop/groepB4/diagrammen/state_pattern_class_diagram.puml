@@ -12,9 +12,12 @@ interface "VluchtActionHandler"{
 + void PayFlight();
 }
 interface "VluchtServicePoort"{
-+ void BookFlight()
-+ void CancelFlightBooking()
-+ void PayFlightBooking()
++ ResponseEntity<String> getFlights()
++ ResponseEntity<String> getFlightDetails\n(String itineraryId, String sessionId, String origin, String destination, String date)
++ ResponseEntity<String> fetchApiResponse(String url)
++ void bookFlight()
++ void cancelFlightBooking()
++ void payFlightBooking()
 }
 interface "HotelServicePoort"{
 + void BookHotel()
@@ -25,10 +28,9 @@ interface "Bookingstate" {
 + void stateActie()
 + void cancelBooking()
 }
-interface ServiceStrategy {
-    + void execute();
+interface ApiState {
++ void execute(ApiGateway apiGateway, String url);
 }
-
 'classes
 class "hotelcontroller" {
 + void BookHotel()
@@ -50,24 +52,35 @@ class "VluchtController"{
 + void PayFlightBooking()
 }
 class "VluchtService"{
-- ServiceStrategy strategy
-+ void BookFlight()
-+ void CancelFlightBooking()
-+ void PayFlightBooking()
-+ void setStrategy(ServiceStrategy strategy)
-+ void executeStrategy()
+- ApiGateway apiGateway
++ ResponseEntity<String> getFlights()
++ ResponseEntity<String> getFlightDetails\n(String itineraryId, String sessionId, String origin, String destination, String date)
++ void bookFlight()
++ void cancelFlightBooking()
++ void payFlightBooking()
 }
-class RetryStrategy {
-    + void execute();
+class WorkingState {
+    + void execute(ApiGateway apiGateway, String url);
+}
+class RetryState {
+    + void execute(ApiGateway apiGateway, String url);
 }
 
-class CircuitBreakerStrategy {
-    + void execute();
+class FallbackState {
+    + void execute(ApiGateway apiGateway, String url);
+}
+class ApiGateway{
+    - ApiState state
+    - String rapidApiKey
+    - AsyncHttpClient client
+    + ResponseEntity<String> getFlights()
+    + ResponseEntity<String> getFlightDetails\n(String itineraryId, String sessionId, String origin, String destination, String date)
+    + ResponseEntity<String> fetchResponse(String url)
+    + ResponseEntity<String> getCache()
+    + void getState()
+    + void setState(ApiState state)
 }
 
-class FallbackStrategy {
-    + void execute();
-}
 class "HotelActionManager"{
 + void BookHotel();
 + void CancelHotelBooking();
@@ -119,11 +132,8 @@ class "Flight" {
 "HotelService" 	..|> "HotelServicePoort"
 "VluchtController" --> "VluchtActionHandler"
 "VluchtService" ..|> "VluchtServicePoort"
-"VluchtService" --> "ServiceStrategy" : Maakt gebruik van
-"HotelService" --> "ServiceStrategy" : Maakt gebruik van
-"RetryStrategy" --|> "ServiceStrategy"
-"CircuitBreakerStrategy" --|> "ServiceStrategy"
-"FallbackStrategy" --|> "ServiceStrategy"
+"VluchtService" --> "ApiGateway"
+"HotelService" --> "ApiGateway"
 "HotelActionManager" ..|> "HotelActionHandler"
 "VluchtActionManager" ..|> "VluchtActionHandler"
 "Gepland" --> "HotelServicePoort"
@@ -141,5 +151,9 @@ class "Flight" {
 "Bookingstate" <|.. "Uitgevoerd"
 "VluchtActionManager" --> "Flight"
 "HotelActionManager" --> "Hotel"
+"ApiGateway" --> "ApiState"
+"WorkingState" --|> "ApiState"
+"RetryState" --|> "ApiState"
+"FallbackState" --|> "ApiState"
 
 @enduml
