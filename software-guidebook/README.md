@@ -353,42 +353,35 @@ In progress. De implementatie van de verschillende toestanden en hun bijbehorend
 - **Negatief:** Er komt enige complexiteit bij kijken door de introductie van interfaces en meerdere klassen, maar dit is beheersbaar en noodzakelijk voor de schaalbaarheid van het systeem.
 
 
-### 8.5. ADR-005 Strategy pattern voor het aanroepen van externe services
+### 8.5. ADR-005 State pattern voor het aanroepen van externe services
 
 #### Context
 **Onderzoeksvraag:** Hoe ga je om met aanroepen van externe services die niet beschikbaar zijn en toch verwacht wordt dat er waardevolle output gegeven wordt?
 
-De applicatie maakt veel gebruik van externe services, maar als deze niet beschikbaar zijn, moet de applicatie nog steeds kunnen functioneren.
-Het is dus belangrijk dat er een passend pattern gekozen wordt om dit mogelijk te maken. 
+De applicatie maakt gebruik van externe services, maar als deze niet beschikbaar zijn, moet de applicatie nog steeds kunnen functioneren.
+De applicatie geeft dan cache terug dat bestaat uit een lijst van eerder opgehaalde informatie.
 
 #### Considered Options
 Er zijn een aantal patterns overwogen om de ontwerpvraag op te lossen. Hierbij zijn verschillende criteria overwogen:
 
-| Forces                                            | Strategy | Adapter | State | Facade | Factory method |
-|---------------------------------------------------|----------|---------|-------|--------|----------------|
-| Uitbreidbaarheid                                  | ++       | -       | --    | -      | +              |
-| Complexiteit                                      | +        | +       | -     | ++     | +              |
-| Geschikt voor wisselen van foutafhandelingslogica | ++       | -       | 0     | --     | +              |
+| Forces                           | Strategy | Adapter | State | Facade | Factory method |
+|----------------------------------|----------|---------|-------|--------|----------------|
+| Uitbreidbaarheid                 | ++       | -       | ++    | -      | +              |
+| Niet complex                     | +        | +       | 0     | ++     | +              |
+| Betere foutafhandelingsstrategie | ++       | -       | ++    | --     | +              |
 #### Decision
-Nadat alle patterns zijn overwogen zijn we tot de conlcusie gekomen dat het strategy pattern de beste optie is.
-Dit pattern is het meest geschikt voor het wisselen van foutafhandelingslogica en zorgt voor een duidelijke scheiding van verantwoordelijkheden.
-Door gebruik te maken van dit pattern is het makkelijk om verschillende foutafhandelingsstrategieën te implementeren en te wisselen zonder dat de rest van het systeem hoeft te worden aangepast.
-
+Nadat alle patronen overwogen zijn is de conclusie getrokken dat het state pattern de beste optie is.
+Dit patroon biedt de mogelijkheid om verschillende toestanden te definiëren. Die toestanden kunnen er dan voor zorgen dat de applicatie zich aanpast aan de situatie.
+Een voorbeeld hiervan is als de applicatie bijvoorbeeld al drie keer heeft geprobeerd om de externe service aan te roepen, maar deze nog steeds niet beschikbaar is dat de applicatie dan
+veranderd naar de volgende state en de cache teruggeeft. Het toepassen van states maakt het dus gemakkelijk om te reageren op de situatie, in dit geval hoe vaak de externe service is aangeroepen.
 #### Status
 Accepted
 #### Consequences
 
-- Het zorgt voor flexibiliteit en uitbreidbaarheid.
+Uitbreidbaarheid en flexibiliteit: Het State pattern maakt het mogelijk om eenvoudig nieuwe toestanden toe te voegen die verschillende manieren van foutafhandeling mogelijk maken. 
+Elke toestand kan een eigen implementatie van de foutafhandelingslogica hebben, wat uitbreidbaarheid en flexibiliteit vergroot.
 
-Het pattern maakt het eenvoudig om verschillende foutafhandelingsstrategieën te implementeren en te wisselen zonder dat de rest van het systeem hoeft te worden aangepast.
-- Het zorgt voor een duidelijke scheiding van verantwoordelijkheden (separation of concerns).
-
-De foutafhandelingslogica wordt gescheiden van de rest van de applicatie, waardoor het gemakkelijker wordt om deze te begrijpen en te onderhouden. De verschillende manieren waarop
-met fouten wordt omgegaan worden geïsoleerd in aparte strategieën, waardoor de code overzichtelijker wordt.
-
-- Het kan leiden tot een toename van de complexiteit.
-
-Het Strategy pattern voegt extra klassen en interfaces toe aan de applicatie, omdat elke foutafhandelingsstrategie zijn eigen klasse vereist. Dit kan leiden tot een complexere architectuur.
+Toename van complexiteit: Het gebruik van het State pattern kan zorgen voor een complexere architectuur, omdat het extra klassen en code vereist om de verschillende toestanden en overgangen tussen deze toestanden te beheren.
 ## 9. Deployment, Operation and Support
 
 ### 9.1 Installatie
