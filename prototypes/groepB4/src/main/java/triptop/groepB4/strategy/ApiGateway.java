@@ -11,11 +11,10 @@ import java.util.concurrent.CompletableFuture;
 public class ApiGateway {
 
     private ApiState state;
-    private final String rapidApiKey;
+    private final String rapidApiKey = "8fd6c45fc2mshabe221890633f2cp13b92ajsne074069107fa";
     private final AsyncHttpClient client;
 
-    public ApiGateway(String rapidApiKey) {
-        this.rapidApiKey = rapidApiKey;
+    public ApiGateway() {
         this.client = new DefaultAsyncHttpClient();
         this.state = new WorkingState();
     }

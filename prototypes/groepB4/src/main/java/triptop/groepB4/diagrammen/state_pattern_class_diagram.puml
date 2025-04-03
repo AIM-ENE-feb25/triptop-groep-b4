@@ -15,14 +15,16 @@ interface "VluchtServicePoort"{
 + ResponseEntity<String> getFlights()
 + ResponseEntity<String> getFlightDetails\n(String itineraryId, String sessionId, String origin, String destination, String date)
 + ResponseEntity<String> fetchApiResponse(String url)
-+ void bookFlight()
-+ void cancelFlightBooking()
-+ void payFlightBooking()
++ void BookFlight(Vlucht vlucht)
++ void CancelFlightBooking(Vlucht vlucht)
++ void PayFlightBooking(Vlucht vlucht)
++ void VoerVluchtUit(Vlucht vlucht)
 }
 interface "HotelServicePoort"{
-+ void BookHotel()
-+ void CancelHotelBooking()
-+ void PayHotelBooking()
++ void BookHotel(Hotel hotel)
++ void CancelHotelBooking(Hotel hotel)
++ void PayHotelBooking(Hotel hotel)
++ void VoerVerblijfUit(Hotel hotel)
 }
 interface "Bookingstate" {
 + void stateActie()
@@ -38,12 +40,11 @@ class "hotelcontroller" {
 + void PayHotelBooking()
 }
 class "HotelService"{
-- ServiceStrategy strategy
-+ void BookHotel()
-+ void CancelHotelBooking()
-+ void PayHotelBooking()
-+ void setStrategy(ServiceStrategy strategy)
-+ void executeStrategy()
+- ApiGateway apiGateway
++ void BookHotel(Hotel hotel)
++ void CancelHotelBooking(Hotel hotel)
++ void PayHotelBooking(Hotel hotel)
++ void VoerVerblijfUit(Hotel hotel)
 }
 class "VluchtController"{
 + void GetFlights()
@@ -55,9 +56,10 @@ class "VluchtService"{
 - ApiGateway apiGateway
 + ResponseEntity<String> getFlights()
 + ResponseEntity<String> getFlightDetails\n(String itineraryId, String sessionId, String origin, String destination, String date)
-+ void bookFlight()
-+ void cancelFlightBooking()
-+ void payFlightBooking()
++ void BookFlight(Vlucht vlucht)
++ void PayFlightBooking(Vlucht vlucht)
++ void CancelFlightBooking(Vlucht vlucht)
++ void VoerVluchtUit(Vlucht vlucht)
 }
 class WorkingState {
     + void execute(ApiGateway apiGateway, String url);

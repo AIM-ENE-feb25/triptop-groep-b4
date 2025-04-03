@@ -15,7 +15,7 @@ public class VluchtService implements VluchtServicePoort {
     private final ApiGateway apiGateway;
 
     public VluchtService() {
-        this.apiGateway = new ApiGateway("8fd6c45fc2mshabe221890633f2cp13b92ajsne074069107fa");
+        this.apiGateway = new ApiGateway();
     }
 
     @Override
