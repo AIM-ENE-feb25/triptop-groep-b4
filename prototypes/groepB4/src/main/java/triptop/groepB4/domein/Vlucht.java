@@ -16,17 +16,19 @@ public class Vlucht {
         state = new Gepland();
     }
 
-    public void BookFlight(){
+    public void BookFlight() {
         state.stateActie(this, "Book");
     }
-    public void PayFlightBooking(){
+
+    public void PayFlightBooking() {
         state.stateActie(this, "Pay");
     }
-    public void CancelFlightBooking(){
+
+    public void CancelFlightBooking() {
         state.cancelBooking(this);
     }
 
-    public void VoerVluchtUit(){
+    public void VoerVluchtUit() {
         state.stateActie(this, "uitvoeren");
     }
 
@@ -48,12 +50,8 @@ public class Vlucht {
 
     private BookingState state;
 
-
     @Override
     public String toString() {
-        return "Vlucht{" +
-                "flightId=" + flightId +
-                ", state=" + state +
-                '}';
+        return "Vlucht{" + "flightId=" + flightId + ", state=" + state + '}';
     }
 }

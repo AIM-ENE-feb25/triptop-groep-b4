@@ -1,13 +1,33 @@
 package triptop.groepB4.service;
 
-import triptop.groepB4.domein.Hotel;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import triptop.groepB4.domein.Vlucht;
 import triptop.groepB4.state.Betaald;
 import triptop.groepB4.state.Geregeld;
 import triptop.groepB4.state.Niet_uitvoerbaar;
 import triptop.groepB4.state.Uitgevoerd;
+import triptop.groepB4.strategy.ApiGateway;
 
-public class VluchtService implements VluchtServicePoort{
+@Service
+public class VluchtService implements VluchtServicePoort {
+
+    private final ApiGateway apiGateway;
+
+    public VluchtService() {
+        this.apiGateway = new ApiGateway("8fd6c45fc2mshabe221890633f2cp13b92ajsne074069107fa");
+    }
+
+    @Override
+    public ResponseEntity<String> getFlights() {
+        return apiGateway.getFlights();
+    }
+
+    @Override
+    public ResponseEntity<String> getFlightDetails(String itineraryId, String sessionId, String origin, String destination, String date) {
+        return apiGateway.getFlightDetails(itineraryId, sessionId, origin, destination, date);
+    }
+
     @Override
     public void BookFlight(Vlucht vlucht) {
         vlucht.setState(new Geregeld());
@@ -35,4 +55,5 @@ public class VluchtService implements VluchtServicePoort{
         System.out.println("Vlucht boeking Uitgevoerd :)");
         System.out.println(vlucht.toString());
     }
+
 }
