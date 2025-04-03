@@ -319,34 +319,39 @@ Elke implementatie een identity provider zal gebruik moeten maken van de adapter
 Dit kan overbodig voelen voor sommige implementaties, maar het is nodig om ze allemaal te laten werken met onze eigen code.
 Het kan dus resulteren in wat dubbele code, wat een klein nadeel dat geaccepteerd zal moeten worden.
 
-### 8.4. ADR-004 Implementatie design pattern onderzoeksvraag Jordy
+### 8.4. ADR-004: Onderzoek naar de Implementatie van het State Design Pattern
 
 #### Context
 
-**Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
+**Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een object alleen bepaalde acties uitvoert wanneer het zich in een specifieke toestand bevindt?
 
-Voor het uitwerken van deze ontwerpvraag heb ik gekozen voor het state pattern, omdat deze goed past bij het managen van toestanden.
-Ik had eerst dit uitgewerkt door de state bij te houden in een enum. dit heeft wel als nadeel dat er overal veel if statements komen.
-Om dit te voorkomen heb ik gekeken naar de state pattern opdracht. Ik ben tot de conclusie gekomen dat ik een interface moet maken met klasse die de interfaces implementeren.
-Voor elke state moet ik dan een klasse maken. Het probleem nu is wat voor acties de state classes kunnen. gaan ze altijd naar de volgende state met de actie of kunnen ze ook een state terug?
-En hoe kan ik dit het beste implementeren?
+Bij het uitwerken van deze ontwerpvraag heb ik gekozen voor het *State Pattern*, aangezien dit patroon goed past bij het beheren van toestanden in een systeem. In eerste instantie hield ik de toestanden bij met behulp van een *enum*. Dit leidde echter tot veel if-statements door de hele codebase, wat niet optimaal is.
 
-#### Considered Options
-| Forces |     |     |
-|--------|-----|-----|
-|        |     |     |
-|        |     |     |
-|        |     |     |
-|        |     |     |
+Om dit probleem te verhelpen, heb ik naar de implementatie van het *State Pattern* gekeken. Mijn conclusie is dat ik een interface moet definiëren, waarna verschillende klassen deze interface implementeren. Elke toestand wordt dan gemodelleerd door een specifieke klasse die de acties voor die toestand bevat.
 
-#### Decision
-In Pogress
+De huidige uitdaging is het bepalen van de acties die elke *State* klasse kan uitvoeren. Kunnen de toestanden altijd naar de volgende toestand overgaan via een actie, of moeten ze ook in staat zijn om terug te schakelen naar een vorige toestand? Hoe kan ik dit het beste implementeren?
+
+#### Overwogen Opties
+
+| Krachtige factoren    | Optie 1: Enum-gebaseerd                               | Optie 2: State Pattern met Interfaces                    |
+|-----------------------|-------------------------------------------------------|----------------------------------------------------------|
+| **Flexibiliteit**      | Beperkt, door veel if-statements                      | Hoge flexibiliteit, toestanden kunnen onafhankelijk van elkaar functioneren |
+| **Uitbreidbaarheid**   | Moeilijker, extra toestanden vereisen wijziging van de enum | Gemakkelijker, nieuwe toestanden kunnen als nieuwe klassen worden toegevoegd |
+| **Complexiteit**       | Relatief laag, maar met onderhoudsproblemen door de if-statements | Iets complexer door de toevoeging van interfaces en klassen, maar schaalbaar |
+
+#### Beslissing
+
+De keuze valt op het *State Pattern* met interfaces. Dit biedt de benodigde flexibiliteit en schaalbaarheid zonder de problemen van het gebruik van enums en if-statements. In de implementatie zal elke toestand een eigen klasse krijgen die de juiste acties voor die toestand uitvoert. Dit maakt de codebase beter onderhoudbaar en uitbreidbaar op de lange termijn.
 
 #### Status
-In Pogress
 
-#### Consequences
-In Pogress
+In progress. De implementatie van de verschillende toestanden en hun bijbehorende acties wordt momenteel uitgewerkt.
+
+#### Gevolgen
+
+- **Positief:** De flexibiliteit van het systeem neemt toe, omdat nieuwe toestanden en acties eenvoudig kunnen worden toegevoegd zonder de bestaande logica te verstoren.
+- **Negatief:** Er komt enige complexiteit bij kijken door de introductie van interfaces en meerdere klassen, maar dit is beheersbaar en noodzakelijk voor de schaalbaarheid van het systeem.
+
 
 ### 8.5. ADR-005 Strategy pattern voor het aanroepen van externe services
 
