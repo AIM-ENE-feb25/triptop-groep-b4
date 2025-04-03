@@ -1,31 +1,46 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
-interface ServiceStrategy {
-    + void execute();
+interface ApiState {
++ void execute(ApiGateway apiGateway, String url);
 }
 
-class RetryStrategy {
-    + void execute();
+class "HotelService"{
+- ApiGateway apiGateway
++ ResponseEntity<String> getHotels()
++ ResponseEntity<String> getHotelDetails\n(String itineraryId, String sessionId, String origin, String destination, String date)
 }
 
-class CircuitBreakerStrategy {
-    + void execute();
+class "VluchtService"{
+- ApiGateway apiGateway
++ ResponseEntity<String> getFlights()
++ ResponseEntity<String> getFlightDetails\n(String itineraryId, String sessionId, String origin, String destination, String date)
+}
+class WorkingState {
+    + void execute(ApiGateway apiGateway, String url);
+}
+class RetryState {
+    + void execute(ApiGateway apiGateway, String url);
 }
 
-class FallbackStrategy {
-    + void execute();
+class FallbackState {
+    + void execute(ApiGateway apiGateway, String url);
 }
-
-class AirScraperService {
-    - ServiceStrategy strategy
-    + void haalVluchtenOp()
-    + void setStrategy(ServiceStrategy strategy)
-    + void executeStrategy()
+class ApiGateway{
+    - ApiState state
+    - String rapidApiKey
+    - AsyncHttpClient client
+    + ResponseEntity<String> getFlights()
+    + ResponseEntity<String> getFlightDetails\n(String itineraryId, String sessionId, String origin, String destination, String date)
+    + ResponseEntity<String> fetchResponse(String url)
+    + ResponseEntity<String> getCache()
+    + void getState()
+    + void setState(ApiState state)
 }
-
-AirScraperService --> ServiceStrategy : maakt gebruik van
-RetryStrategy --|> ServiceStrategy
-CircuitBreakerStrategy --|> ServiceStrategy
-FallbackStrategy --|> ServiceStrategy
+"VluchtService" --> "ApiGateway"
+"HotelService" --> "ApiGateway"
+"ApiGateway" --> "ApiState"
+"WorkingState" --|> "ApiState"
+"RetryState" --|> "ApiState"
+"FallbackState" --|> "ApiState"
 @enduml

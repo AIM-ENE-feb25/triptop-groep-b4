@@ -189,23 +189,25 @@ Dit voorkomt dat de presentatiecomponenten verantwoordelijk zijn voor het ophale
 ###     7.3. Design & Code
 
 **Ontwerpvraag:** Hoe ga je om met aanroepen van externe services die niet beschikbaar zijn en toch verwacht wordt dat er waardevolle output gegeven wordt?
+>Wanneer een externe service niet beschikbaar is, moet het systeem slim omgaan met deze situatie, zodat de gebruiker toch waardevolle
+>informatie krijgt. Dit ontwerp lost dat probleem op door een overgang tussen drie verschillende toestanden: WorkingState, RetryState en FallbackState.
+>Als een gebruiker een vlucht opvraagt dan probeert het systeem direct de externe service aan te roepen. Als alles goed gaat dan krijgt de gebruiker een lijst met vluchten terug.
+> Maar als er een fout optreedt, omdat de externe service bijvoorbeeld tijdelijk online is dan schakelt het systeem automatisch over naar de RetryState.
+> In deze toestand probeert het systeem meerdere keren opnieuw de API aan te roepen. Als een van deze pogingen succesvol is, gaat het systeem terug naar de WorkingState en kan de gebruiker de nieuwste gegevens zien.
+> Als zelfs na meerdere pogingen de externe service niet bereikbaar is, komt het systeem in de FallbackState. Hier wordt de informatie nog één keer opgehaald van de externe service. Als dat ook niet lukt, dan geeft het systeem gegevens uit de cache weer.
+> Daarin staan eerder opgehaalde gegevens. Dit zorgt ervoor dat de gebruiker altijd iets te zien krijgt, ook al is de externe service tijdelijk niet beschikbaar. Dit systeem zorgt er dus ook voor dat
+> de externe service niet oneindig vaak wordt aangeroepen.
 > ![ClassDiagramStrategy](../Pressure_cooker/Vera/classDiagramStrategy.png)
-> 
->Het idee achter dit ontwerp is dat er een fallback wordt gegeven als de externe service niet beschikbaar is. Dit kan bijvoorbeeld een standaard waarde zijn of een foutmelding. Dit zorgt ervoor dat de applicatie niet vastloopt als de externe service niet beschikbaar is.
->Het voldoet aan het Single Responsibility Principle omdat de verantwoordelijkheid van het geven van een fallback waarde bij de FallbackService ligt, terwijl de foutafhandelingslogica in de strategiën zelf zit. 
-> Het voldoet ook aan het Open/Closed Principle omdat er makkelijk nieuwe fallbacks toegevoegd kunnen worden zonder de bestaande code aan te passen.
->
 >![SequenceDiagramStrategy](../Pressure_cooker/Vera/SequenceDiagramStrategy.png)
+>![stateDiagramApiStates](../prototypes/groepB4/src/main/java/triptop/groepB4/diagrammen/stateDiagramApiStates.png)
 
-**Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
+>**Ontwerpvraag:** Hoe kunnen we ervoor zorgen dat een bouwsteen alleen bepaalde acties toestaat wanneer deze zich in een specifieke toestand bevindt?
 >![class diagram pressure cooker](../Pressure_cooker/Jordy/Class_diagram_pressure_cooker_Jordy.png)
->
->Het design pattern dat ik heb gekozen voor deze ontwerpvraag is het state pattern. Ik heb hiervoor gekozen om dat de ontwerpvraag ook gaat over toestanden.
->Het klasse diagram houdt zich ook aan het program to interface principe door gebruikt te maken van interfaces en alleen aan te roepen via de intefaces.
->Het klasse diagram voldoet ook aan het open/ closed principe, want door interfaces te gebruiken zouden de klasse minder snel veranderen maar wel makkelijk uitbreiden.
->
+>Het design pattern dat is gekozen voor deze ontwerpvraag is het state pattern. Hiervoor is gekozen om dat de ontwerpvraag ook gaat over toestanden.
+>Het klasse diagram houdt zich aan het program to interface principe door gebruikt te maken van interfaces en alleen aan te roepen via de intefaces.
+>Het klasse diagram voldoet ook aan het open/ closed principe, want door interfaces te gebruiken zouden de klasse minder snel veranderen, maar wel makkelijk uitbreidbaar zijn.
 
-**Ontwerpvraag:** Hoe kunnen we verschillende identity providers met verschillende interfaces integreren voor het gehele systeem?
+>**Ontwerpvraag:** Hoe kunnen we verschillende identity providers met verschillende interfaces integreren voor het gehele systeem?
 >![class diagram pressure cooker](../Pressure_cooker/Rens/class_diagram.png)
 >
 >Het gekozen design pattern voor deze ontwerpvraag is het adapter pattern. Voor verdere uitleg over deze ontwerpkeuze, zie [ADR-003](#83-adr-003-adapter-pattern-voor-identity-providers).
@@ -216,9 +218,6 @@ Dit voorkomt dat de presentatiecomponenten verantwoordelijk zijn voor het ophale
 >
 
 ## 8. Architectural Decision Records
-
-> [!IMPORTANT]
-> Voeg toe: 3 tot 5 ADR's die beslissingen beschrijven die zijn genomen tijdens het ontwerpen en bouwen van de software.
 
 ### 8.1. ADR-001 Google Maps API voor kaartgegevens
 

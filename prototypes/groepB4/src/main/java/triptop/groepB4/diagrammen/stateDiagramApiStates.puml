@@ -1,9 +1,7 @@
 @startuml
-
-[*] --> WorkingState
-WorkingState -> RetryState : "Exception"
-RetryState -> FallbackState : "counter >= MAX_RETRIES"
-FallbackState -> WorkingState : "response.getStatusCode().is2xxSuccessful()""
-FallbackState --> [*] : "Exception"
-
+    [*] --> WorkingState
+    WorkingState -> RetryState : "Exception"
+    RetryState -> FallbackState : "counter >= MAX_RETRIES"
+    FallbackState -> WorkingState : "response.getStatusCode().is2xxSuccessful()""
+    FallbackState --> [*] : "Exception"
 @enduml
