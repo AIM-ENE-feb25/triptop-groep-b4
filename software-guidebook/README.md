@@ -59,6 +59,8 @@ van gebruikers. Dit externe systeem zorgt ervoor dat gebruikers zich veilig kunn
 applicatie en hun identiteit wordt gecontroleerd, zonder dat de applicatie zelf verantwoordelijk is
 voor het beheer van wachtwoorden of inloggegevens.
 
+5. SMS Verify
+
 ## 3. Functional Overview
 
 Om de belangrijkste features toe te lichten zijn er user stories en twee domain stories gemaakt en een overzicht van het domein in de vorm van een domeinmodel. Op deze plek staat typisch een user story map maar die ontbreekt in dit voorbeeld.

@@ -12,6 +12,7 @@ Person(ReisAgent, "Reisagent", "Biedt hulp bij het plannen van reizen")
 System(TripTop, "TripTop Applicatie", "Applicatie voor het plannen van reizen")
 
 System_Ext(IdentityProvider, "Identity Provider", "Verifieert gebruikersidentiteit")
+System_Ext(SMSVerify, "SMSVerify", "Verifieert gebruikersidentiteit")
 System_Ext(Google_maps_api, "Google maps API", "API voor het opvragen van kaarten")
 System_Ext(Booking, "Booking.com", "API voor het boeken van accommodaties")
 System_Ext(AirScraper, "AirScraper", "API voor vluchtinformatie")
@@ -20,6 +21,7 @@ Reiziger --> TripTop : "Plant reizen"
 ReisAgent --> TripTop : "Helpt Reizigers met reisplanning"
 
 TripTop --> IdentityProvider : "Authenticeert en autoriseert gebruikers"
+TripTop --> SMSVerify : "Authenticeert en autoriseert gebruikers"
 TripTop --> Google_maps_api : "Haalt informatie op over kaarten"
 TripTop --> Booking : "Haalt informatie op over accommodaties"
 TripTop --> AirScraper : "Haalt informatie op over vluchten"

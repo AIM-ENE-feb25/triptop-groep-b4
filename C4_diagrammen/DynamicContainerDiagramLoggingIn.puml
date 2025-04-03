@@ -10,11 +10,14 @@ Container_Boundary(ContainerBoundary, "Container Boundary") {
     Container(Backend, "Backend", "Java", "Handelt applicatie logica en API requests af")
 }
 Container(IdentityProvider, "IdentityProvider", "External System", "Handelt authenticatie en autorisatie af")
+Container(SMSVerify, "SMSVerify", "External System", "Handelt authenticatie en autorisatie af")
 
 Rel(Reiziger, Frontend, "1: Vult inloggegevens in", $techn="HTTP", $tags="", $link="")
 Rel(Frontend, Backend, "2: Verstuurt inloggegevens", $techn="HTTP", $tags="", $link="")
-Rel(Backend, IdentityProvider, "3: Valideert inloggegevens", $techn="HTTP", $tags="", $link="")
-Rel(IdentityProvider, Backend, "4: Retourneert authenticatietoken", $techn="HTTP", $tags="", $link="")
+Rel(Backend, IdentityProvider, "3.1: Valideert inloggegevens", $techn="HTTP", $tags="", $link="")
+Rel(IdentityProvider, Backend, "4.1: Retourneert authenticatietoken", $techn="HTTP", $tags="", $link="")
+Rel(Backend, SMSVerify, "3.2: Valideert inloggegevens", $techn="HTTP", $tags="", $link="")
+Rel(SMSVerify, Backend, "4.2: Retourneert authenticatietoken", $techn="HTTP", $tags="", $link="")
 Rel(Backend, Frontend, "5: Retourneert gebruikerssessiegegevens", $techn="HTTP", $tags="", $link="")
 Rel(Frontend, Reiziger, "6: Gebruiker is ingelogd en wordt doorgestuurd naar het dashboard", $techn="HTTP", $tags="", $link="")
 
