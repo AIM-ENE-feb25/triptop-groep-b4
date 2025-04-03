@@ -1,6 +1,6 @@
 package triptop.groepB4.service;
 
-public class IdentityProviderLoginServiceAdapter implements LoginService {
+public class IdentityProviderLoginServiceAdapter extends LoginService {
     private IdentityProviderLoginService identityProviderLoginService;
 
     public IdentityProviderLoginServiceAdapter(IdentityProviderLoginService identityProviderLoginService) {
