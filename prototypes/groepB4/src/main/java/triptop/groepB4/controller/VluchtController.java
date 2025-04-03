@@ -1,43 +1,44 @@
 package triptop.groepB4.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import triptop.groepB4.service.VluchtService;
+import triptop.groepB4.domein.Vlucht;
+import triptop.groepB4.service.VluchtActionHandler;
+import triptop.groepB4.service.VluchtActionManager;
 
 @RestController
-@RequestMapping("/api")
 public class VluchtController {
-    private final VluchtService vluchtService;
 
-    public VluchtController(VluchtService vluchtService) {
-        this.vluchtService = vluchtService;
+    VluchtActionHandler vluchtActionHandler = new VluchtActionManager();
+    @PostMapping("/BookFlight")
+    public void BookFlight(){
+        Vlucht vlucht = checkIfExists(1);
+        vluchtActionHandler.BookFlight(vlucht);
+    }
+    @PostMapping("/PayFlight")
+    public void PayFlightBooking(){
+        Vlucht vlucht = checkIfExists(1);
+        vluchtActionHandler.PayFlightBooking(vlucht);
     }
 
-    @GetMapping("/getFlights")
-    public ResponseEntity<String> getFlights() {
-        return vluchtService.getFlights();
+    @PostMapping("/CancelFlightBooking")
+    public void CancelFlightBooking(){
+        Vlucht vlucht = checkIfExists(1);
+        vluchtActionHandler.CancelFlightBooking(vlucht);
     }
 
-    @GetMapping("/getFlightDetails")
-    public ResponseEntity<String> getFlightDetails(
-            @RequestParam String itineraryId,
-            @RequestParam String sessionId,
-            @RequestParam String origin,
-            @RequestParam String destination,
-            @RequestParam String date) {
-        return vluchtService.getFlightDetails(itineraryId, sessionId, origin, destination, date);
+    @PostMapping("/VoerVLuchtUit")
+    public void VoerVLuchtUit(){
+        Vlucht vlucht = new Vlucht(1);
+        vluchtActionHandler.VoerVluchtUit(vlucht);
     }
 
-    @GetMapping("/PayFlight")
-    public void PayFlightBooking() {
-
-    }
-
-    @GetMapping("/CancelFlightBooking")
-    public void CancelFlightBooking() {
-
+    public Vlucht checkIfExists(int id){
+        Vlucht vlucht = vluchtActionHandler.getVlucht(id);
+        if (vlucht == null){
+            vlucht = new Vlucht(id);
+            vluchtActionHandler.NewVlucht(vlucht);
+        }
+        return vlucht;
     }
 }

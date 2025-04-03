@@ -1,14 +1,11 @@
 package triptop.groepB4.service;
 
-import org.springframework.http.ResponseEntity;
+import triptop.groepB4.domein.Vlucht;
 
 public interface VluchtServicePoort {
 
-    ResponseEntity<String> getFlights();
-
-    ResponseEntity<String> getFlightDetails(String itineraryId, String sessionId, String origin, String destination, String date);
-
-    public void bookFlight();
-    public void payFlightBooking();
-    public void cancelFlightBooking();
+    public void BookFlight(Vlucht vlucht);
+    public void PayFlightBooking(Vlucht vlucht);
+    public void CancelFlightBooking(Vlucht vlucht);
+    public void VoerVluchtUit(Vlucht vlucht);
 }
