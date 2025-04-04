@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import triptop.groepB4.domein.SmsVerifyLoginBody;
 import triptop.groepB4.service.SmsVerifyLoginService;
 import triptop.groepB4.service.SmsVerifyLoginServiceAdapter;
 
@@ -12,7 +13,7 @@ import triptop.groepB4.service.SmsVerifyLoginServiceAdapter;
 @RequestMapping("/login/sms-verify")
 public class SmsVerifyLoginController {
     @PostMapping
-    ResponseEntity<String> login(@RequestBody String verificationCode) {
-        return ResponseEntity.ok(new SmsVerifyLoginServiceAdapter(new SmsVerifyLoginService(verificationCode)).login());
+    ResponseEntity<String> login(@RequestBody SmsVerifyLoginBody smsVerifyLoginBody) {
+        return ResponseEntity.ok(new SmsVerifyLoginServiceAdapter(new SmsVerifyLoginService(smsVerifyLoginBody.verificationCode)).login());
     }
 }
