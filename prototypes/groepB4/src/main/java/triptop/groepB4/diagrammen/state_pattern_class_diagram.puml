@@ -5,11 +5,15 @@ interface "HotelActionHandler"{
 + void BookHotel();
 + void CancelHotelBooking();
 + void PayHotel();
++ Hotel getHotel(int id);
++ void NewHotel(Hotel hotel);
 }
 interface "VluchtActionHandler"{
 + void BookFlight();
 + void CancelFlightBooking();
 + void PayFlight();
++ Vlucht getFlight(int id);
++ void NewFlight(Vlucht vlucht);
 }
 interface "VluchtServicePoort"{
 + ResponseEntity<String> getFlights()
@@ -38,6 +42,8 @@ class "hotelcontroller" {
 + void BookHotel()
 + void CancelHotelBooking()
 + void PayHotelBooking()
++ VoerBoekingUit()
++ checkIfExists()
 }
 class "HotelService"{
 - ApiGateway apiGateway
@@ -51,6 +57,8 @@ class "VluchtController"{
 + void BookFlight()
 + void CancelFlightBooking()
 + void PayFlightBooking()
++ VoerVluchtUit()
++ checkIfExists()
 }
 class "VluchtService"{
 - ApiGateway apiGateway
@@ -84,14 +92,20 @@ class ApiGateway{
 }
 
 class "HotelActionManager"{
+- ArrayList<Hotel> hotelList
 + void BookHotel();
 + void CancelHotelBooking();
 + void PayHotel();
++ Hotel getHotel(int id);
++ void NewHotel(Hotel hotel);
 }
 class "VluchtActionManager"{
+- ArrayList<Vlucht> vluchtList
 + void BookFlight();
 + void CancelFlightBooking();
 + void PayFlight();
++ Vlucht getFlight(int id);
++ void NewFlight(Vlucht vlucht);
 }
 class "Gepland" {
 + void stateActie()
