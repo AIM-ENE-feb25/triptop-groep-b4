@@ -17,10 +17,10 @@ public class WorkingState implements ApiState {
     }
 }
 
-//package triptop.groepB4.strategy;
+//package triptop.groepB4.state;
 //
 //import org.springframework.http.ResponseEntity;
-//
+//import triptop.groepB4.service.ApiGateway;
 //public class WorkingState implements ApiState {
 //    @Override
 //    public ResponseEntity<String> execute(ApiGateway apiGateway, String url) {

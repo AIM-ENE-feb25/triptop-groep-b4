@@ -33,10 +33,10 @@ public class RetryState implements ApiState {
     }
 }
 
-//package triptop.groepB4.strategy;
+//package triptop.groepB4.state;
 //
 //import org.springframework.http.ResponseEntity;
-//
+//import triptop.groepB4.service.ApiGateway;
 //public class RetryState implements ApiState {
 //    private static final int MAX_RETRIES = 3;
 //    int counter = 0;
