@@ -3,11 +3,11 @@
 skinparam classAttributeIconSize 0
 
 class IdentityProviderLoginController {
-    +ResponseEntity<String> login(String username, String password)
+    +ResponseEntity<String> login(IdentityProviderLoginBody identityProviderLoginBody)
 }
 
 class SmsVerifyLoginController {
-    +ResponseEntity<String> login(String verificationCode)
+    +ResponseEntity<String> login(SmsVerifyLoginBody smsVerifyLoginBody)
 }
 
 abstract class LoginService {
@@ -42,11 +42,22 @@ class SmsVerifyLoginServiceAdapter {
     +String getUsername()
 }
 
+class IdentityProviderLoginBody {
+    +String username;
+    +String password;
+}
+
+class SmsVerifyLoginBody {
+    +String verificationCode;
+}
+
 IdentityProviderLoginController --> IdentityProviderLoginServiceAdapter
+IdentityProviderLoginController --> IdentityProviderLoginBody
 IdentityProviderLoginServiceAdapter --|> LoginService
 IdentityProviderLoginServiceAdapter --> IdentityProviderLoginService
 
 SmsVerifyLoginController --> SmsVerifyLoginServiceAdapter
+SmsVerifyLoginController --> SmsVerifyLoginBody
 SmsVerifyLoginServiceAdapter --|> LoginService
 SmsVerifyLoginServiceAdapter --> SmsVerifyLoginService
 
