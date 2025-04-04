@@ -2,6 +2,7 @@
     [*] --> WorkingState
     WorkingState -> RetryState : "Exception"
     RetryState -> FallbackState : "counter >= MAX_RETRIES"
+    RetryState -> WorkingState : "response.getStatusCode().is2xxSuccessful()"
     FallbackState -> WorkingState : "response.getStatusCode().is2xxSuccessful()""
     FallbackState --> [*] : "Exception"
 @enduml
