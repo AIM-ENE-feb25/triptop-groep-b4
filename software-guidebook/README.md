@@ -370,13 +370,14 @@ Er zijn een aantal patterns overwogen om de ontwerpvraag op te lossen. Hierbij z
 | Forces                           | Strategy | Adapter | State | Facade | Factory method |
 |----------------------------------|----------|---------|-------|--------|----------------|
 | Uitbreidbaarheid                 | ++       | -       | ++    | -      | +              |
-| Niet complex                     | +        | +       | 0     | ++     | +              |
+| Niet complex                     | +        | +       | +     | ++     | +              |
 | Betere foutafhandelingsstrategie | ++       | -       | ++    | --     | +              |
 #### Decision
 Nadat alle patronen overwogen zijn is de conclusie getrokken dat het state pattern de beste optie is.
 Dit patroon biedt de mogelijkheid om verschillende toestanden te definiëren. Die toestanden kunnen er dan voor zorgen dat de applicatie zich aanpast aan de situatie.
 Een voorbeeld hiervan is als de applicatie bijvoorbeeld al drie keer heeft geprobeerd om de externe service aan te roepen, maar deze nog steeds niet beschikbaar is dat de applicatie dan
 veranderd naar de volgende state en de cache teruggeeft. Het toepassen van states maakt het dus gemakkelijk om te reageren op de situatie, in dit geval hoe vaak de externe service is aangeroepen.
+Het state patroon past beter dan strategy, omdat strategy alleen zorgt voor verschillende foutmeldingstechnieken, maar het moeilijk maakt om een cache terug te geven. Bij states is dat veel beter mogelijk.
 #### Status
 Accepted
 #### Consequences
