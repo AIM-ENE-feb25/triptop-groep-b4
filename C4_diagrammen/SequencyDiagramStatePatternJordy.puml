@@ -6,7 +6,7 @@ group Hotel boeken succes
     HotelController -> HotelActionManager :Hotel hotel = getHotel(id)
     HotelController -> HotelActionManager :Boekhotel(hotel)
     HotelActionManager -> Hotel: Boekhotel()
-    Hotel -> Gepland : StateActie(this)
+    Hotel -> Gepland : StateActie(this, "Boeken")
     Gepland -> HotelService : Boekhotel(hotel)
     HotelService -> Hotel : setState(new Geregeld())
 end
